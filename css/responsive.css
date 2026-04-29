@@ -1,0 +1,147 @@
+/* ============================================
+   RESPONSIVE.CSS — Media queries
+   ============================================ */
+
+/* Tablet */
+@media (max-width: 900px) {
+  .navbar {
+    padding: 12px 24px;
+  }
+
+  .navbar.scrolled {
+    padding: 10px 24px;
+  }
+
+  .nav-links {
+    gap: 22px;
+  }
+
+  .section {
+    padding: 60px 20px;
+  }
+
+  .timeline {
+    padding-left: 28px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 720px) {
+  .nav-toggle {
+    display: inline-flex;
+  }
+
+  .nav-links {
+    position: fixed;
+    top: 60px;
+    left: 16px;
+    right: 16px;
+    flex-direction: column;
+    align-items: stretch;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 18px 22px;
+    gap: 16px;
+    transform: translateY(-12px);
+    opacity: 0;
+    pointer-events: none;
+    transition: all var(--transition);
+    box-shadow: var(--shadow-elevated);
+  }
+
+  .nav-links.open {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .hero {
+    padding: 120px 20px 80px;
+  }
+
+  .profile-wrap {
+    width: 140px;
+    height: 140px;
+  }
+
+  .profile-img {
+    width: 120px;
+    height: 120px;
+  }
+
+  .hero-stats {
+    gap: 24px;
+    margin-top: 36px;
+  }
+
+  .stat-num {
+    font-size: 1.6rem;
+  }
+
+  .section {
+    padding: 50px 18px;
+  }
+
+  .section-title {
+    margin-bottom: 32px;
+  }
+
+  .about-card {
+    padding: 28px 20px;
+  }
+
+  .screenshot-card {
+    width: 200px;
+  }
+
+  .project-card {
+    padding: 22px;
+  }
+
+  .contact-card {
+    padding: 36px 22px;
+  }
+
+  .contact-flex {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .contact-item {
+    justify-content: center;
+  }
+
+  .timeline {
+    padding-left: 24px;
+  }
+
+  .exp-card {
+    padding: 20px 22px;
+  }
+}
+
+/* Small mobile */
+@media (max-width: 420px) {
+  .navbar {
+    padding: 10px 16px;
+  }
+
+  .logo {
+    font-size: 1.2rem;
+  }
+
+  .logo-icon {
+    width: 30px;
+    height: 30px;
+  }
+
+  .hero h1 {
+    font-size: 2rem;
+  }
+
+  .badge {
+    font-size: 0.78rem;
+    padding: 7px 14px;
+  }
+}

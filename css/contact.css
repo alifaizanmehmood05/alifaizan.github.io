@@ -1,0 +1,158 @@
+/* ============================================
+   CONTACT.CSS
+   ============================================ */
+
+.contact-card {
+  background: linear-gradient(135deg, var(--bg-card), var(--bg-elevated));
+  border-radius: var(--radius-lg);
+  padding: 48px 32px;
+  text-align: center;
+  border: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.contact-card::before {
+  content: '';
+  position: absolute;
+  top: -1px; left: -1px; right: -1px; bottom: -1px;
+  background: var(--gradient-main);
+  border-radius: var(--radius-lg);
+  opacity: 0.4;
+  z-index: -1;
+  filter: blur(30px);
+  animation: gradientShift 8s ease infinite;
+  background-size: 200% 200%;
+}
+
+.contact-card h2 {
+  font-size: clamp(1.6rem, 4vw, 2.2rem);
+  margin-bottom: 12px;
+}
+
+.contact-card p {
+  color: var(--text-dim);
+  font-size: 1rem;
+  margin-bottom: 8px;
+}
+
+.contact-flex {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 32px;
+  margin-bottom: 32px;
+}
+
+.contact-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--bg-elevated);
+  padding: 12px 22px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  font-size: 0.9rem;
+  transition: all var(--transition);
+  cursor: pointer;
+}
+
+.contact-item i {
+  color: var(--primary-light);
+  transition: all var(--transition-fast);
+}
+
+.contact-item:hover {
+  border-color: var(--primary);
+  color: var(--text);
+  transform: translateY(-3px);
+  box-shadow: var(--glow-soft);
+}
+
+.contact-item:hover i {
+  color: var(--secondary-light);
+  transform: scale(1.15);
+}
+
+.contact-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--gradient-cool);
+  color: var(--bg);
+  padding: 14px 36px;
+  border-radius: var(--radius-pill);
+  font-weight: 700;
+  font-size: 1rem;
+  border: 1px solid transparent;
+  transition: all var(--transition);
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  cursor: pointer;
+  z-index: 2;
+  box-shadow: var(--glow-emerald);
+}
+
+.contact-cta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--gradient-warm);
+  opacity: 0;
+  transition: opacity var(--transition);
+  z-index: -1;
+}
+
+.contact-cta:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 14px 40px rgba(245, 158, 11, 0.4);
+}
+
+.contact-cta:hover::before {
+  opacity: 1;
+}
+
+.contact-cta i {
+  transition: transform var(--transition-fast);
+}
+
+.contact-cta:hover i {
+  animation: bounceArrow 0.8s ease infinite;
+}
+
+/* ===== Toast notification ===== */
+.toast {
+  position: fixed;
+  bottom: 32px;
+  left: 50%;
+  transform: translate(-50%, 30px);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--bg-elevated);
+  color: var(--text);
+  padding: 12px 22px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--primary);
+  box-shadow: var(--glow-emerald), 0 10px 30px rgba(0, 0, 0, 0.5);
+  font-size: 0.9rem;
+  font-weight: 500;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: 10000;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+.toast i {
+  color: var(--primary-light);
+  font-size: 1.1rem;
+}
