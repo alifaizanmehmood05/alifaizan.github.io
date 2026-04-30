@@ -91,8 +91,11 @@
     padding: 28px 20px;
   }
 
-  .screenshot-card {
-    width: 200px;
+  .phone {
+    width: 170px;
+  }
+  .phone-gallery {
+    gap: 22px;
   }
 
   .project-card {

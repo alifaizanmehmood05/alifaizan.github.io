@@ -3,7 +3,7 @@
    ============================================ */
 
 import {
-  buildScreenshotRow,
+  buildShowcases,
   buildSkills,
   buildProjects,
   buildExperience,
@@ -15,7 +15,10 @@ import {
   initTypewriter,
   initCounters,
   initScrollProgress,
-  initParallax
+  initParallax,
+  initCursor,
+  initMagneticBtns,
+  initGridFx
 } from './animations.js';
 
 import {
@@ -33,7 +36,7 @@ function ready(fn) {
 
 ready(() => {
   // Render dynamic content first
-  buildScreenshotRow();
+  buildShowcases();
   buildSkills();
   buildProjects();
   buildExperience();
@@ -52,6 +55,9 @@ ready(() => {
   initTypewriter();
   initCounters();
   initParallax();
+  initCursor();
+  initMagneticBtns();
+  initGridFx();
 
   // Set current year in footer
   const yearEl = document.getElementById('year');

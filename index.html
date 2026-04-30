@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <meta name="description" content="Ali Faizan Mehmood — Senior Mobile Developer. Kotlin, Flutter, KMP, AI-powered apps. FutureBaby AI live on App Store." />
-  <meta name="theme-color" content="#10b981" />
+  <meta name="theme-color" content="#ff7a18" />
   <title>Ali Faizan Mehmood | Senior Mobile Developer</title>
 
   <!-- Fonts -->
@@ -29,6 +29,18 @@
 
   <!-- Scroll progress -->
   <div class="scroll-progress" aria-hidden="true"></div>
+
+  <!-- Animated background grid layer (sweeps + node sparkles) -->
+  <div class="grid-fx" id="gridFx" aria-hidden="true"></div>
+
+  <!-- Custom cursor: magnetic comet -->
+  <div class="cursor-aura" aria-hidden="true">
+    <div class="cursor-comet">
+      <span class="cursor-head"></span>
+      <span class="cursor-pulse"></span>
+    </div>
+    <div class="cursor-trail" id="cursorTrail"></div>
+  </div>
 
   <!-- Navbar -->
   <nav class="navbar">
@@ -59,11 +71,20 @@
 
     <div class="hero-inner">
       <div class="profile-wrap">
+        <span class="profile-sonar profile-sonar--1" aria-hidden="true"></span>
+        <span class="profile-sonar profile-sonar--2" aria-hidden="true"></span>
+        <span class="profile-sonar profile-sonar--3" aria-hidden="true"></span>
+        <span class="profile-dash" aria-hidden="true"></span>
+        <span class="profile-orbit" aria-hidden="true">
+          <span class="orbit-dot"></span>
+          <span class="orbit-dot"></span>
+          <span class="orbit-dot"></span>
+        </span>
         <img
           src="assets/images/profile.png"
           alt="Ali Faizan Mehmood"
           class="profile-img"
-          onerror="this.src='https://ui-avatars.com/api/?background=131d23&color=34d399&bold=true&name=Ali+Faizan&size=150&rounded=true&fontsize=0.6';"
+          onerror="this.src='https://ui-avatars.com/api/?background=000000&color=ff7a18&bold=true&name=Ali+Faizan&size=150&rounded=true&fontsize=0.6';"
         />
       </div>
 
@@ -143,24 +164,8 @@
     <span class="section-eyebrow">Selected Work</span>
     <h2 class="section-title">Featured <span class="gradient-text">Projects</span></h2>
 
-    <!-- FutureBaby showcase -->
-    <div class="screenshot-showcase">
-      <div class="showcase-title">
-        <i class="fas fa-baby-carriage"></i>
-        <span class="gradient-text">FutureBaby AI</span>
-        <i class="fas fa-robot"></i>
-      </div>
-      <div class="showcase-subtitle">
-        <span class="live-pill"><span class="dot"></span>Live on App Store</span>
-        AI baby prediction · aging · similarity score
-      </div>
-      <div class="screenshot-row" id="screenshotRow"></div>
-      <div class="scroll-hint">
-        <i class="fas fa-arrow-left"></i>
-        Scroll horizontally
-        <i class="fas fa-arrow-right"></i>
-      </div>
-    </div>
+    <!-- App showcases (FutureBaby, Sudoku, AI Tutor) -->
+    <div id="showcasesWrap"></div>
 
     <!-- Project grid -->
     <div class="projects-grid stagger" id="projectsGrid"></div>

@@ -2,16 +2,21 @@
    PROJECTS.CSS — Project grid + screenshot showcase
    ============================================ */
 
-/* ===== FutureBaby Showcase ===== */
+/* ===== Showcase wrapper ===== */
 .screenshot-showcase {
   background: linear-gradient(135deg, var(--bg-card), var(--bg-elevated));
   border-radius: var(--radius-lg);
-  padding: 32px 24px;
+  padding: 40px 24px 28px;
   margin-bottom: 56px;
   border: 1px solid var(--border);
   position: relative;
   overflow: hidden;
+  isolation: isolate;
 }
+
+/* Per-app accent halos */
+.screenshot-showcase[data-accent="orange"] { --accent: 255, 122, 24; }
+.screenshot-showcase[data-accent="white"]  { --accent: 255, 255, 255; }
 
 .screenshot-showcase::before {
   content: '';
@@ -19,9 +24,27 @@
   inset: -2px;
   background: var(--gradient-main);
   border-radius: var(--radius-lg);
-  opacity: 0.15;
+  opacity: 0.12;
   z-index: -1;
-  filter: blur(20px);
+  filter: blur(24px);
+}
+
+/* Animated radial glow that drifts behind each gallery */
+.showcase-glow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  background:
+    radial-gradient(circle at 15% 20%, rgba(var(--accent), 0.18), transparent 45%),
+    radial-gradient(circle at 85% 70%, rgba(var(--accent), 0.14), transparent 50%);
+  animation: ambientDrift 14s ease-in-out infinite alternate;
+}
+
+@keyframes ambientDrift {
+  0%   { transform: translate(0, 0) scale(1); }
+  50%  { transform: translate(-3%, 2%) scale(1.05); }
+  100% { transform: translate(3%, -2%) scale(1); }
 }
 
 .showcase-title {
@@ -29,7 +52,7 @@
   align-items: center;
   justify-content: center;
   gap: 14px;
-  font-size: clamp(1.2rem, 3vw, 1.5rem);
+  font-size: clamp(1.3rem, 3vw, 1.6rem);
   font-weight: 700;
   margin-bottom: 8px;
   text-align: center;
@@ -38,143 +61,337 @@
 
 .showcase-title .gradient-text {
   font-weight: 800;
+  letter-spacing: -0.02em;
 }
 
 .showcase-title i {
-  color: var(--primary-light);
+  color: rgb(var(--accent));
   font-size: 1.5rem;
+  filter: drop-shadow(0 0 12px rgba(var(--accent), 0.6));
+  animation: floatY 4s ease-in-out infinite;
+}
+
+.showcase-title i:last-child {
+  animation-delay: -2s;
 }
 
 .showcase-subtitle {
   text-align: center;
   color: var(--text-muted);
   font-size: 0.9rem;
-  margin-bottom: 24px;
+  margin-bottom: 28px;
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
+  flex-wrap: wrap;
 }
 
 .live-pill {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background: rgba(16, 185, 129, 0.12);
-  color: var(--primary-light);
   padding: 4px 12px;
   border-radius: var(--radius-pill);
   font-size: 0.75rem;
   font-weight: 600;
-  border: 1px solid rgba(16, 185, 129, 0.3);
+  background: rgba(var(--accent), 0.1);
+  color: rgb(var(--accent));
+  border: 1px solid rgba(var(--accent), 0.3);
 }
 
 .live-pill .dot {
   width: 6px;
   height: 6px;
-  background: var(--primary);
+  background: rgb(var(--accent));
   border-radius: 50%;
-  animation: pulseGlow 1.6s ease infinite;
+  box-shadow: 0 0 0 0 rgba(var(--accent), 0.6);
+  animation: pulseAccent 1.6s ease infinite;
 }
 
-/* Horizontal scroll row */
-.screenshot-row {
+@keyframes pulseAccent {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(var(--accent), 0.6); }
+  50%      { box-shadow: 0 0 0 10px rgba(var(--accent), 0); }
+}
+
+/* ===== Phone gallery ===== */
+.phone-gallery {
   display: flex;
+  gap: 36px;
+  padding: 36px 18px 28px;
   overflow-x: auto;
-  gap: 20px;
-  padding: 16px 8px 24px;
   scroll-behavior: smooth;
   scroll-snap-type: x mandatory;
+  perspective: 1400px;
   scrollbar-width: thin;
-  scrollbar-color: var(--primary) var(--border);
+  scrollbar-color: rgb(var(--accent)) var(--border);
 }
 
-.screenshot-row::-webkit-scrollbar {
+.phone-gallery::-webkit-scrollbar {
   height: 8px;
 }
-
-.screenshot-row::-webkit-scrollbar-track {
-  background: var(--border);
+.phone-gallery::-webkit-scrollbar-track {
+  background: rgba(var(--accent), 0.08);
+  border-radius: 10px;
+}
+.phone-gallery::-webkit-scrollbar-thumb {
+  background: linear-gradient(90deg, rgb(var(--accent)), rgba(var(--accent), 0.5));
   border-radius: 10px;
 }
 
-.screenshot-row::-webkit-scrollbar-thumb {
-  background: var(--gradient-cool);
-  border-radius: 10px;
-}
-
-.screenshot-card {
+.phone {
   flex: 0 0 auto;
-  width: 260px;
-  background: var(--bg-elevated);
-  border-radius: var(--radius-md);
-  overflow: hidden;
-  border: 1px solid var(--border);
-  transition: all var(--transition);
-  scroll-snap-align: start;
-  position: relative;
+  width: 230px;
+  scroll-snap-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  cursor: pointer;
+  perspective: 1200px;
+  animation: phoneFloat 6s ease-in-out infinite;
+  animation-delay: calc(var(--i, 0) * -0.7s);
 }
 
-.screenshot-card::after {
-  content: '';
+.phone:nth-child(even) { animation-duration: 7.5s; }
+
+@keyframes phoneFloat {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-10px); }
+}
+
+/* Stagger entrance — when showcase reveals, phones drift in */
+.screenshot-showcase.is-visible .phone {
+  animation: phoneFloat 6s ease-in-out infinite, phoneEnter 0.9s cubic-bezier(0.4, 0, 0.2, 1) backwards;
+  animation-delay: calc(var(--i, 0) * -0.7s), calc(var(--i, 0) * 80ms);
+}
+
+@keyframes phoneEnter {
+  0%   { opacity: 0; transform: translateY(60px) scale(0.85) rotateX(-20deg); }
+  100% { opacity: 1; transform: translateY(0) scale(1) rotateX(0); }
+}
+
+/* Phone frame — body of the phone */
+.phone-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 9 / 19;
+  border-radius: 36px;
+  background: linear-gradient(160deg, #1a242b 0%, #0a1014 50%, #1a242b 100%);
+  border: 2px solid rgba(255, 255, 255, 0.05);
+  box-shadow:
+    inset 0 0 0 2px rgba(255, 255, 255, 0.03),
+    0 20px 40px rgba(0, 0, 0, 0.6),
+    0 0 0 1px rgba(var(--accent), 0.15);
+  padding: 8px;
+  transform-style: preserve-3d;
+  transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+}
+
+.phone:hover .phone-frame {
+  box-shadow:
+    inset 0 0 0 2px rgba(var(--accent), 0.4),
+    0 30px 60px rgba(0, 0, 0, 0.7),
+    0 0 60px rgba(var(--accent), 0.45);
+}
+
+/* Glowing aura behind phone (intensifies on hover) */
+.phone-aura {
+  position: absolute;
+  inset: -12px;
+  border-radius: 44px;
+  background: radial-gradient(circle, rgba(var(--accent), 0.25), transparent 60%);
+  opacity: 0.6;
+  filter: blur(18px);
+  z-index: -1;
+  transition: opacity 0.4s, transform 0.6s;
+}
+
+.phone:hover .phone-aura {
+  opacity: 1;
+  transform: scale(1.15);
+}
+
+/* Subtle metallic shine across the frame */
+.phone-shine {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, transparent 60%, rgba(0, 0, 0, 0.4));
+  border-radius: 36px;
+  background: linear-gradient(
+    115deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.06) 50%,
+    transparent 70%
+  );
   pointer-events: none;
-  opacity: 0;
-  transition: opacity var(--transition);
-  border-radius: var(--radius-md);
+  mix-blend-mode: screen;
 }
 
-.screenshot-card:hover {
-  transform: translateY(-8px) scale(1.02);
-  border-color: var(--primary);
-  box-shadow: 0 20px 40px rgba(16, 185, 129, 0.25);
-}
-
-.screenshot-card:hover::after {
-  opacity: 1;
-}
-
-.screenshot-card img {
-  width: 100%;
-  aspect-ratio: 9 / 16;
-  object-fit: cover;
-  transition: transform 0.6s ease;
-}
-
-.screenshot-card:hover img {
-  transform: scale(1.06);
-}
-
-.screenshot-card-caption {
+/* Notch / dynamic island */
+.phone-notch {
   position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 12px;
-  text-align: center;
-  font-size: 0.78rem;
-  font-weight: 500;
-  color: var(--text);
-  background: linear-gradient(180deg, transparent, rgba(5, 10, 12, 0.95));
-  z-index: 1;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 14px;
+  background: #000;
+  border-radius: 10px;
+  z-index: 3;
+  border: 1px solid rgba(255, 255, 255, 0.04);
 }
 
+.phone-notch::after {
+  content: '';
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: rgba(var(--accent), 0.6);
+  box-shadow: 0 0 6px rgba(var(--accent), 0.8);
+}
+
+/* Side buttons — adds realism */
+.phone-side {
+  position: absolute;
+  width: 3px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 2px;
+}
+
+.phone-side--volume {
+  left: -3px;
+  top: 22%;
+  height: 50px;
+}
+
+.phone-side--power {
+  right: -3px;
+  top: 28%;
+  height: 38px;
+}
+
+/* Screen */
+.phone-screen {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 28px;
+  overflow: hidden;
+  background: #000;
+  isolation: isolate;
+}
+
+.phone-screen img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  display: block;
+}
+
+/* Fallback when image fails to load — initially hidden, shown via onerror */
+.phone-screen-fallback {
+  position: absolute;
+  inset: 0;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  color: rgba(255, 255, 255, 0.6);
+  background: linear-gradient(160deg, #1a1a1a, #050505);
+  font-size: 0.7rem;
+  text-align: center;
+  padding: 16px;
+  z-index: 0;
+}
+
+.phone-screen-fallback i {
+  font-size: 2rem;
+  color: rgba(255, 122, 24, 0.7);
+}
+
+/* Dynamic glare that follows cursor (set via JS) */
+.phone-screen-glare {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  z-index: 2;
+}
+
+/* Subtle vignette + scan lines for screen feel */
+.phone-screen-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.06), transparent 20%, transparent 80%, rgba(0,0,0,0.4)),
+    repeating-linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 0.02) 0px,
+      rgba(255, 255, 255, 0.02) 1px,
+      transparent 1px,
+      transparent 3px
+    );
+}
+
+/* Caption */
+.phone-caption {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.82rem;
+  color: var(--text-dim);
+  font-weight: 500;
+  text-align: center;
+  transition: color 0.3s, transform 0.3s;
+}
+
+.phone:hover .phone-caption {
+  color: var(--text);
+  transform: translateY(-2px);
+}
+
+.phone-caption-num {
+  font-family: 'Poppins', monospace;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: rgb(var(--accent));
+  background: rgba(var(--accent), 0.1);
+  padding: 3px 8px;
+  border-radius: 6px;
+  border: 1px solid rgba(var(--accent), 0.25);
+  letter-spacing: 0.1em;
+}
+
+.phone-caption-text {
+  letter-spacing: 0.01em;
+}
+
+/* Scroll hint */
 .scroll-hint {
   text-align: center;
-  margin-top: 12px;
+  margin-top: 16px;
   font-size: 0.78rem;
   color: var(--text-muted);
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: 10px;
 }
 
-.scroll-hint i {
-  animation: bounceArrow 1.6s ease-in-out infinite;
-}
+.scroll-hint i:first-child { animation: bounceArrow 1.6s ease-in-out infinite reverse; }
+.scroll-hint i:last-child  { animation: bounceArrow 1.6s ease-in-out infinite; }
 
 /* ===== Project grid ===== */
 .projects-grid {
@@ -188,10 +405,13 @@
   border-radius: var(--radius-md);
   padding: 28px;
   border: 1px solid var(--border);
-  transition: all var(--transition);
+  transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow var(--transition);
   position: relative;
   overflow: hidden;
   cursor: pointer;
+  transform-style: preserve-3d;
+  will-change: transform;
 }
 
 /* Glowing gradient border on hover */
@@ -216,7 +436,7 @@
 }
 
 .project-card:hover {
-  transform: translateY(-6px);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.45), var(--glow-soft);
 }
 
 .project-card:hover::before {
@@ -229,7 +449,7 @@
   inset: 0;
   background: radial-gradient(
     400px circle at var(--mx, 50%) var(--my, 50%),
-    rgba(16, 185, 129, 0.12),
+    rgba(255, 122, 24, 0.16),
     transparent 40%
   );
   opacity: 0;
@@ -249,7 +469,7 @@
   width: 52px;
   height: 52px;
   border-radius: 14px;
-  background: rgba(16, 185, 129, 0.1);
+  background: rgba(255, 122, 24, 0.1);
   color: var(--primary-light);
   font-size: 1.4rem;
   margin-bottom: 18px;
@@ -284,20 +504,20 @@
 }
 
 .tech {
-  background: rgba(34, 211, 238, 0.08);
+  background: rgba(255, 255, 255, 0.08);
   color: var(--cyan);
   padding: 4px 12px;
   border-radius: var(--radius-pill);
   font-size: 0.72rem;
   font-weight: 600;
-  border: 1px solid rgba(34, 211, 238, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   transition: all var(--transition-fast);
 }
 
 .project-card:hover .tech {
-  background: rgba(245, 158, 11, 0.1);
+  background: rgba(255, 154, 60, 0.1);
   color: var(--secondary-light);
-  border-color: rgba(245, 158, 11, 0.3);
+  border-color: rgba(255, 154, 60, 0.3);
 }
 
 /* "Live" badge for shipped projects */
@@ -308,13 +528,13 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background: rgba(16, 185, 129, 0.12);
+  background: rgba(255, 122, 24, 0.12);
   color: var(--primary-light);
   padding: 4px 10px;
   border-radius: var(--radius-pill);
   font-size: 0.7rem;
   font-weight: 600;
-  border: 1px solid rgba(16, 185, 129, 0.3);
+  border: 1px solid rgba(255, 122, 24, 0.3);
 }
 
 .project-live .dot {
@@ -323,4 +543,11 @@
   background: var(--primary);
   border-radius: 50%;
   animation: pulseGlow 1.6s ease infinite;
+}
+
+/* Responsive — narrower phone width on smaller screens */
+@media (max-width: 600px) {
+  .phone { width: 180px; }
+  .phone-gallery { gap: 24px; padding: 24px 12px 20px; }
+  .screenshot-showcase { padding: 28px 16px 20px; }
 }

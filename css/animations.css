@@ -21,12 +21,12 @@
 
 @keyframes pulseGlow {
   0%, 100% {
-    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.6),
-                0 0 30px rgba(16, 185, 129, 0.4);
+    box-shadow: 0 0 0 0 rgba(255, 122, 24, 0.6),
+                0 0 30px rgba(255, 122, 24, 0.4);
   }
   50% {
-    box-shadow: 0 0 0 18px rgba(16, 185, 129, 0),
-                0 0 50px rgba(16, 185, 129, 0.6);
+    box-shadow: 0 0 0 18px rgba(255, 122, 24, 0),
+                0 0 50px rgba(255, 122, 24, 0.6);
   }
 }
 
@@ -216,14 +216,14 @@
 .orb--1 {
   width: 380px; height: 380px;
   top: -80px; left: -80px;
-  background: radial-gradient(circle, rgba(16, 185, 129, 0.6), transparent 70%);
+  background: radial-gradient(circle, rgba(255, 122, 24, 0.6), transparent 70%);
   animation-duration: 20s;
 }
 
 .orb--2 {
   width: 300px; height: 300px;
   top: 30%; right: -60px;
-  background: radial-gradient(circle, rgba(34, 211, 238, 0.5), transparent 70%);
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.5), transparent 70%);
   animation-duration: 25s;
   animation-delay: -5s;
 }
@@ -231,9 +231,154 @@
 .orb--3 {
   width: 340px; height: 340px;
   bottom: -100px; left: 30%;
-  background: radial-gradient(circle, rgba(245, 158, 11, 0.45), transparent 70%);
+  background: radial-gradient(circle, rgba(255, 154, 60, 0.45), transparent 70%);
   animation-duration: 22s;
   animation-delay: -10s;
+}
+
+/* ===== Custom cursor — magnetic comet (compact) ===== */
+.cursor-aura {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9998;
+  transition: opacity 0.25s;
+}
+
+.cursor-aura.is-hidden {
+  opacity: 0;
+}
+
+/* Comet — just the bright head + a faint pulsing halo (no big frame) */
+.cursor-comet {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+  z-index: 10000;
+  will-change: transform;
+}
+
+/* Bright orange core */
+.cursor-head {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #ffffff 0%, #ff7a18 60%, #d95a00 100%);
+  transform: translate(-50%, -50%);
+  box-shadow:
+    0 0 8px rgba(255, 122, 24, 0.9),
+    0 0 18px rgba(255, 122, 24, 0.5);
+  transition: width 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
+              height 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
+              background 0.25s;
+}
+
+/* Soft slowly-pulsing halo */
+.cursor-pulse {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 122, 24, 0.55);
+  transform: translate(-50%, -50%);
+  animation: cometPulse 1.8s ease-in-out infinite;
+  transition: width 0.3s, height 0.3s, border-color 0.3s;
+}
+
+@keyframes cometPulse {
+  0%, 100% { opacity: 0.6; transform: translate(-50%, -50%) scale(1);   }
+  50%      { opacity: 0.9; transform: translate(-50%, -50%) scale(1.15);}
+}
+
+/* Hover state — head grows to white core, pulse ring grows + brightens */
+.cursor-comet.is-hover .cursor-head {
+  width: 14px;
+  height: 14px;
+  background: radial-gradient(circle, #ffffff 0%, #ffffff 40%, #ff7a18 100%);
+  box-shadow:
+    0 0 12px rgba(255, 255, 255, 0.9),
+    0 0 24px rgba(255, 122, 24, 0.7);
+}
+
+.cursor-comet.is-hover .cursor-pulse {
+  width: 32px;
+  height: 32px;
+  border-color: rgba(255, 255, 255, 0.85);
+}
+
+.cursor-comet.is-press .cursor-head {
+  width: 6px;
+  height: 6px;
+}
+
+/* Click shockwave ring (small, single tap) */
+.cursor-shock {
+  position: fixed;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255, 122, 24, 0.9);
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  animation: cursorShock 0.55s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+  z-index: 9999;
+}
+
+@keyframes cursorShock {
+  0%   { opacity: 1; transform: translate(-50%, -50%) scale(0.5); }
+  100% { opacity: 0; transform: translate(-50%, -50%) scale(3); }
+}
+
+/* Trail — small ink drops fading behind the comet */
+.cursor-trail {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9997;
+}
+
+.cursor-drop {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 154, 60, 0.85), rgba(255, 122, 24, 0.4) 60%, transparent 80%);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  filter: blur(0.5px);
+  animation: cursorDrop 0.55s ease-out forwards;
+}
+
+@keyframes cursorDrop {
+  0%   { opacity: 0.85; }
+  100% { opacity: 0; transform: translate(-50%, -50%) scale(0.3); }
+}
+
+/* Hide native cursor on devices that have a custom one */
+body.has-custom-cursor,
+body.has-custom-cursor a,
+body.has-custom-cursor button {
+  cursor: none;
+}
+
+/* Don't hide cursor inside text inputs */
+body.has-custom-cursor input,
+body.has-custom-cursor textarea {
+  cursor: text;
+}
+
+/* Don't apply on touch devices */
+@media (pointer: coarse) {
+  .cursor-aura { display: none !important; }
+  body.has-custom-cursor { cursor: auto; }
 }
 
 /* Reduce motion */

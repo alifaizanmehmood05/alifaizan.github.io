@@ -118,6 +118,134 @@ export function initScrollProgress() {
   window.addEventListener('resize', update);
 }
 
+/* ----- Animated grid: spawn glowing nodes at random intersections ----- */
+export function initGridFx() {
+  const fx = document.getElementById('gridFx');
+  if (!fx) return;
+
+  const SPACING = 50; // matches body::after grid spacing
+
+  function spawnNode() {
+    // pick a random grid intersection
+    const cols = Math.floor(window.innerWidth / SPACING);
+    const rows = Math.floor(window.innerHeight / SPACING);
+    const col = Math.floor(Math.random() * cols);
+    const row = Math.floor(Math.random() * rows);
+
+    const node = document.createElement('span');
+    node.className = 'grid-node';
+    node.style.left = `${col * SPACING}px`;
+    node.style.top = `${row * SPACING}px`;
+    // Slight per-node tint variation between orange and white
+    if (Math.random() > 0.7) {
+      node.style.background = '#ffffff';
+      node.style.boxShadow = '0 0 8px rgba(255, 255, 255, 0.85), 0 0 16px rgba(255, 122, 24, 0.5)';
+    }
+    node.style.animationDuration = `${2.4 + Math.random() * 2.4}s`;
+    fx.appendChild(node);
+    setTimeout(() => node.remove(), 4000);
+  }
+
+  // Pre-seed a few then keep spawning
+  for (let i = 0; i < 6; i++) setTimeout(spawnNode, i * 200);
+  setInterval(spawnNode, 380);
+}
+
+/* ----- Custom cursor: magnetic comet (compact) ----- */
+export function initCursor() {
+  const aura = document.querySelector('.cursor-aura');
+  const comet = document.querySelector('.cursor-comet');
+  const trail = document.getElementById('cursorTrail');
+  if (!aura || !comet || !trail) return;
+
+  const fine = window.matchMedia('(pointer: fine)').matches;
+  if (!fine) {
+    aura.style.display = 'none';
+    return;
+  }
+
+  let mx = window.innerWidth / 2;
+  let my = window.innerHeight / 2;
+  let prevX = mx, prevY = my;
+  let lastDrop = 0;
+
+  document.body.classList.add('has-custom-cursor');
+
+  window.addEventListener('mousemove', (e) => {
+    mx = e.clientX;
+    my = e.clientY;
+
+    const dx = mx - prevX;
+    const dy = my - prevY;
+    const speed = Math.hypot(dx, dy);
+    const now = performance.now();
+
+    // Drop a small ink trail when the cursor moves fast enough
+    if (speed > 3 && now - lastDrop > 36) {
+      lastDrop = now;
+      const d = document.createElement('span');
+      d.className = 'cursor-drop';
+      d.style.left = `${mx - dx * 0.3}px`;
+      d.style.top = `${my - dy * 0.3}px`;
+      trail.appendChild(d);
+      setTimeout(() => d.remove(), 560);
+    }
+
+    prevX = mx;
+    prevY = my;
+  }, { passive: true });
+
+  // Snap comet to cursor (no lag — feels precise)
+  function loop() {
+    comet.style.transform = `translate3d(${mx}px, ${my}px, 0)`;
+    requestAnimationFrame(loop);
+  }
+  loop();
+
+  // Hover state on interactive elements
+  const hoverSelector = 'a, button, .project-card, .phone, .skill-tag, .stat, input, textarea, .btn, .contact-cta, .badge';
+  document.addEventListener('mouseover', (e) => {
+    if (e.target.closest(hoverSelector)) comet.classList.add('is-hover');
+  });
+  document.addEventListener('mouseout', (e) => {
+    if (e.target.closest(hoverSelector)) comet.classList.remove('is-hover');
+  });
+
+  // Press → shockwave
+  document.addEventListener('mousedown', (e) => {
+    comet.classList.add('is-press');
+    const shock = document.createElement('div');
+    shock.className = 'cursor-shock';
+    shock.style.left = `${e.clientX}px`;
+    shock.style.top = `${e.clientY}px`;
+    aura.appendChild(shock);
+    setTimeout(() => shock.remove(), 560);
+  });
+  document.addEventListener('mouseup', () => comet.classList.remove('is-press'));
+
+  // Hide cursor when leaving the window
+  document.addEventListener('mouseleave', () => aura.classList.add('is-hidden'));
+  document.addEventListener('mouseenter', () => aura.classList.remove('is-hidden'));
+}
+
+/* ----- Magnetic effect for buttons (cursor pulls them slightly) ----- */
+export function initMagneticBtns() {
+  if (!window.matchMedia('(pointer: fine)').matches) return;
+
+  const els = document.querySelectorAll('.btn, .contact-cta');
+  els.forEach((el) => {
+    el.addEventListener('mousemove', (e) => {
+      const rect = el.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width / 2;
+      const y = e.clientY - rect.top - rect.height / 2;
+      el.style.transform = `translate(${x * 0.18}px, ${y * 0.25}px)`;
+    });
+    el.addEventListener('mouseleave', () => {
+      el.style.transform = '';
+    });
+  });
+}
+
 /* ----- Subtle parallax on hero orbs ----- */
 export function initParallax() {
   const orbs = document.querySelectorAll('.orb');

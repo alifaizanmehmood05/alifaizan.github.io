@@ -12,6 +12,81 @@ export const screenshotData = [
   { file: 'fb7.jpg', caption: 'Custom Prompt Generation' }
 ];
 
+export const sudokuScreenshots = [
+  { file: 'su1.jpg', caption: 'Daily Challenge' },
+  { file: 'su2.jpg', caption: 'Killer Sudoku Mode' },
+  { file: 'su3.jpg', caption: 'Live Leaderboard' },
+  { file: 'su4.jpg', caption: 'Trophy Cabinet' },
+  { file: 'su5.jpg', caption: 'Player Statistics' },
+  { file: 'su6.jpg', caption: 'Difficulty Picker' },
+  { file: 'su7.jpg', caption: 'Game Board' }
+];
+
+export const aiTutorScreenshots = [
+  { file: 'ai1.jpg', caption: 'Math Solver Chat' },
+  { file: 'ai2.jpg', caption: 'Camera Equation Scan' },
+  { file: 'ai3.jpg', caption: 'Step-by-Step Solution' },
+  { file: 'ai4.jpg', caption: 'AI Tutor Conversation' },
+  { file: 'ai5.jpg', caption: 'Subject Library' },
+  { file: 'ai6.jpg', caption: 'Premium Plans' }
+];
+
+export const dualSpaceScreenshots = [
+  { file: 'ds1.jpg', caption: 'Universal Downloader' },
+  { file: 'ds2.jpg', caption: 'YouTube Downloads' },
+  { file: 'ds3.jpg', caption: 'Instagram Reels' },
+  { file: 'ds4.jpg', caption: 'Google Drive Sync' },
+  { file: 'ds5.jpg', caption: 'Sandbox Browser' },
+  { file: 'ds6.jpg', caption: 'Download Manager' }
+];
+
+export const showcases = [
+  {
+    id: 'fbGallery',
+    app: 'futurebaby',
+    icon: 'fas fa-baby-carriage',
+    iconRight: 'fas fa-robot',
+    title: 'FutureBaby AI',
+    subtitle: 'AI baby prediction · aging · similarity score',
+    pill: { text: 'Live on App Store', color: 'orange' },
+    accent: 'orange',
+    screenshots: 'screenshotData'
+  },
+  {
+    id: 'sudokuGallery',
+    app: 'sudoku',
+    icon: 'fas fa-puzzle-piece',
+    iconRight: 'fas fa-trophy',
+    title: 'Sudoku & Killer',
+    subtitle: 'Daily challenges · leaderboard · trophies · statistics',
+    pill: { text: 'Flutter · Riverpod', color: 'white' },
+    accent: 'white',
+    screenshots: 'sudokuScreenshots'
+  },
+  {
+    id: 'aiGallery',
+    app: 'aitutor',
+    icon: 'fas fa-brain',
+    iconRight: 'fas fa-graduation-cap',
+    title: 'Tutor AI',
+    subtitle: 'Math solver chatbot · camera scan · step-by-step solutions',
+    pill: { text: 'Kotlin · ML Kit · IAP', color: 'white' },
+    accent: 'white',
+    screenshots: 'aiTutorScreenshots'
+  },
+  {
+    id: 'dualSpaceGallery',
+    app: 'dualspace',
+    icon: 'fas fa-cloud-arrow-down',
+    iconRight: 'fab fa-youtube',
+    title: 'Dual Space',
+    subtitle: 'Universal downloader · YouTube, Instagram, Drive & more · sandbox browser',
+    pill: { text: 'Multi-platform · Sandbox', color: 'orange' },
+    accent: 'orange',
+    screenshots: 'dualSpaceScreenshots'
+  }
+];
+
 export const typewriterPhrases = [
   'Kotlin Native Android',
   'Flutter Cross-Platform',
@@ -102,6 +177,12 @@ export const projects = [
     title: 'Laundry AI',
     description: 'Capture bag image → AI predicts cloth weight, schedule wash & delivery tracking.',
     tech: ['Flutter', 'Vision AI']
+  },
+  {
+    icon: 'fas fa-cloud-arrow-down',
+    title: 'Dual Space',
+    description: 'Universal video downloader. Built-in sandbox browser to grab videos from YouTube, Instagram, Google Drive, TikTok, Facebook & more — with download manager and offline playback.',
+    tech: ['Kotlin', 'Sandbox WebView', 'Media3']
   }
 ];
 
