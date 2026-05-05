@@ -24,7 +24,8 @@ import {
   stats,
   process,
   services,
-  whyMe
+  whyMe,
+  brands
 } from './data.js';
 
 const screenshotMap = {
@@ -236,6 +237,20 @@ function attachPhoneTilt(gallery) {
 }
 
 /* ----- Skills — grouped cards with animated proficiency bars ----- */
+
+// Inline SVGs for icons that aren't in free Font Awesome (Flutter, Dart, etc.)
+const SKILL_SVGS = {
+  flutter: `<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14.314 0L2.3 12 6 15.7 21.684.013h-7.37zm.014 11.072L7.857 17.53l6.457 6.47H21.684L15.214 17.53z"/></svg>`
+};
+
+const renderSkillIcon = (icon) => {
+  if (icon && icon.startsWith('svg:')) {
+    const key = icon.slice(4);
+    return SKILL_SVGS[key] || '';
+  }
+  return `<i class="${icon}" aria-hidden="true"></i>`;
+};
+
 export function buildSkills() {
   const wrap = document.getElementById('skillsGroups');
   if (!wrap) return;
@@ -251,7 +266,7 @@ export function buildSkills() {
               (s) => `
             <div class="skill-row">
               <div class="skill-row-head">
-                <span class="skill-name"><i class="${s.icon}"></i>${s.name}</span>
+                <span class="skill-name">${renderSkillIcon(s.icon)}${s.name}</span>
                 <span class="skill-pct">${s.level}%</span>
               </div>
               <div class="skill-bar"><span class="skill-bar-fill" data-level="${s.level}"></span></div>
@@ -351,6 +366,47 @@ export function buildExperience() {
     </div>`
     )
     .join('');
+}
+
+/* ----- Brands marquee — auto-scrolling logo row, each card jumps to its showcase ----- */
+export function buildBrands() {
+  const track = document.getElementById('brandsTrack');
+  if (!track) return;
+
+  // Render each brand as an anchor; duplicate the full set for a seamless loop.
+  // Encode the filename so spaces / parens / special chars in logo names work.
+  const cardHtml = (b) => `
+    <a class="brand-card" href="#projects" data-target="${b.app || ''}" title="Open ${b.name}" aria-label="Open ${b.name}">
+      <img
+        src="./assets/images/${encodeURIComponent(b.logo)}?v=1"
+        alt="${b.name}"
+        loading="lazy"
+        decoding="async"
+        onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';"
+      />
+      <span class="brand-fallback" aria-hidden="true">${b.name}</span>
+    </a>`;
+
+  track.innerHTML = [...brands, ...brands].map(cardHtml).join('');
+
+  // Click → smooth-scroll to that app's showcase card and pulse-highlight it.
+  track.addEventListener('click', (e) => {
+    const card = e.target.closest('.brand-card[data-target]');
+    if (!card) return;
+    const slug = card.dataset.target;
+    if (!slug) return;
+    const target = document.querySelector(`.screenshot-showcase[data-app="${slug}"]`);
+    if (!target) return;
+
+    e.preventDefault();
+    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+    // Brief highlight pulse so the user can spot which app they jumped to.
+    target.classList.remove('is-pulsing');
+    void target.offsetWidth; // restart animation
+    target.classList.add('is-pulsing');
+    setTimeout(() => target.classList.remove('is-pulsing'), 1600);
+  });
 }
 
 /* ----- Why Me grid ----- */

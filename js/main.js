@@ -10,7 +10,8 @@ import {
   buildStats,
   buildProcess,
   buildServices,
-  buildWhyMe
+  buildWhyMe,
+  buildBrands
 } from './projects.js';
 
 import {
@@ -47,6 +48,7 @@ ready(() => {
   buildProcess();
   buildServices();
   buildWhyMe();
+  buildBrands();
 
   // Wire navigation
   initSmoothScroll();

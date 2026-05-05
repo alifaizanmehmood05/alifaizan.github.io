@@ -125,6 +125,57 @@
   animation: bounceArrow 0.8s ease infinite;
 }
 
+/* Download CV button — sits below the contact pills */
+.contact-cv {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 32px;
+  padding: 14px 32px;
+  border-radius: var(--radius-pill);
+  background: transparent;
+  color: var(--text);
+  border: 1.5px solid var(--primary);
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: all var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-cv::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--gradient-cool);
+  opacity: 0;
+  transition: opacity var(--transition);
+  z-index: -1;
+}
+
+.contact-cv:hover {
+  color: var(--bg);
+  border-color: transparent;
+  transform: translateY(-3px);
+  box-shadow: var(--glow-soft);
+}
+
+.contact-cv:hover::before {
+  opacity: 1;
+}
+
+.contact-cv i {
+  color: var(--primary-light);
+  transition: color var(--transition-fast),
+              transform var(--transition-fast);
+}
+
+.contact-cv:hover i {
+  color: var(--bg);
+  transform: translateY(2px);
+}
+
 /* ===== Toast notification ===== */
 .toast {
   position: fixed;

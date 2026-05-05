@@ -107,7 +107,7 @@
   color: var(--primary);
 }
 
-/* ===== Skills — grouped grid with proficiency bars ===== */
+/* ===== Skills — grouped grid with animated proficiency bars ===== */
 .skills-groups {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -168,6 +168,13 @@
   color: var(--primary-light);
   width: 18px;
   text-align: center;
+}
+
+.skill-name svg {
+  width: 16px;
+  height: 16px;
+  color: var(--primary-light);
+  flex-shrink: 0;
 }
 
 .skill-pct {
@@ -408,12 +415,132 @@
 }
 
 /* ============================================
+   Brands marquee — auto-scrolling logo row
+   ============================================ */
+.brands-marquee {
+  position: relative;
+  overflow: hidden;
+  margin: 0 -24px;
+  padding: 8px 0;
+  -webkit-mask-image: linear-gradient(90deg, transparent, black 8%, black 92%, transparent);
+          mask-image: linear-gradient(90deg, transparent, black 8%, black 92%, transparent);
+}
+
+.brands-track {
+  display: flex;
+  gap: 22px;
+  width: max-content;
+  animation: marquee 60s linear infinite;
+  will-change: transform;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+.brands-marquee:hover .brands-track {
+  animation-play-state: paused;
+}
+
+/* Tell the browser these never change layout — keeps the loop GPU-only */
+.brand-card {
+  contain: layout paint;
+  backface-visibility: hidden;
+}
+
+.brand-card {
+  position: relative;
+  flex: 0 0 auto;
+  width: 140px;
+  height: 140px;
+  border-radius: 22px;
+  background: linear-gradient(160deg, #131c19 0%, #0e1714 100%);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  overflow: hidden;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color var(--transition),
+              transform var(--transition),
+              box-shadow var(--transition);
+}
+
+.brand-card:hover {
+  border-color: var(--primary);
+  transform: translateY(-3px);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.5),
+              0 0 0 1px rgba(16, 185, 129, 0.18);
+}
+
+.brand-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  display: block;
+  transition: filter var(--transition),
+              transform var(--transition);
+}
+
+.brand-card:hover img {
+  filter: brightness(1.1) contrast(1.05);
+  transform: scale(1.05);
+}
+
+/* Text fallback when the logo file isn't available yet */
+.brand-fallback {
+  display: none;
+  position: absolute;
+  inset: 0;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 12px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  background: linear-gradient(135deg, var(--primary-light), var(--cyan));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@media (max-width: 720px) {
+  .brand-card {
+    width: 110px;
+    height: 110px;
+    padding: 0;
+    border-radius: 18px;
+  }
+  .brands-track {
+    gap: 14px;
+    animation-duration: 48s;
+  }
+}
+
+/* ============================================
    Services grid — "What I Offer"
+   3 columns on desktop · 2 on tablet · 1 on mobile
    ============================================ */
 .services-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 22px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+@media (max-width: 900px) {
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 540px) {
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 .service-card {

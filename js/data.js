@@ -356,7 +356,7 @@ export const skillGroups = [
   {
     label: 'Mobile Frameworks',
     items: [
-      { name: 'Flutter & Dart', icon: 'fab fa-flutter', level: 95 },
+      { name: 'Flutter & Dart', icon: 'svg:flutter', level: 95 },
       { name: 'Native Android (Kotlin + XML)', icon: 'fab fa-android', level: 90 },
       { name: 'Jetpack Compose', icon: 'fab fa-android', level: 85 }
     ]
@@ -548,6 +548,25 @@ export const whyMe = [
     title: 'End-to-End Delivery',
     description: 'From requirements call → architecture → build → store submission → post-launch updates. One contact, one timeline, one accountable person.'
   }
+];
+
+/* Brand logos for the "Brands that trust us" marquee.
+   Drop a square logo file (PNG/JPG) for each app into assets/images/
+   with the filename listed below — onError will show a text fallback
+   if the file is missing. */
+export const brands = [
+  { name: 'FutureBaby AI',     logo: 'futurebabyai.jpg',     app: 'futurebaby' },
+  { name: 'Sudoku & Killer',   logo: 'sudoku.jpg',           app: 'sudoku' },
+  { name: 'Tutor AI',          logo: 'tutorai.jpg',          app: 'aitutor' },
+  { name: 'Dual Space',        logo: 'dualspace.jpg',        app: 'dualspace' },
+  { name: 'War Card Game',     logo: 'warcardgame.png',      app: 'warcard' },
+  { name: 'Nacelle',           logo: 'nacelle.jpg',          app: 'nacelle' },
+  { name: 'ARVOA',             logo: 'arvoa.jpg',            app: 'arvoa' },
+  { name: 'Video Downloader',  logo: 'videodownloader.jpg',  app: 'videodownloader' },
+  { name: 'LaundryCart',       logo: 'laundrycart.jpg',      app: 'laundrycart' },
+  { name: 'PDF Editor',        logo: 'pdfeditor.jpg',        app: 'pdfeditor' },
+  { name: 'Smart Printer',     logo: 'smartprinter.jpg',     app: 'smartprinter' },
+  { name: 'Subscribify',       logo: 'subscribify.jpg',      app: 'subscribify' }
 ];
 
 /* Services I offer to clients */
