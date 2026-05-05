@@ -149,6 +149,7 @@ export const showcases = [
     tech: ['Flutter', 'AI', 'RevenueCat', 'iOS'],
     live: true,
     category: 'flutter',
+    origin: 'company',
     screenshots: 'screenshotData'
   },
   {
@@ -163,6 +164,7 @@ export const showcases = [
     description: 'Sudoku suite with daily challenges, killer sudoku mode, live leaderboard, trophies and player statistics.',
     tech: ['Flutter', 'Riverpod'],
     category: 'flutter',
+    origin: 'company',
     screenshots: 'sudokuScreenshots'
   },
   {
@@ -177,6 +179,7 @@ export const showcases = [
     description: 'Math solver chatbot with camera-based equation scanning, step-by-step solutions, in-app purchases and localization.',
     tech: ['Kotlin', 'XML', 'ML Kit', 'IAP'],
     category: 'native',
+    origin: 'client',
     screenshots: 'aiTutorScreenshots'
   },
   {
@@ -191,6 +194,7 @@ export const showcases = [
     description: 'Universal video downloader with a built-in sandbox browser to grab videos from YouTube, Instagram, Google Drive, TikTok, Facebook and more — plus a download manager and offline playback.',
     tech: ['Flutter', 'WebView', 'Media Kit'],
     category: 'flutter',
+    origin: 'company',
     screenshots: 'dualSpaceScreenshots'
   },
   {
@@ -205,6 +209,7 @@ export const showcases = [
     description: 'Computer vs User card battle with a 10-point starting system and a spring wheel mini-game to regain points.',
     tech: ['Kotlin', 'XML', 'Android'],
     category: 'native',
+    origin: 'personal',
     screenshots: 'warCardScreenshots'
   },
   {
@@ -219,6 +224,7 @@ export const showcases = [
     description: 'QR-based event management app — scan attendee QR codes for check-in/out, track live attendance, view event history and generate analytics reports.',
     tech: ['Flutter', 'GetX', 'QR Scanner'],
     category: 'flutter',
+    origin: 'client',
     screenshots: 'nacelleScreenshots'
   },
   {
@@ -233,6 +239,7 @@ export const showcases = [
     description: 'Full-featured social media app — create & upload posts, like & share, comments, friend requests, realtime chat and Firebase push notifications.',
     tech: ['Flutter', 'GetX', 'Firebase', 'FCM'],
     category: 'flutter',
+    origin: 'client',
     screenshots: 'arvoaScreenshots'
   },
   {
@@ -247,6 +254,7 @@ export const showcases = [
     description: 'YouTube video downloader with tab manager, cookies, desktop mode and full Chrome-like features built on a Compose WebView.',
     tech: ['Kotlin', 'Jetpack Compose', 'WebView'],
     category: 'compose',
+    origin: 'client',
     screenshots: 'videoDownloaderScreenshots'
   },
   {
@@ -261,6 +269,7 @@ export const showcases = [
     description: 'End-to-end laundry app — AI camera bag scan + weight estimation, Stripe checkout, and a 3-role flow (user · admin · driver) with realtime status updates from pickup → wash → ready → delivery → delivered, powered by FCM push notifications.',
     tech: ['Flutter', 'Riverpod', 'Firebase', 'Stripe', 'FCM'],
     category: 'flutter',
+    origin: 'client',
     screenshots: 'laundryCartScreenshots'
   },
   {
@@ -275,6 +284,7 @@ export const showcases = [
     description: 'All-in-one document toolkit — convert Word ⇄ PDF / PowerPoint, PNG ⇄ JPG, add watermarks & digital signatures, and a freehand canvas to draw on PDFs. API-driven conversions.',
     tech: ['Flutter', 'Provider', 'Riverpod', 'REST APIs'],
     category: 'flutter',
+    origin: 'company',
     screenshots: 'pdfEditorScreenshots'
   },
   {
@@ -289,20 +299,22 @@ export const showcases = [
     description: 'Print images with filters, crop and brightness, PDF documents, document scan, drawing canvas and web content directly from the device.',
     tech: ['Kotlin', 'XML', 'Android'],
     category: 'native',
+    origin: 'company',
     screenshots: 'smartPrinterScreenshots'
   },
   {
     id: 'subscriptionGallery',
-    app: 'subscription',
+    app: 'subscribify',
     icon: 'fas fa-calendar-check',
     iconRight: 'fas fa-bell',
-    title: 'Subscription Manager',
+    title: 'Subscribify',
     subtitle: 'Manage Netflix / Prime · API integration · renewal push notifications',
     pill: { text: 'Kotlin · Retrofit', color: 'orange' },
     accent: 'orange',
     description: 'Manage Netflix, Prime and other subscriptions in one place — Retrofit-powered API integration and push notifications before renewal.',
     tech: ['Kotlin', 'XML', 'Retrofit'],
     category: 'native',
+    origin: 'company',
     screenshots: 'subscriptionScreenshots'
   }
 ];
@@ -426,7 +438,7 @@ export const projects = [
   },
   {
     icon: 'fas fa-calendar-check',
-    title: 'Subscription Manager',
+    title: 'Subscribify',
     description: 'Manage Netflix/Prime subscriptions, API integration, push notifications before renewal.',
     tech: ['Kotlin', 'Retrofit']
   },
@@ -476,10 +488,16 @@ export const projects = [
 
 export const experience = [
   {
+    icon: 'fas fa-briefcase',
+    title: 'Mobile Developer · Ozeito',
+    tag: 'Current · 4+ years',
+    description: 'July 2022 – Present: I started my development career at Ozeito and have been a full-time mobile developer here ever since. I lead the build of company products like FutureBaby AI (live on App Store), Sudoku & Killer, Dual Space, PDF Editor, Smart Printer and Subscribify, and ship client apps including Nacelle, ARVOA, LaundryCart, Tutor AI and Video Downloader.'
+  },
+  {
     icon: 'fab fa-android',
     title: 'Native Android · Kotlin + XML',
     tag: '3+ years',
-    description: 'July 2022 - Present: Native Android development with Kotlin and XML layouts. Built Tutor AI, War Card Game, Smart Printer and Subscription Manager — Firebase integrations, AI/ML Kit features, in-app purchases and Retrofit-driven backends.'
+    description: 'July 2022 - Present: Native Android development with Kotlin and XML layouts. Built Tutor AI, War Card Game, Smart Printer and Subscribify — Firebase integrations, AI/ML Kit features, in-app purchases and Retrofit-driven backends.'
   },
   {
     icon: 'fab fa-android',

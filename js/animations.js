@@ -164,7 +164,7 @@ export function initGridFx() {
     // Slight per-node tint variation between orange and white
     if (Math.random() > 0.7) {
       node.style.background = '#ffffff';
-      node.style.boxShadow = '0 0 8px rgba(255, 255, 255, 0.85), 0 0 16px rgba(255, 122, 24, 0.5)';
+      node.style.boxShadow = '0 0 8px rgba(255, 255, 255, 0.85), 0 0 16px rgba(16, 185, 129, 0.5)';
     }
     node.style.animationDuration = `${2.4 + Math.random() * 2.4}s`;
     fx.appendChild(node);
@@ -290,9 +290,12 @@ export function initParallax() {
       const dx = (e.clientX - cx) / cx;
       const dy = (e.clientY - cy) / cy;
 
+      // Push parallax offsets through CSS variables so the orb's keyframe
+      // animation (which owns transform) can read them without being clobbered.
       orbs.forEach((orb, i) => {
         const factor = (i + 1) * 8;
-        orb.style.transform = `translate(${dx * factor}px, ${dy * factor}px)`;
+        orb.style.setProperty('--px', `${dx * factor}px`);
+        orb.style.setProperty('--py', `${dy * factor}px`);
       });
       ticking = false;
     });

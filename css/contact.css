@@ -110,7 +110,7 @@
 
 .contact-cta:hover {
   transform: translateY(-3px) scale(1.03);
-  box-shadow: 0 14px 40px rgba(255, 154, 60, 0.5);
+  box-shadow: 0 14px 40px rgba(52, 211, 153, 0.5);
 }
 
 .contact-cta:hover::before {

@@ -21,12 +21,12 @@
 
 @keyframes pulseGlow {
   0%, 100% {
-    box-shadow: 0 0 0 0 rgba(255, 122, 24, 0.6),
-                0 0 30px rgba(255, 122, 24, 0.4);
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.6),
+                0 0 30px rgba(16, 185, 129, 0.4);
   }
   50% {
-    box-shadow: 0 0 0 18px rgba(255, 122, 24, 0),
-                0 0 50px rgba(255, 122, 24, 0.6);
+    box-shadow: 0 0 0 18px rgba(16, 185, 129, 0),
+                0 0 50px rgba(16, 185, 129, 0.6);
   }
 }
 
@@ -205,35 +205,71 @@
   z-index: 0;
 }
 
+/* Aurora bands — three slow-sliding gradient streaks layered to feel
+   like northern lights drifting behind the hero. Replaces the round
+   blurry orbs with something less "blob-y" and more atmospheric. */
 .orb {
   position: absolute;
-  border-radius: 50%;
-  filter: blur(60px);
-  opacity: 0.5;
-  animation: floatSlow 18s ease-in-out infinite;
+  left: -20%;
+  right: -20%;
+  height: 300px;
+  border-radius: 0;
+  filter: blur(70px);
+  opacity: 0.55;
+  animation: auroraSlide 22s ease-in-out infinite;
+  transform-origin: center center;
 }
 
 .orb--1 {
-  width: 380px; height: 380px;
-  top: -80px; left: -80px;
-  background: radial-gradient(circle, rgba(255, 122, 24, 0.6), transparent 70%);
-  animation-duration: 20s;
+  top: 8%;
+  background: linear-gradient(
+    100deg,
+    transparent 0%,
+    rgba(16, 185, 129, 0.55) 30%,
+    rgba(34, 211, 238, 0.45) 55%,
+    transparent 100%
+  );
+  --r: -8deg;
+  animation-duration: 24s;
 }
 
 .orb--2 {
-  width: 300px; height: 300px;
-  top: 30%; right: -60px;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.5), transparent 70%);
-  animation-duration: 25s;
-  animation-delay: -5s;
+  top: 42%;
+  background: linear-gradient(
+    100deg,
+    transparent 0%,
+    rgba(34, 211, 238, 0.4) 30%,
+    rgba(52, 211, 153, 0.35) 60%,
+    transparent 100%
+  );
+  --r: 6deg;
+  animation-duration: 30s;
+  animation-delay: -8s;
+  opacity: 0.45;
 }
 
 .orb--3 {
-  width: 340px; height: 340px;
-  bottom: -100px; left: 30%;
-  background: radial-gradient(circle, rgba(255, 154, 60, 0.45), transparent 70%);
-  animation-duration: 22s;
-  animation-delay: -10s;
+  bottom: 4%;
+  background: linear-gradient(
+    100deg,
+    transparent 0%,
+    rgba(45, 212, 191, 0.45) 35%,
+    rgba(16, 185, 129, 0.4) 65%,
+    transparent 100%
+  );
+  --r: -4deg;
+  animation-duration: 28s;
+  animation-delay: -14s;
+  opacity: 0.5;
+}
+
+@keyframes auroraSlide {
+  0%, 100% {
+    transform: translate(calc(-6% + var(--px, 0px)), var(--py, 0px)) rotate(var(--r, 0deg));
+  }
+  50% {
+    transform: translate(calc(6% + var(--px, 0px)), var(--py, 0px)) rotate(var(--r, 0deg));
+  }
 }
 
 /* ===== Custom cursor — magnetic comet (compact) ===== */
@@ -269,11 +305,11 @@
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: radial-gradient(circle, #ffffff 0%, #ff7a18 60%, #d95a00 100%);
+  background: radial-gradient(circle, #ffffff 0%, #34d399 60%, #059669 100%);
   transform: translate(-50%, -50%);
   box-shadow:
-    0 0 8px rgba(255, 122, 24, 0.9),
-    0 0 18px rgba(255, 122, 24, 0.5);
+    0 0 8px rgba(16, 185, 129, 0.9),
+    0 0 18px rgba(16, 185, 129, 0.5);
   transition: width 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
               height 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
               background 0.25s;
@@ -287,7 +323,7 @@
   width: 22px;
   height: 22px;
   border-radius: 50%;
-  border: 1px solid rgba(255, 122, 24, 0.55);
+  border: 1px solid rgba(16, 185, 129, 0.55);
   transform: translate(-50%, -50%);
   animation: cometPulse 1.8s ease-in-out infinite;
   transition: width 0.3s, height 0.3s, border-color 0.3s;
@@ -302,10 +338,10 @@
 .cursor-comet.is-hover .cursor-head {
   width: 14px;
   height: 14px;
-  background: radial-gradient(circle, #ffffff 0%, #ffffff 40%, #ff7a18 100%);
+  background: radial-gradient(circle, #ffffff 0%, #ffffff 40%, #34d399 100%);
   box-shadow:
     0 0 12px rgba(255, 255, 255, 0.9),
-    0 0 24px rgba(255, 122, 24, 0.7);
+    0 0 24px rgba(16, 185, 129, 0.7);
 }
 
 .cursor-comet.is-hover .cursor-pulse {
@@ -325,7 +361,7 @@
   width: 18px;
   height: 18px;
   border-radius: 50%;
-  border: 1.5px solid rgba(255, 122, 24, 0.9);
+  border: 1.5px solid rgba(16, 185, 129, 0.9);
   pointer-events: none;
   transform: translate(-50%, -50%);
   animation: cursorShock 0.55s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
@@ -350,7 +386,7 @@
   width: 5px;
   height: 5px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(255, 154, 60, 0.85), rgba(255, 122, 24, 0.4) 60%, transparent 80%);
+  background: radial-gradient(circle, rgba(52, 211, 153, 0.85), rgba(16, 185, 129, 0.4) 60%, transparent 80%);
   transform: translate(-50%, -50%);
   pointer-events: none;
   filter: blur(0.5px);

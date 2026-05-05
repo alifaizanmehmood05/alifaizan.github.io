@@ -47,8 +47,20 @@ export function buildShowcases() {
   const wrap = document.getElementById('showcasesWrap');
   if (!wrap) return;
 
-  const cardHtml = (s) => `
+  const originMeta = {
+    company: { icon: 'fas fa-building', label: 'Company Project' },
+    client:  { icon: 'fas fa-handshake', label: 'Client Project' },
+    personal:{ icon: 'fas fa-user', label: 'Personal Project' }
+  };
+
+  const cardHtml = (s) => {
+    const o = originMeta[s.origin];
+    const originBadge = o
+      ? `<span class="origin-badge origin-badge--${s.origin}"><i class="${o.icon}"></i>${o.label}</span>`
+      : '';
+    return `
     <div class="screenshot-showcase reveal" data-app="${s.app}" data-accent="${s.accent}">
+      ${originBadge}
       <div class="showcase-glow" aria-hidden="true"></div>
       <div class="showcase-title">
         <i class="${s.icon}"></i>
@@ -73,6 +85,7 @@ export function buildShowcases() {
         </div>` : ''}
       <div class="phone-gallery" id="${s.id}" data-accent="${s.accent}"></div>
     </div>`;
+  };
 
   wrap.innerHTML = showcaseCategories
     .map((cat) => {
