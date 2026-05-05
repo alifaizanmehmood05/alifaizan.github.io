@@ -9,7 +9,8 @@ import {
   buildExperience,
   buildStats,
   buildProcess,
-  buildServices
+  buildServices,
+  buildWhyMe
 } from './projects.js';
 
 import {
@@ -45,6 +46,7 @@ ready(() => {
   buildStats();
   buildProcess();
   buildServices();
+  buildWhyMe();
 
   // Wire navigation
   initSmoothScroll();
@@ -63,7 +65,16 @@ ready(() => {
   initMagneticBtns();
   initGridFx();
 
-  // Set current year in footer
+  // Set current year in footer (if footer exists)
   const yearEl = document.getElementById('year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+  // Hide the page loader on the next frame so the user sees content immediately.
+  // Use rAF + a small delay so the first paint of real content lands first.
+  const loader = document.getElementById('pageLoader');
+  if (loader) {
+    requestAnimationFrame(() => {
+      setTimeout(() => loader.classList.add('is-hidden'), 200);
+    });
+  }
 });

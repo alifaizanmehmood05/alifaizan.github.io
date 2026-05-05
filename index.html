@@ -40,6 +40,15 @@
 </head>
 <body>
 
+  <!-- Page loader (hides once the page is ready) -->
+  <div class="page-loader" id="pageLoader" aria-hidden="true">
+    <div class="loader-logo">
+      <span class="logo-icon"><i class="fas fa-code"></i></span>
+      <span class="loader-text">AliFaizan.dev</span>
+    </div>
+    <div class="loader-bar"><span></span></div>
+  </div>
+
   <!-- Scroll progress -->
   <div class="scroll-progress" aria-hidden="true"></div>
 
@@ -216,6 +225,14 @@
     <div class="process-list stagger" id="processList"></div>
   </section>
 
+  <!-- Why Me -->
+  <section class="section reveal" id="why-me">
+    <span class="section-eyebrow">Why Hire Me</span>
+    <h2 class="section-title">Why <span class="gradient-text">Me</span></h2>
+    <p class="section-lede">A few reasons clients pick me over an agency or a generalist freelancer.</p>
+    <div class="why-grid stagger" id="whyMeGrid"></div>
+  </section>
+
   <!-- Contact -->
   <section class="section reveal" id="contact">
     <div class="contact-card">
@@ -246,14 +263,6 @@
         </a>
       </div>
 
-      <a
-        href="mailto:alifaizanmehmood05@gmail.com?subject=Job%20Opportunity&body=Hi%20Ali%2C%0A%0A"
-        class="contact-cta"
-        data-email="alifaizanmehmood05@gmail.com"
-        id="hireMeBtn"
-      >
-        Hire Me <i class="fas fa-arrow-right"></i>
-      </a>
     </div>
   </section>
 
@@ -263,44 +272,6 @@
     <span class="toast-msg">Email copied to clipboard</span>
   </div>
 
-  <footer class="site-footer">
-    <div class="footer-inner">
-      <div class="footer-brand">
-        <a href="#home" class="logo footer-logo">
-          <span class="logo-icon"><i class="fas fa-code"></i></span>
-          <span class="logo-text">AliFaizan.dev</span>
-        </a>
-        <p class="footer-tagline">Flutter Developer · Android App Engineer · Cross-platform mobile craftsmanship.</p>
-      </div>
-
-      <div class="footer-col">
-        <h4 class="footer-heading">Quick Links</h4>
-        <ul class="footer-links">
-          <li><a href="#about">About</a></li>
-          <li><a href="#projects">Projects</a></li>
-          <li><a href="#services">Services</a></li>
-          <li><a href="#process">Process</a></li>
-          <li><a href="#contact">Contact</a></li>
-          <li><a href="assets/images/faizancv.pdf" download="Ali-Faizan-Mehmood-CV.pdf"><i class="fas fa-file-arrow-down"></i> Download CV</a></li>
-        </ul>
-      </div>
-
-      <div class="footer-col">
-        <h4 class="footer-heading">Connect</h4>
-        <div class="footer-socials">
-          <a href="mailto:alifaizanmehmood05@gmail.com" aria-label="Email" class="footer-social"><i class="fas fa-envelope"></i></a>
-          <a href="https://wa.me/923280930424" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" class="footer-social"><i class="fab fa-whatsapp"></i></a>
-          <a href="https://www.linkedin.com/in/ali-faizan-mehmood-132671282" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="footer-social"><i class="fab fa-linkedin"></i></a>
-          <a href="https://github.com/alifaizanmehmood05" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="footer-social"><i class="fab fa-github"></i></a>
-        </div>
-      </div>
-    </div>
-
-    <div class="footer-bottom">
-      <p>© <span id="year">2026</span> Ali Faizan Mehmood. All rights reserved.</p>
-      <p class="footer-built">Built with <i class="fab fa-html5"></i> HTML · <i class="fab fa-css3-alt"></i> CSS · <i class="fab fa-js"></i> JavaScript</p>
-    </div>
-  </footer>
 
   <!-- Scripts (ES modules) -->
   <script type="module" src="js/main.js"></script>

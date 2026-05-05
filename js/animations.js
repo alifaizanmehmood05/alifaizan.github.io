@@ -142,6 +142,12 @@ export function initGridFx() {
   const fx = document.getElementById('gridFx');
   if (!fx) return;
 
+  // Skip on touch / small screens / reduced motion — constant DOM mutations are
+  // the biggest CPU cost here, and there's no cursor to play off of anyway.
+  const fine = window.matchMedia('(pointer: fine)').matches;
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!fine || window.innerWidth < 900 || reducedMotion) return;
+
   const SPACING = 50; // matches body::after grid spacing
 
   function spawnNode() {
@@ -269,6 +275,9 @@ export function initMagneticBtns() {
 export function initParallax() {
   const orbs = document.querySelectorAll('.orb');
   if (!orbs.length) return;
+
+  // Mouse-driven — meaningless on touch devices. Bail early to skip the listener.
+  if (!window.matchMedia('(pointer: fine)').matches) return;
 
   let ticking = false;
 

@@ -23,7 +23,8 @@ import {
   experience,
   stats,
   process,
-  services
+  services,
+  whyMe
 } from './data.js';
 
 const screenshotMap = {
@@ -92,13 +93,52 @@ export function buildShowcases() {
     })
     .join('');
 
-  showcases.forEach((s) => {
+  // Defer phone gallery population — only build the DOM (and trigger image loads)
+  // when each gallery scrolls within 600px of the viewport. Cuts initial render
+  // time dramatically when there are many showcases.
+  const supportsIO = 'IntersectionObserver' in window;
+
+  const buildOne = (s) => {
     const list = screenshotMap[s.screenshots] || [];
     const gallery = document.getElementById(s.id);
-    if (!gallery) return;
+    if (!gallery || gallery.dataset.populated === '1') return;
     const cat = showcaseCategories.find((c) => c.id === s.category);
     const phoneStyle = cat ? cat.phoneStyle : 'ios';
     populatePhoneGallery(gallery, list, s.accent, phoneStyle);
+    gallery.dataset.populated = '1';
+  };
+
+  if (!supportsIO) {
+    showcases.forEach(buildOne);
+    return;
+  }
+
+  // Eagerly build the first showcase per category so the page never feels empty.
+  const eagerIds = new Set();
+  showcaseCategories.forEach((cat) => {
+    const first = showcases.find((s) => s.category === cat.id);
+    if (first) eagerIds.add(first.id);
+  });
+
+  showcases.forEach((s) => {
+    if (eagerIds.has(s.id)) {
+      buildOne(s);
+      return;
+    }
+    const gallery = document.getElementById(s.id);
+    if (!gallery) return;
+
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          buildOne(s);
+          io.unobserve(entry.target);
+        });
+      },
+      { rootMargin: '600px 0px' }
+    );
+    io.observe(gallery);
   });
 }
 
@@ -295,6 +335,23 @@ export function buildExperience() {
         <span class="exp-tag">${e.tag}</span>
       </div>
       <p>${e.description}</p>
+    </div>`
+    )
+    .join('');
+}
+
+/* ----- Why Me grid ----- */
+export function buildWhyMe() {
+  const grid = document.getElementById('whyMeGrid');
+  if (!grid) return;
+
+  grid.innerHTML = whyMe
+    .map(
+      (w, i) => `
+    <div class="why-card stagger-child" style="--i:${i}">
+      <div class="why-icon"><i class="${w.icon}"></i></div>
+      <h3 class="why-title">${w.title}</h3>
+      <p class="why-desc">${w.description}</p>
     </div>`
     )
     .join('');

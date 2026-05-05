@@ -111,9 +111,14 @@ export function initMobileMenu() {
   const links = document.querySelector('.nav-links');
   if (!toggle || !links) return;
 
-  toggle.addEventListener('click', () => {
-    links.classList.toggle('open');
-    const isOpen = links.classList.contains('open');
+  toggle.addEventListener('click', (e) => {
+    // Stop the click from bubbling up to the outside-click closer below.
+    // Without this, replacing the icon's innerHTML below orphans e.target,
+    // so the document handler thinks the click was "outside" the toggle and
+    // closes the menu the same frame it opened.
+    e.stopPropagation();
+
+    const isOpen = links.classList.toggle('open');
     toggle.setAttribute('aria-expanded', String(isOpen));
     toggle.innerHTML = isOpen
       ? '<i class="fas fa-times"></i>'

@@ -354,8 +354,7 @@ export const skillGroups = [
     items: [
       { name: 'GetX', icon: 'fas fa-bolt', level: 90 },
       { name: 'Riverpod', icon: 'fas fa-water', level: 85 },
-      { name: 'Provider', icon: 'fas fa-share-nodes', level: 85 },
-      { name: 'BLoC / Cubit', icon: 'fas fa-cubes-stacked', level: 75 }
+      { name: 'Provider', icon: 'fas fa-share-nodes', level: 85 }
     ]
   },
   {
@@ -391,8 +390,7 @@ export const skillGroups = [
       { name: 'Android Studio', icon: 'fab fa-android', level: 95 },
       { name: 'VS Code', icon: 'fas fa-code', level: 92 },
       { name: 'Antigravity', icon: 'fas fa-rocket', level: 78 },
-      { name: 'Git & GitHub', icon: 'fab fa-github', level: 90 },
-      { name: 'Material 3 / Cupertino UI', icon: 'fas fa-palette', level: 85 }
+      { name: 'Git & GitHub', icon: 'fab fa-github', level: 90 }
     ]
   }
 ];
@@ -508,6 +506,30 @@ export const stats = [
   { num: 12, suffix: '+', label: 'Apps Built' },
   { num: 1, suffix: '', label: 'Live on App Store' },
   { num: 3, suffix: '', label: 'Tech Stacks' }
+];
+
+/* "Why Me" — value props that justify hiring */
+export const whyMe = [
+  {
+    icon: 'fab fa-apple',
+    title: 'App Store Track Record',
+    description: 'FutureBaby AI is live on the Apple App Store — I\'ve done the full submission, review and post-launch loop, not just the build.'
+  },
+  {
+    icon: 'fas fa-layer-group',
+    title: 'Multi-Stack Expertise',
+    description: 'Flutter, native Android (Kotlin + XML) and Jetpack Compose — I pick the right stack for your timeline and budget, not the only one I know.'
+  },
+  {
+    icon: 'fas fa-comments',
+    title: 'Direct Communication',
+    description: 'You talk to the person actually building your app — no agency layers, no account managers, no telephone game between you and the code.'
+  },
+  {
+    icon: 'fas fa-rocket',
+    title: 'End-to-End Delivery',
+    description: 'From requirements call → architecture → build → store submission → post-launch updates. One contact, one timeline, one accountable person.'
+  }
 ];
 
 /* Services I offer to clients */
