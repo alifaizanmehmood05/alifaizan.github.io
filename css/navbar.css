@@ -46,7 +46,6 @@
   color: var(--bg);
   font-size: 0.95rem;
   box-shadow: var(--glow-emerald);
-  animation: pulseGlow 3s ease-in-out infinite;
 }
 
 .logo-text {
@@ -54,8 +53,6 @@
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  background-size: 200% 200%;
-  animation: gradientShift 6s ease infinite;
 }
 
 .nav-links {
