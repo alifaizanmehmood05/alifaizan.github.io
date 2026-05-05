@@ -18,10 +18,12 @@ import {
   showcases,
   showcaseCategories,
   skills,
+  skillGroups,
   projects,
   experience,
   stats,
-  process
+  process,
+  services
 } from './data.js';
 
 const screenshotMap = {
@@ -180,22 +182,55 @@ function attachPhoneTilt(gallery) {
   });
 }
 
-/* ----- Skills marquee ----- */
+/* ----- Skills — grouped cards with animated proficiency bars ----- */
 export function buildSkills() {
-  const track = document.getElementById('skillsTrack');
-  if (!track) return;
+  const wrap = document.getElementById('skillsGroups');
+  if (!wrap) return;
 
-  // Duplicate for seamless infinite loop
-  const html = [...skills, ...skills]
+  wrap.innerHTML = skillGroups
     .map(
-      (s) => `
-      <span class="skill-tag">
-        <i class="${s.icon}"></i>
-        ${s.name}
-      </span>`
+      (group, gi) => `
+      <div class="skill-group stagger-child" style="--i:${gi}">
+        <h3 class="skill-group-title">${group.label}</h3>
+        <div class="skill-list">
+          ${group.items
+            .map(
+              (s) => `
+            <div class="skill-row">
+              <div class="skill-row-head">
+                <span class="skill-name"><i class="${s.icon}"></i>${s.name}</span>
+                <span class="skill-pct">${s.level}%</span>
+              </div>
+              <div class="skill-bar"><span class="skill-bar-fill" data-level="${s.level}"></span></div>
+            </div>`
+            )
+            .join('')}
+        </div>
+      </div>`
     )
     .join('');
-  track.innerHTML = html;
+
+  // Animate bars when the skills section enters the viewport
+  const bars = wrap.querySelectorAll('.skill-bar-fill');
+  if (!bars.length) return;
+
+  if (!('IntersectionObserver' in window)) {
+    bars.forEach((b) => (b.style.width = `${b.dataset.level}%`));
+    return;
+  }
+
+  const io = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.style.width = `${entry.target.dataset.level}%`;
+        io.unobserve(entry.target);
+      });
+    },
+    { threshold: 0.3 }
+  );
+
+  bars.forEach((b) => io.observe(b));
 }
 
 /* ----- Projects grid (only shows apps that don't have a screenshot showcase) ----- */
@@ -263,6 +298,34 @@ export function buildExperience() {
     </div>`
     )
     .join('');
+}
+
+/* ----- Services grid ----- */
+export function buildServices() {
+  const grid = document.getElementById('servicesGrid');
+  if (!grid) return;
+
+  grid.innerHTML = services
+    .map(
+      (s, i) => `
+    <div class="service-card stagger-child" style="--i:${i}">
+      <span class="spotlight"></span>
+      <div class="service-icon"><i class="${s.icon}"></i></div>
+      <h3 class="service-title">${s.title}</h3>
+      <p class="service-desc">${s.description}</p>
+    </div>`
+    )
+    .join('');
+
+  grid.querySelectorAll('.service-card').forEach((card) => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      card.style.setProperty('--mx', `${x}px`);
+      card.style.setProperty('--my', `${y}px`);
+    });
+  });
 }
 
 /* ----- Work process steps ----- */

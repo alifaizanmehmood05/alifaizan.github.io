@@ -181,6 +181,13 @@
   color: var(--primary-light);
 }
 
+.hero-role .role-sep {
+  color: var(--primary);
+  font-weight: 300;
+  margin: 0 4px;
+  opacity: 0.7;
+}
+
 /* Typewriter line */
 .hero-typewriter {
   font-size: clamp(0.95rem, 2.2vw, 1.15rem);

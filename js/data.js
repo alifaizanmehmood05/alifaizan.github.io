@@ -333,27 +333,72 @@ export const showcaseCategories = [
 ];
 
 export const typewriterPhrases = [
-  'Kotlin Native Android',
-  'Flutter Cross-Platform',
-  'Kotlin Multiplatform (KMP)',
-  'AI-powered Mobile Apps',
-  'Firebase & Cloud Integrations'
+  'production-grade Flutter apps',
+  'native Android with Kotlin',
+  'realtime Firebase backends',
+  'AI-powered mobile experiences',
+  'apps that ship to the App Store'
 ];
 
-export const skills = [
-  { name: 'Flutter & Dart', icon: 'fab fa-flutter' },
-  { name: 'Kotlin', icon: 'fab fa-kotlin' },
-  { name: 'Jetpack Compose', icon: 'fab fa-android' },
-  { name: 'Kotlin Multiplatform', icon: 'fas fa-layer-group' },
-  { name: 'Firebase', icon: 'fas fa-fire' },
-  { name: 'REST APIs', icon: 'fas fa-cloud' },
-  { name: 'GetX / Riverpod', icon: 'fas fa-water' },
-  { name: 'AI / ML Kit', icon: 'fas fa-brain' },
-  { name: 'In-app Purchases', icon: 'fas fa-coins' },
-  { name: 'RevenueCat', icon: 'fas fa-cash-register' },
-  { name: 'Git / GitHub', icon: 'fab fa-github' },
-  { name: 'Material 3', icon: 'fas fa-palette' }
+export const skillGroups = [
+  {
+    label: 'Mobile Frameworks',
+    items: [
+      { name: 'Flutter & Dart', icon: 'fab fa-flutter', level: 95 },
+      { name: 'Native Android (Kotlin + XML)', icon: 'fab fa-android', level: 90 },
+      { name: 'Jetpack Compose', icon: 'fab fa-android', level: 85 }
+    ]
+  },
+  {
+    label: 'State Management',
+    items: [
+      { name: 'GetX', icon: 'fas fa-bolt', level: 90 },
+      { name: 'Riverpod', icon: 'fas fa-water', level: 85 },
+      { name: 'Provider', icon: 'fas fa-share-nodes', level: 85 },
+      { name: 'BLoC / Cubit', icon: 'fas fa-cubes-stacked', level: 75 }
+    ]
+  },
+  {
+    label: 'Architecture Patterns',
+    items: [
+      { name: 'MVVM', icon: 'fas fa-sitemap', level: 90 },
+      { name: 'MVC', icon: 'fas fa-diagram-project', level: 85 },
+      { name: 'Clean Architecture', icon: 'fas fa-layer-group', level: 80 },
+      { name: 'Repository Pattern', icon: 'fas fa-database', level: 85 }
+    ]
+  },
+  {
+    label: 'Backend & Cloud',
+    items: [
+      { name: 'Firebase (Auth · Firestore · FCM)', icon: 'fas fa-fire', level: 92 },
+      { name: 'REST APIs · Retrofit · Dio', icon: 'fas fa-cloud', level: 88 },
+      { name: 'Stripe & In-app Purchases', icon: 'fas fa-credit-card', level: 80 },
+      { name: 'RevenueCat', icon: 'fas fa-cash-register', level: 78 }
+    ]
+  },
+  {
+    label: 'Local Storage & DB',
+    items: [
+      { name: 'Room (Android)', icon: 'fas fa-database', level: 85 },
+      { name: 'Hive (Flutter)', icon: 'fas fa-box-archive', level: 80 },
+      { name: 'SQLite', icon: 'fas fa-table', level: 80 },
+      { name: 'SharedPreferences', icon: 'fas fa-floppy-disk', level: 90 }
+    ]
+  },
+  {
+    label: 'Tools & IDEs',
+    items: [
+      { name: 'Android Studio', icon: 'fab fa-android', level: 95 },
+      { name: 'VS Code', icon: 'fas fa-code', level: 92 },
+      { name: 'Antigravity', icon: 'fas fa-rocket', level: 78 },
+      { name: 'Git & GitHub', icon: 'fab fa-github', level: 90 },
+      { name: 'Material 3 / Cupertino UI', icon: 'fas fa-palette', level: 85 }
+    ]
+  }
 ];
+
+/* Legacy flat list (still consumed by buildSkills marquee if used) */
+export const skills = skillGroups.flatMap((g) => g.items);
 
 export const projects = [
   {
@@ -434,29 +479,69 @@ export const projects = [
 export const experience = [
   {
     icon: 'fab fa-android',
-    title: 'Kotlin & Native Android',
+    title: 'Native Android · Kotlin + XML',
     tag: '3+ years',
-    description: 'July 2022 - Present: Deep native Android development, Firebase integrations, AI-powered features, subscription systems, KMP exploration.'
+    description: 'July 2022 - Present: Native Android development with Kotlin and XML layouts. Built Tutor AI, War Card Game, Smart Printer and Subscription Manager — Firebase integrations, AI/ML Kit features, in-app purchases and Retrofit-driven backends.'
   },
   {
-    icon: 'fab fa-google',
-    title: 'Flutter & Cross-Platform',
-    tag: '1.3 years',
-    description: '2025 - Present: Built Arvoa, FutureBaby (live on App Store), Sudoku suite, Laundry AI. Full cross-platform expertise.'
+    icon: 'fab fa-android',
+    title: 'Jetpack Compose · Kotlin',
+    tag: '1+ year',
+    description: 'Modern declarative Android UI with Jetpack Compose. Built Video Downloader with a full Chrome-style WebView, tab manager and download manager.'
+  },
+  {
+    icon: 'fab fa-flutter',
+    title: 'Flutter · Cross-Platform',
+    tag: '1+ year',
+    description: '2025 - Present: Shipped FutureBaby AI live on the App Store, plus ARVOA, Sudoku & Killer, LaundryCart, PDF Editor, Nacelle and Dual Space — across GetX, Riverpod and Provider.'
   },
   {
     icon: 'fas fa-trophy',
     title: 'Achievements & Credentials',
     tag: 'Live & shipping',
-    description: 'Google Play & Apple Developer accounts • FutureBaby live on App Store • 60+ WPM typing • BS Computer Science.'
+    description: 'Google Play & Apple Developer accounts • FutureBaby AI live on the App Store • BS Computer Science.'
   }
 ];
 
 export const stats = [
   { num: 4, suffix: '+', label: 'Years Experience' },
-  { num: 11, suffix: '+', label: 'Apps Built' },
+  { num: 12, suffix: '+', label: 'Apps Built' },
   { num: 1, suffix: '', label: 'Live on App Store' },
-  { num: 60, suffix: '+', label: 'WPM Typing' }
+  { num: 3, suffix: '', label: 'Tech Stacks' }
+];
+
+/* Services I offer to clients */
+export const services = [
+  {
+    icon: 'fab fa-flutter',
+    title: 'Flutter App Development',
+    description: 'Cross-platform iOS + Android apps from a single codebase — GetX, Riverpod or Provider, with Material 3 / Cupertino UI.'
+  },
+  {
+    icon: 'fab fa-android',
+    title: 'Native Android Development',
+    description: 'Production Android apps with Kotlin + XML or Jetpack Compose — including ML Kit, Retrofit, in-app purchases and push notifications.'
+  },
+  {
+    icon: 'fas fa-fire',
+    title: 'Firebase Integration',
+    description: 'Auth, Firestore, Realtime DB, Cloud Storage, Cloud Functions and FCM push notifications — wired end-to-end with security rules.'
+  },
+  {
+    icon: 'fas fa-credit-card',
+    title: 'Payment & Subscriptions',
+    description: 'Stripe checkout, Google Play Billing, App Store IAP and RevenueCat for subscriptions — fully tested and store-compliant.'
+  },
+  {
+    icon: 'fas fa-brain',
+    title: 'AI / ML Integrations',
+    description: 'Camera scanning with ML Kit, vision AI for image-to-data flows, third-party AI APIs (OpenAI, Replicate) wired into mobile UX.'
+  },
+  {
+    icon: 'fas fa-rocket',
+    title: 'Store Launch & Support',
+    description: 'Play Store and App Store submission, store-listing assets, screenshot generation, post-launch monitoring and updates.'
+  }
 ];
 
 /* End-to-end work process — shown in the "How I Work" section */

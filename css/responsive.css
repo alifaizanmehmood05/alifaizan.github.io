@@ -171,7 +171,7 @@
   }
 }
 
-/* Small mobile */
+/* Small mobile (covers 414px iPhone Plus / 390px iPhone Pro / 360px common Android) */
 @media (max-width: 420px) {
   .navbar {
     padding: 10px 16px;
@@ -249,5 +249,137 @@
 
   .exp-card p {
     font-size: 0.88rem;
+  }
+}
+
+/* Extra-small phones (≤360px — older Androids, Galaxy S8 etc.) */
+@media (max-width: 360px) {
+  .navbar {
+    padding: 8px 12px;
+  }
+
+  .logo {
+    font-size: 1.1rem;
+  }
+
+  .logo-icon {
+    width: 26px;
+    height: 26px;
+    font-size: 0.85rem;
+  }
+
+  .hero {
+    padding: 110px 14px 60px;
+  }
+
+  .hero h1 {
+    font-size: 1.75rem;
+  }
+
+  .hero-role,
+  .hero-typewriter {
+    font-size: 0.85rem;
+  }
+
+  .hero-cta {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .hero-cta .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .hero-stats {
+    gap: 16px;
+  }
+
+  .stat-num {
+    font-size: 1.4rem;
+  }
+
+  .stat-label {
+    font-size: 0.7rem;
+  }
+
+  .badge {
+    font-size: 0.72rem;
+    padding: 6px 12px;
+  }
+
+  .section {
+    padding: 40px 12px;
+  }
+
+  .section-title {
+    font-size: 1.5rem;
+    margin-bottom: 24px;
+  }
+
+  .section-lede {
+    font-size: 0.85rem;
+  }
+
+  /* Showcases — keep phone images visible */
+  .screenshot-showcase {
+    padding: 24px 12px 18px;
+  }
+
+  .showcase-title {
+    font-size: 1.1rem;
+    gap: 8px;
+  }
+
+  .showcase-description {
+    font-size: 0.85rem;
+  }
+
+  .phone {
+    width: 160px;
+  }
+
+  .phone-gallery {
+    gap: 10px;
+    padding: 18px 8px 16px;
+  }
+
+  /* Service / process / project cards — tighter */
+  .service-card,
+  .process-step,
+  .project-card {
+    padding: 22px 18px;
+  }
+
+  .service-title,
+  .process-title,
+  .project-title {
+    font-size: 1rem;
+  }
+
+  .service-desc,
+  .process-desc {
+    font-size: 0.85rem;
+  }
+
+  /* Category headers — keep readable */
+  .category-title {
+    font-size: 1rem;
+    gap: 8px;
+  }
+
+  .category-eyebrow {
+    font-size: 0.66rem;
+  }
+
+  /* Footer */
+  .site-footer {
+    padding: 40px 16px 20px;
+  }
+
+  /* Contact pills full-width */
+  .contact-item {
+    width: 100%;
+    justify-content: center;
   }
 }

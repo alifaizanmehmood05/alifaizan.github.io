@@ -3,9 +3,22 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <meta name="description" content="Ali Faizan Mehmood — Senior Mobile Developer. Kotlin, Flutter, KMP, AI-powered apps. FutureBaby AI live on App Store." />
+  <meta name="description" content="Ali Faizan Mehmood — Mobile App Engineer. Flutter, Kotlin, Jetpack Compose. FutureBaby AI live on the App Store." />
   <meta name="theme-color" content="#ff7a18" />
-  <title>Ali Faizan Mehmood | Senior Mobile Developer</title>
+  <title>Ali Faizan Mehmood | Mobile App Engineer</title>
+
+  <!-- Open Graph (Facebook, LinkedIn, WhatsApp) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Ali Faizan Mehmood — Mobile App Engineer" />
+  <meta property="og:description" content="Flutter · Kotlin · Jetpack Compose. 12+ apps shipped, FutureBaby AI live on the App Store." />
+  <meta property="og:image" content="assets/images/profile.png" />
+  <meta property="og:image:alt" content="Ali Faizan Mehmood — Mobile App Engineer" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Ali Faizan Mehmood — Mobile App Engineer" />
+  <meta name="twitter:description" content="Flutter · Kotlin · Jetpack Compose. 12+ apps shipped, FutureBaby AI live on the App Store." />
+  <meta name="twitter:image" content="assets/images/profile.png" />
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -53,6 +66,7 @@
       <li><a href="#about">About</a></li>
       <li><a href="#skills">Skills</a></li>
       <li><a href="#projects">Projects</a></li>
+      <li><a href="#services">Services</a></li>
       <li><a href="#experience">Experience</a></li>
       <li><a href="#process">Process</a></li>
       <li><a href="#contact">Contact</a></li>
@@ -98,11 +112,11 @@
 
       <p class="hero-role">
         <i class="fas fa-mobile-alt"></i>
-        Senior Mobile Developer · 4+ Years Experience
+        Flutter Developer <span class="role-sep">|</span> Android App Engineer
       </p>
 
       <p class="hero-typewriter">
-        Crafting&nbsp;<span class="typewriter-text">Kotlin Native Android</span>
+        I build&nbsp;<span class="typewriter-text">production-grade Flutter apps</span>
       </p>
 
       <div class="hero-badges">
@@ -115,6 +129,13 @@
       <div class="hero-cta">
         <a href="#projects" class="btn btn-primary">
           View My Work <i class="fas fa-arrow-right"></i>
+        </a>
+        <a
+          href="assets/images/faizancv.pdf"
+          download="Ali-Faizan-Mehmood-CV.pdf"
+          class="btn btn-secondary"
+        >
+          <i class="fas fa-file-arrow-down"></i> Download CV
         </a>
         <a href="#contact" class="btn btn-secondary">
           <i class="fas fa-paper-plane"></i> Get in Touch
@@ -137,11 +158,12 @@
     <div class="about-card">
       <h2>From scratch to App Store</h2>
       <p>
-        Started development on <strong>July 20, 2022</strong> with Kotlin from zero. Built Office Boy
-        (Firebase push with custom ringtone), War Card Game, Tutor AI, Smart Printer Suite, Subscription
-        Manager and KMP cross-platform apps. In 2025 I mastered Flutter and shipped
-        <strong>FutureBaby AI — live on the App Store</strong>, plus Arvoa campus social, Sudoku
-        leaderboard and Laundry AI. BS Computer Science · 60+ WPM typing.
+        Started development on <strong>July 20, 2022</strong> with native Android — Kotlin + XML.
+        Built Tutor AI, War Card Game, Smart Printer and Subscription Manager, then moved to
+        Jetpack Compose with Video Downloader. In 2025 I mastered Flutter and shipped
+        <strong>FutureBaby AI — live on the App Store</strong>, plus ARVOA social, Sudoku &amp;
+        Killer, LaundryCart, PDF Editor and the Nacelle event-management scanner. BS Computer
+        Science.
       </p>
       <div class="about-meta">
         <span><i class="fab fa-google-play"></i> Google Play Console</span>
@@ -155,9 +177,8 @@
   <section class="section reveal" id="skills">
     <span class="section-eyebrow">What I Work With</span>
     <h2 class="section-title">Tech <span class="gradient-text">Stack</span></h2>
-    <div class="skills-marquee">
-      <div class="skills-track" id="skillsTrack" aria-label="Skills"></div>
-    </div>
+    <p class="section-lede">The tools I reach for, grouped by where they fit in the build.</p>
+    <div class="skills-groups" id="skillsGroups"></div>
   </section>
 
   <!-- Projects -->
@@ -170,6 +191,14 @@
 
     <!-- Project grid -->
     <div class="projects-grid stagger" id="projectsGrid"></div>
+  </section>
+
+  <!-- Services -->
+  <section class="section reveal" id="services">
+    <span class="section-eyebrow">What I Offer</span>
+    <h2 class="section-title">My <span class="gradient-text">Services</span></h2>
+    <p class="section-lede">From a single-screen MVP to a full multi-role product — here's what I can build for you.</p>
+    <div class="services-grid stagger" id="servicesGrid"></div>
   </section>
 
   <!-- Experience -->
@@ -203,6 +232,10 @@
           <i class="fas fa-phone-alt"></i>
           +92 328 0930424
         </a>
+        <a href="https://wa.me/923280930424" target="_blank" rel="noopener noreferrer" class="contact-item">
+          <i class="fab fa-whatsapp"></i>
+          WhatsApp
+        </a>
         <a href="https://www.linkedin.com/in/ali-faizan-mehmood-132671282" target="_blank" rel="noopener noreferrer" class="contact-item">
           <i class="fab fa-linkedin"></i>
           Ali Faizan Mehmood
@@ -230,8 +263,43 @@
     <span class="toast-msg">Email copied to clipboard</span>
   </div>
 
-  <footer>
-    <p>© <span id="year">2026</span> Ali Faizan Mehmood — 4+ years of mobile craftsmanship · Kotlin · Flutter · KMP</p>
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="#home" class="logo footer-logo">
+          <span class="logo-icon"><i class="fas fa-code"></i></span>
+          <span class="logo-text">AliFaizan.dev</span>
+        </a>
+        <p class="footer-tagline">Flutter Developer · Android App Engineer · Cross-platform mobile craftsmanship.</p>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-heading">Quick Links</h4>
+        <ul class="footer-links">
+          <li><a href="#about">About</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#process">Process</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="assets/images/faizancv.pdf" download="Ali-Faizan-Mehmood-CV.pdf"><i class="fas fa-file-arrow-down"></i> Download CV</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-heading">Connect</h4>
+        <div class="footer-socials">
+          <a href="mailto:alifaizanmehmood05@gmail.com" aria-label="Email" class="footer-social"><i class="fas fa-envelope"></i></a>
+          <a href="https://wa.me/923280930424" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" class="footer-social"><i class="fab fa-whatsapp"></i></a>
+          <a href="https://www.linkedin.com/in/ali-faizan-mehmood-132671282" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="footer-social"><i class="fab fa-linkedin"></i></a>
+          <a href="https://github.com/alifaizanmehmood05" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="footer-social"><i class="fab fa-github"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© <span id="year">2026</span> Ali Faizan Mehmood. All rights reserved.</p>
+      <p class="footer-built">Built with <i class="fab fa-html5"></i> HTML · <i class="fab fa-css3-alt"></i> CSS · <i class="fab fa-js"></i> JavaScript</p>
+    </div>
   </footer>
 
   <!-- Scripts (ES modules) -->
