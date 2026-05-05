@@ -7,7 +7,8 @@ import {
   buildSkills,
   buildProjects,
   buildExperience,
-  buildStats
+  buildStats,
+  buildProcess
 } from './projects.js';
 
 import {
@@ -41,6 +42,7 @@ ready(() => {
   buildProjects();
   buildExperience();
   buildStats();
+  buildProcess();
 
   // Wire navigation
   initSmoothScroll();

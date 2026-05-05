@@ -20,7 +20,8 @@ import {
   skills,
   projects,
   experience,
-  stats
+  stats,
+  process
 } from './data.js';
 
 const screenshotMap = {
@@ -52,9 +53,14 @@ export function buildShowcases() {
         <i class="${s.iconRight}"></i>
       </div>
       <div class="showcase-subtitle">
-        <span class="live-pill pill-${s.pill.color}">
-          <span class="dot"></span>${s.pill.text}
-        </span>
+        ${s.pill.url
+          ? `<a href="${s.pill.url}" target="_blank" rel="noopener noreferrer" class="live-pill pill-${s.pill.color} live-pill--link">
+              <span class="dot"></span>${s.pill.text}
+              <i class="fas fa-arrow-up-right-from-square"></i>
+            </a>`
+          : `<span class="live-pill pill-${s.pill.color}">
+              <span class="dot"></span>${s.pill.text}
+            </span>`}
         ${s.subtitle}
       </div>
       ${s.description ? `<p class="showcase-description">${s.description}</p>` : ''}
@@ -254,6 +260,24 @@ export function buildExperience() {
         <span class="exp-tag">${e.tag}</span>
       </div>
       <p>${e.description}</p>
+    </div>`
+    )
+    .join('');
+}
+
+/* ----- Work process steps ----- */
+export function buildProcess() {
+  const wrap = document.getElementById('processList');
+  if (!wrap) return;
+
+  wrap.innerHTML = process
+    .map(
+      (p, i) => `
+    <div class="process-step stagger-child" style="--i:${i}">
+      <span class="process-num">${String(i + 1).padStart(2, '0')}</span>
+      <div class="process-icon"><i class="${p.icon}"></i></div>
+      <h3 class="process-title">${p.title}</h3>
+      <p class="process-desc">${p.description}</p>
     </div>`
     )
     .join('');

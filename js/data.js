@@ -139,7 +139,11 @@ export const showcases = [
     iconRight: 'fas fa-robot',
     title: 'FutureBaby AI',
     subtitle: 'AI baby prediction · aging · similarity score',
-    pill: { text: 'Live on App Store', color: 'orange' },
+    pill: {
+      text: 'Live on App Store',
+      color: 'orange',
+      url: 'https://apps.apple.com/us/app/future-baby-ai-baby-generator/id6756097644'
+    },
     accent: 'orange',
     description: 'AI-powered baby face prediction. Parents upload photos, the AI generates a future child face, plus an aging feature and similarity score. Live on the App Store.',
     tech: ['Flutter', 'AI', 'RevenueCat', 'iOS'],
@@ -453,4 +457,38 @@ export const stats = [
   { num: 11, suffix: '+', label: 'Apps Built' },
   { num: 1, suffix: '', label: 'Live on App Store' },
   { num: 60, suffix: '+', label: 'WPM Typing' }
+];
+
+/* End-to-end work process — shown in the "How I Work" section */
+export const process = [
+  {
+    icon: 'fas fa-magnifying-glass-chart',
+    title: 'Discover & Analyze',
+    description:
+      'Deep-dive call to gather requirements, understand the target audience, define scope, target platforms (iOS / Android / both) and timeline.'
+  },
+  {
+    icon: 'fas fa-pen-ruler',
+    title: 'Design & Architect',
+    description:
+      'Wireframes and UI flows, plus the right architecture and state-management choice (GetX, Riverpod, Provider, Compose) for the project size.'
+  },
+  {
+    icon: 'fas fa-code',
+    title: 'Build & Iterate',
+    description:
+      'Weekly sprints with live demos. You see real progress every week, give feedback, and the app is steered to fit your vision — not just the spec.'
+  },
+  {
+    icon: 'fas fa-vial-circle-check',
+    title: 'Test & Polish',
+    description:
+      'Unit & widget tests, real-device QA across multiple screen sizes, performance profiling, and bug-fixing until everything feels production-grade.'
+  },
+  {
+    icon: 'fas fa-rocket',
+    title: 'Deploy & Support',
+    description:
+      'Play Store and App Store release, FCM / analytics wiring, store-listing assets and screenshots — plus post-launch support to keep things running smoothly.'
+  }
 ];

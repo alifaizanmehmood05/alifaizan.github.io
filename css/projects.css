@@ -181,6 +181,30 @@
   border: 1px solid rgba(var(--accent), 0.3);
 }
 
+.live-pill--link {
+  text-decoration: none;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.live-pill--link i {
+  font-size: 0.7rem;
+  opacity: 0.7;
+  transition: transform var(--transition-fast);
+}
+
+.live-pill--link:hover {
+  background: rgba(var(--accent), 0.18);
+  border-color: rgba(var(--accent), 0.55);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(var(--accent), 0.25);
+}
+
+.live-pill--link:hover i {
+  transform: translate(2px, -2px);
+  opacity: 1;
+}
+
 .live-pill .dot {
   width: 6px;
   height: 6px;

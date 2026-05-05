@@ -14,8 +14,16 @@ export function initSmoothScroll() {
       e.preventDefault();
       target.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
-      // Close mobile nav if open
-      document.querySelector('.nav-links')?.classList.remove('open');
+      // Close mobile nav if open + reset hamburger icon
+      const links = document.querySelector('.nav-links');
+      const toggle = document.querySelector('.nav-toggle');
+      if (links?.classList.contains('open')) {
+        links.classList.remove('open');
+        if (toggle) {
+          toggle.innerHTML = '<i class="fas fa-bars"></i>';
+          toggle.setAttribute('aria-expanded', 'false');
+        }
+      }
     });
   });
 }
