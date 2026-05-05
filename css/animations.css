@@ -205,9 +205,7 @@
   z-index: 0;
 }
 
-/* Aurora bands — three slow-sliding gradient streaks layered to feel
-   like northern lights drifting behind the hero. Replaces the round
-   blurry orbs with something less "blob-y" and more atmospheric. */
+/* Static ambient gradients behind the hero — no animation. */
 .orb {
   position: absolute;
   left: -20%;
@@ -215,9 +213,7 @@
   height: 300px;
   border-radius: 0;
   filter: blur(70px);
-  opacity: 0.55;
-  animation: auroraSlide 22s ease-in-out infinite;
-  transform-origin: center center;
+  opacity: 0.5;
 }
 
 .orb--1 {
@@ -225,12 +221,11 @@
   background: linear-gradient(
     100deg,
     transparent 0%,
-    rgba(16, 185, 129, 0.55) 30%,
-    rgba(34, 211, 238, 0.45) 55%,
+    rgba(16, 185, 129, 0.5) 30%,
+    rgba(34, 211, 238, 0.35) 55%,
     transparent 100%
   );
-  --r: -8deg;
-  animation-duration: 24s;
+  transform: rotate(-8deg);
 }
 
 .orb--2 {
@@ -238,14 +233,12 @@
   background: linear-gradient(
     100deg,
     transparent 0%,
-    rgba(34, 211, 238, 0.4) 30%,
-    rgba(52, 211, 153, 0.35) 60%,
+    rgba(34, 211, 238, 0.35) 30%,
+    rgba(52, 211, 153, 0.3) 60%,
     transparent 100%
   );
-  --r: 6deg;
-  animation-duration: 30s;
-  animation-delay: -8s;
-  opacity: 0.45;
+  transform: rotate(6deg);
+  opacity: 0.4;
 }
 
 .orb--3 {
@@ -253,23 +246,12 @@
   background: linear-gradient(
     100deg,
     transparent 0%,
-    rgba(45, 212, 191, 0.45) 35%,
-    rgba(16, 185, 129, 0.4) 65%,
+    rgba(45, 212, 191, 0.4) 35%,
+    rgba(16, 185, 129, 0.35) 65%,
     transparent 100%
   );
-  --r: -4deg;
-  animation-duration: 28s;
-  animation-delay: -14s;
-  opacity: 0.5;
-}
-
-@keyframes auroraSlide {
-  0%, 100% {
-    transform: translate(calc(-6% + var(--px, 0px)), var(--py, 0px)) rotate(var(--r, 0deg));
-  }
-  50% {
-    transform: translate(calc(6% + var(--px, 0px)), var(--py, 0px)) rotate(var(--r, 0deg));
-  }
+  transform: rotate(-4deg);
+  opacity: 0.45;
 }
 
 /* ===== Custom cursor — magnetic comet (compact) ===== */

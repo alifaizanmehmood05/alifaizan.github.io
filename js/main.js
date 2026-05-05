@@ -62,21 +62,12 @@ ready(() => {
   initScrollReveal();
   initTypewriter();
   initCounters();
-  initParallax();
-  initCursor();
-  initMagneticBtns();
-  initGridFx();
+  // initParallax(); // disabled — hero background is now static
+  // initCursor(); // disabled — using native browser cursor
+  // initMagneticBtns(); // disabled — buttons no longer follow the cursor
+  // initGridFx(); // disabled — no constant sparkle spawning in the background
 
   // Set current year in footer (if footer exists)
   const yearEl = document.getElementById('year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
-
-  // Hide the page loader on the next frame so the user sees content immediately.
-  // Use rAF + a small delay so the first paint of real content lands first.
-  const loader = document.getElementById('pageLoader');
-  if (loader) {
-    requestAnimationFrame(() => {
-      setTimeout(() => loader.classList.add('is-hidden'), 200);
-    });
-  }
 });

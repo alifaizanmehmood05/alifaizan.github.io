@@ -107,21 +107,21 @@
 }
 
 .origin-badge--company {
-  background: rgba(64, 196, 255, 0.12);
-  color: #6dd5ff;
-  border: 1px solid rgba(64, 196, 255, 0.4);
+  background: rgba(2, 132, 199, 0.10);
+  color: #0369a1;
+  border: 1px solid rgba(2, 132, 199, 0.3);
 }
 
 .origin-badge--client {
-  background: rgba(250, 204, 21, 0.12);
-  color: #fde68a;
-  border: 1px solid rgba(250, 204, 21, 0.4);
+  background: rgba(202, 138, 4, 0.10);
+  color: #a16207;
+  border: 1px solid rgba(202, 138, 4, 0.3);
 }
 
 .origin-badge--personal {
-  background: rgba(167, 139, 250, 0.12);
-  color: #c4b5fd;
-  border: 1px solid rgba(167, 139, 250, 0.4);
+  background: rgba(124, 58, 237, 0.10);
+  color: #6d28d9;
+  border: 1px solid rgba(124, 58, 237, 0.3);
 }
 
 /* Mobile: drop the absolute positioning so the badge flows above the title
@@ -216,11 +216,6 @@
   color: rgb(var(--accent));
   font-size: 1.5rem;
   filter: drop-shadow(0 0 12px rgba(var(--accent), 0.6));
-  animation: floatY 4s ease-in-out infinite;
-}
-
-.showcase-title i:last-child {
-  animation-delay: -2s;
 }
 
 .showcase-subtitle {
@@ -277,13 +272,6 @@
   height: 6px;
   background: rgb(var(--accent));
   border-radius: 50%;
-  box-shadow: 0 0 0 0 rgba(var(--accent), 0.6);
-  animation: pulseAccent 1.6s ease infinite;
-}
-
-@keyframes pulseAccent {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(var(--accent), 0.6); }
-  50%      { box-shadow: 0 0 0 10px rgba(var(--accent), 0); }
 }
 
 /* Combined: full description + tech stack inside each showcase */
@@ -356,26 +344,6 @@
   gap: 14px;
   cursor: pointer;
   perspective: 1200px;
-  animation: phoneFloat 6s ease-in-out infinite;
-  animation-delay: calc(var(--i, 0) * -0.7s);
-}
-
-.phone:nth-child(even) { animation-duration: 7.5s; }
-
-@keyframes phoneFloat {
-  0%, 100% { transform: translateY(0); }
-  50%      { transform: translateY(-10px); }
-}
-
-/* Stagger entrance — when showcase reveals, phones drift in */
-.screenshot-showcase.is-visible .phone {
-  animation: phoneFloat 6s ease-in-out infinite, phoneEnter 0.9s cubic-bezier(0.4, 0, 0.2, 1) backwards;
-  animation-delay: calc(var(--i, 0) * -0.7s), calc(var(--i, 0) * 80ms);
-}
-
-@keyframes phoneEnter {
-  0%   { opacity: 0; transform: translateY(60px) scale(0.85) rotateX(-20deg); }
-  100% { opacity: 1; transform: translateY(0) scale(1) rotateX(0); }
 }
 
 /* Phone frame — body of the phone */
@@ -761,13 +729,13 @@
 }
 
 .tech {
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(15, 23, 42, 0.06);
   color: var(--cyan);
   padding: 4px 12px;
   border-radius: var(--radius-pill);
   font-size: 0.72rem;
   font-weight: 600;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(15, 23, 42, 0.12);
   transition: all var(--transition-fast);
 }
 
