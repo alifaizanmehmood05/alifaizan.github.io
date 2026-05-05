@@ -343,12 +343,11 @@
   margin-top: 6px;
 }
 
-/* Scroll-down indicator */
+/* Scroll-down indicator — pinned to the right edge of the hero */
 .scroll-down {
   position: absolute;
   bottom: 30px;
-  left: 50%;
-  transform: translateX(-50%);
+  right: 30px;
   color: var(--text-muted);
   font-size: 0.8rem;
   display: flex;
@@ -357,6 +356,13 @@
   gap: 6px;
   animation: floatY 2s ease-in-out infinite;
   z-index: 2;
+}
+
+/* Hide scroll indicator on phones */
+@media (max-width: 720px) {
+  .scroll-down {
+    display: none;
+  }
 }
 
 .scroll-down .mouse {

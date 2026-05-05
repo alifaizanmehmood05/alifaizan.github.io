@@ -58,6 +58,7 @@
   font-size: 0.9rem;
   transition: all var(--transition);
   cursor: pointer;
+  text-decoration: none;
 }
 
 .contact-item i {

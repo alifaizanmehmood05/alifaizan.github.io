@@ -10,6 +10,12 @@ export function initScrollReveal() {
   const targets = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .stagger');
   if (!targets.length) return;
 
+  // Fallback for browsers without IO (or if it never fires) — show everything.
+  if (!('IntersectionObserver' in window)) {
+    targets.forEach((el) => el.classList.add('is-visible'));
+    return;
+  }
+
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
@@ -19,10 +25,23 @@ export function initScrollReveal() {
         }
       });
     },
-    { threshold: 0.12, rootMargin: '0px 0px -60px 0px' }
+    // threshold 0 = trigger as soon as any pixel enters viewport.
+    // rootMargin 80px = pre-load slightly before scroll reaches it.
+    { threshold: 0, rootMargin: '0px 0px 80px 0px' }
   );
 
   targets.forEach((el) => observer.observe(el));
+
+  // Safety net: if anything is still hidden after 1.2s (slow phones, large images
+  // pushing layout), force-reveal it so content never gets stuck invisible.
+  setTimeout(() => {
+    targets.forEach((el) => {
+      if (!el.classList.contains('is-visible')) {
+        el.classList.add('is-visible');
+        observer.unobserve(el);
+      }
+    });
+  }, 1200);
 }
 
 /* ----- Typewriter rotating text ----- */

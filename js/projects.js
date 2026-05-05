@@ -7,7 +7,16 @@ import {
   sudokuScreenshots,
   aiTutorScreenshots,
   dualSpaceScreenshots,
+  warCardScreenshots,
+  nacelleScreenshots,
+  arvoaScreenshots,
+  videoDownloaderScreenshots,
+  laundryCartScreenshots,
+  pdfEditorScreenshots,
+  smartPrinterScreenshots,
+  subscriptionScreenshots,
   showcases,
+  showcaseCategories,
   skills,
   projects,
   experience,
@@ -18,17 +27,23 @@ const screenshotMap = {
   screenshotData,
   sudokuScreenshots,
   aiTutorScreenshots,
-  dualSpaceScreenshots
+  dualSpaceScreenshots,
+  warCardScreenshots,
+  nacelleScreenshots,
+  arvoaScreenshots,
+  videoDownloaderScreenshots,
+  laundryCartScreenshots,
+  pdfEditorScreenshots,
+  smartPrinterScreenshots,
+  subscriptionScreenshots
 };
 
-/* ----- App showcases (FutureBaby + Sudoku + AI Tutor) ----- */
+/* ----- App showcases — grouped by tech category (Flutter / Compose / Native) ----- */
 export function buildShowcases() {
   const wrap = document.getElementById('showcasesWrap');
   if (!wrap) return;
 
-  wrap.innerHTML = showcases
-    .map(
-      (s) => `
+  const cardHtml = (s) => `
     <div class="screenshot-showcase reveal" data-app="${s.app}" data-accent="${s.accent}">
       <div class="showcase-glow" aria-hidden="true"></div>
       <div class="showcase-title">
@@ -42,39 +57,60 @@ export function buildShowcases() {
         </span>
         ${s.subtitle}
       </div>
+      ${s.description ? `<p class="showcase-description">${s.description}</p>` : ''}
+      ${s.tech && s.tech.length ? `
+        <div class="showcase-tech">
+          ${s.tech.map((t) => `<span class="tech">${t}</span>`).join('')}
+        </div>` : ''}
       <div class="phone-gallery" id="${s.id}" data-accent="${s.accent}"></div>
-      <div class="scroll-hint">
-        <i class="fas fa-arrow-left"></i>
-        Hover &amp; scroll horizontally
-        <i class="fas fa-arrow-right"></i>
-      </div>
-    </div>`
-    )
+    </div>`;
+
+  wrap.innerHTML = showcaseCategories
+    .map((cat) => {
+      const apps = showcases.filter((s) => s.category === cat.id);
+      if (!apps.length) return '';
+      return `
+        <div class="showcase-category" data-cat="${cat.id}">
+          <div class="showcase-category-head reveal">
+            <span class="category-eyebrow">${cat.eyebrow}</span>
+            <h3 class="category-title">
+              <i class="${cat.icon}"></i>
+              <span class="gradient-text">${cat.label}</span>
+              <span class="category-count">${apps.length} ${apps.length === 1 ? 'app' : 'apps'}</span>
+            </h3>
+          </div>
+          ${apps.map(cardHtml).join('')}
+        </div>`;
+    })
     .join('');
 
   showcases.forEach((s) => {
     const list = screenshotMap[s.screenshots] || [];
     const gallery = document.getElementById(s.id);
     if (!gallery) return;
-    populatePhoneGallery(gallery, list, s.accent);
+    const cat = showcaseCategories.find((c) => c.id === s.category);
+    const phoneStyle = cat ? cat.phoneStyle : 'ios';
+    populatePhoneGallery(gallery, list, s.accent, phoneStyle);
   });
 }
 
 /* ----- Build a single phone gallery ----- */
-function populatePhoneGallery(gallery, items, accent) {
+function populatePhoneGallery(gallery, items, accent, phoneStyle = 'ios') {
+  const styleClass = phoneStyle === 'android' ? 'phone--android' : 'phone--ios';
   gallery.innerHTML = items
     .map(
       (item, i) => `
-    <article class="phone stagger-child" style="--i:${i}" data-index="${i}">
+    <article class="phone ${styleClass} stagger-child" style="--i:${i}" data-index="${i}">
       <div class="phone-frame">
         <div class="phone-aura" aria-hidden="true"></div>
         <div class="phone-shine" aria-hidden="true"></div>
-        <div class="phone-notch"></div>
+        <div class="phone-notch" aria-hidden="true"></div>
         <div class="phone-screen">
           <img
             src="./assets/images/${item.file}?v=2"
             alt="${item.caption}"
             decoding="async"
+            loading="lazy"
             onerror="this.onerror=null; this.style.display='none'; this.parentElement.querySelector('.phone-screen-fallback').style.display='flex'; console.warn('Image failed:', this.getAttribute('src'));"
           />
           <div class="phone-screen-fallback" aria-hidden="true">
@@ -86,10 +122,6 @@ function populatePhoneGallery(gallery, items, accent) {
         </div>
         <div class="phone-side phone-side--volume" aria-hidden="true"></div>
         <div class="phone-side phone-side--power" aria-hidden="true"></div>
-      </div>
-      <div class="phone-caption">
-        <span class="phone-caption-num">0${i + 1}</span>
-        <span class="phone-caption-text">${item.caption}</span>
       </div>
     </article>`
     )
@@ -160,12 +192,20 @@ export function buildSkills() {
   track.innerHTML = html;
 }
 
-/* ----- Projects grid ----- */
+/* ----- Projects grid (only shows apps that don't have a screenshot showcase) ----- */
 export function buildProjects() {
   const grid = document.getElementById('projectsGrid');
   if (!grid) return;
 
-  grid.innerHTML = projects
+  const showcaseTitles = new Set(showcases.map((s) => s.title));
+  const otherProjects = projects.filter((p) => !showcaseTitles.has(p.title));
+
+  if (!otherProjects.length) {
+    grid.innerHTML = '';
+    return;
+  }
+
+  grid.innerHTML = otherProjects
     .map(
       (p, i) => `
     <div class="project-card stagger-child" style="--i:${i}">

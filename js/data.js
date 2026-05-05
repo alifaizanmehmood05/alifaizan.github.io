@@ -40,6 +40,97 @@ export const dualSpaceScreenshots = [
   { file: 'ds6.jpg', caption: 'Download Manager' }
 ];
 
+export const warCardScreenshots = [
+  { file: 'ca1.jpg', caption: 'Game Start' },
+  { file: 'ca2.jpg', caption: 'Card Battle' },
+  { file: 'ca3.jpg', caption: 'Points System' },
+  { file: 'ca4.jpg', caption: 'Spring Wheel' },
+  { file: 'ca5.jpg', caption: 'Round Result' },
+  { file: 'ca6.jpg', caption: 'Final Score' }
+];
+
+export const nacelleScreenshots = [
+  { file: 'nc1.jpg', caption: 'Login Screen' },
+  { file: 'nc2.jpg', caption: 'Event Dashboard' },
+  { file: 'nc3.jpg', caption: 'QR Code Scanner' },
+  { file: 'nc4.jpg', caption: 'Attendee Check-In' },
+  { file: 'nc5.jpg', caption: 'Check-Out Tracking' },
+  { file: 'nc6.jpg', caption: 'Event Details' },
+  { file: 'nc7.jpg', caption: 'Attendee List' },
+  { file: 'nc8.jpg', caption: 'Live Attendance Stats' },
+  { file: 'nc9.jpg', caption: 'Event History' },
+  { file: 'nc10.jpg', caption: 'User Profile' },
+  { file: 'nc11.jpg', caption: 'Reports & Analytics' }
+];
+
+export const arvoaScreenshots = [
+  { file: 'ar1.jpg', caption: 'Login & Signup' },
+  { file: 'ar2.jpg', caption: 'Social Feed' },
+  { file: 'ar3.jpg', caption: 'Create Post' },
+  { file: 'ar4.jpg', caption: 'Upload Media' },
+  { file: 'ar5.jpg', caption: 'Like & Share' },
+  { file: 'ar6.jpg', caption: 'Comments Section' },
+  { file: 'ar7.jpg', caption: 'Friend Requests' },
+  { file: 'ar8.jpg', caption: 'Realtime Chat' },
+  { file: 'ar9.jpg', caption: 'Push Notifications' },
+  { file: 'ar10.jpg', caption: 'User Profile' }
+];
+
+export const videoDownloaderScreenshots = [
+  { file: 'br1.jpg', caption: 'Browser Home' },
+  { file: 'br2.jpg', caption: 'YouTube Downloader' },
+  { file: 'br3.jpg', caption: 'Tab Manager' },
+  { file: 'br4.jpg', caption: 'Desktop Mode' },
+  { file: 'br5.jpg', caption: 'Download Manager' }
+];
+
+export const laundryCartScreenshots = [
+  { file: 'la1.jpg', caption: 'Login & Signup' },
+  { file: 'la2.jpg', caption: 'Place Order' },
+  { file: 'la3.jpg', caption: 'AI Bag Scan' },
+  { file: 'la4.jpg', caption: 'Weight Estimation' },
+  { file: 'la5.jpg', caption: 'Add Item Details' },
+  { file: 'la6.jpg', caption: 'Checkout' },
+  { file: 'la7.jpg', caption: 'Stripe Payment' },
+  { file: 'la8.jpg', caption: 'Live Order Tracking' }
+];
+
+export const pdfEditorScreenshots = [
+  { file: 'pd1.jpg', caption: 'Tools Dashboard' },
+  { file: 'pd2.jpg', caption: 'Word to PDF' },
+  { file: 'pd3.jpg', caption: 'Word to PowerPoint' },
+  { file: 'pd4.jpg', caption: 'PNG to JPG' },
+  { file: 'pd5.jpg', caption: 'PDF Editor' },
+  { file: 'pd6.jpg', caption: 'Add Watermark' },
+  { file: 'pd7.jpg', caption: 'Digital Signature' },
+  { file: 'pd8.jpg', caption: 'Drawing Canvas' },
+  { file: 'pd9.jpg', caption: 'Merge & Split' },
+  { file: 'pd10.jpg', caption: 'Export & Share' }
+];
+
+export const smartPrinterScreenshots = [
+  { file: 'sm1.jpg', caption: 'Print Dashboard' },
+  { file: 'sm2.jpg', caption: 'Image Filters' },
+  { file: 'sm3.jpg', caption: 'Crop & Brightness' },
+  { file: 'sm4.jpg', caption: 'PDF Documents' },
+  { file: 'sm5.jpg', caption: 'Document Scan' },
+  { file: 'sm6.jpg', caption: 'Drawing Canvas' },
+  { file: 'sm7.jpg', caption: 'Web Content Print' }
+];
+
+export const subscriptionScreenshots = [
+  { file: 's1.jpg', caption: 'Login & Onboarding' },
+  { file: 's2.jpg', caption: 'Subscriptions Dashboard' },
+  { file: 's3.jpg', caption: 'Add Subscription' },
+  { file: 's4.jpg', caption: 'Service Catalog' },
+  { file: 's5.jpg', caption: 'Subscription Details' },
+  { file: 's6.jpg', caption: 'Billing Cycle' },
+  { file: 's7.jpg', caption: 'Renewal Reminders' },
+  { file: 's8.jpg', caption: 'Push Notifications' },
+  { file: 's9.jpg', caption: 'Spend Analytics' },
+  { file: 's10.jpg', caption: 'Settings & Profile' }
+];
+
 export const showcases = [
   {
     id: 'fbGallery',
@@ -50,6 +141,10 @@ export const showcases = [
     subtitle: 'AI baby prediction · aging · similarity score',
     pill: { text: 'Live on App Store', color: 'orange' },
     accent: 'orange',
+    description: 'AI-powered baby face prediction. Parents upload photos, the AI generates a future child face, plus an aging feature and similarity score. Live on the App Store.',
+    tech: ['Flutter', 'AI', 'RevenueCat', 'iOS'],
+    live: true,
+    category: 'flutter',
     screenshots: 'screenshotData'
   },
   {
@@ -61,6 +156,9 @@ export const showcases = [
     subtitle: 'Daily challenges · leaderboard · trophies · statistics',
     pill: { text: 'Flutter · Riverpod', color: 'white' },
     accent: 'white',
+    description: 'Sudoku suite with daily challenges, killer sudoku mode, live leaderboard, trophies and player statistics.',
+    tech: ['Flutter', 'Riverpod'],
+    category: 'flutter',
     screenshots: 'sudokuScreenshots'
   },
   {
@@ -72,6 +170,9 @@ export const showcases = [
     subtitle: 'Math solver chatbot · camera scan · step-by-step solutions',
     pill: { text: 'Kotlin · ML Kit · IAP', color: 'white' },
     accent: 'white',
+    description: 'Math solver chatbot with camera-based equation scanning, step-by-step solutions, in-app purchases and localization.',
+    tech: ['Kotlin', 'XML', 'ML Kit', 'IAP'],
+    category: 'native',
     screenshots: 'aiTutorScreenshots'
   },
   {
@@ -83,7 +184,147 @@ export const showcases = [
     subtitle: 'Universal downloader · YouTube, Instagram, Drive & more · sandbox browser',
     pill: { text: 'Multi-platform · Sandbox', color: 'orange' },
     accent: 'orange',
+    description: 'Universal video downloader with a built-in sandbox browser to grab videos from YouTube, Instagram, Google Drive, TikTok, Facebook and more — plus a download manager and offline playback.',
+    tech: ['Flutter', 'WebView', 'Media Kit'],
+    category: 'flutter',
     screenshots: 'dualSpaceScreenshots'
+  },
+  {
+    id: 'warCardGallery',
+    app: 'warcard',
+    icon: 'fas fa-gamepad',
+    iconRight: 'fas fa-dice',
+    title: 'War Card Game',
+    subtitle: 'Computer vs User card battle · points system · spring wheel',
+    pill: { text: 'Kotlin · Android', color: 'white' },
+    accent: 'white',
+    description: 'Computer vs User card battle with a 10-point starting system and a spring wheel mini-game to regain points.',
+    tech: ['Kotlin', 'XML', 'Android'],
+    category: 'native',
+    screenshots: 'warCardScreenshots'
+  },
+  {
+    id: 'nacelleGallery',
+    app: 'nacelle',
+    icon: 'fas fa-qrcode',
+    iconRight: 'fas fa-calendar-check',
+    title: 'Nacelle',
+    subtitle: 'QR-based event management · attendee check-in/out · live stats',
+    pill: { text: 'Flutter · GetX', color: 'orange' },
+    accent: 'orange',
+    description: 'QR-based event management app — scan attendee QR codes for check-in/out, track live attendance, view event history and generate analytics reports.',
+    tech: ['Flutter', 'GetX', 'QR Scanner'],
+    category: 'flutter',
+    screenshots: 'nacelleScreenshots'
+  },
+  {
+    id: 'arvoaGallery',
+    app: 'arvoa',
+    icon: 'fas fa-users',
+    iconRight: 'fas fa-comments',
+    title: 'ARVOA',
+    subtitle: 'Social media · posts · chat · friends · likes & shares · push notifications',
+    pill: { text: 'Flutter · GetX · Firebase', color: 'white' },
+    accent: 'white',
+    description: 'Full-featured social media app — create & upload posts, like & share, comments, friend requests, realtime chat and Firebase push notifications.',
+    tech: ['Flutter', 'GetX', 'Firebase', 'FCM'],
+    category: 'flutter',
+    screenshots: 'arvoaScreenshots'
+  },
+  {
+    id: 'videoDownloaderGallery',
+    app: 'videodownloader',
+    icon: 'fas fa-globe',
+    iconRight: 'fas fa-download',
+    title: 'Video Downloader',
+    subtitle: 'YouTube downloader · tab manager · desktop mode · full Chrome features',
+    pill: { text: 'Compose · WebView', color: 'orange' },
+    accent: 'orange',
+    description: 'YouTube video downloader with tab manager, cookies, desktop mode and full Chrome-like features built on a Compose WebView.',
+    tech: ['Kotlin', 'Jetpack Compose', 'WebView'],
+    category: 'compose',
+    screenshots: 'videoDownloaderScreenshots'
+  },
+  {
+    id: 'laundryCartGallery',
+    app: 'laundrycart',
+    icon: 'fas fa-tshirt',
+    iconRight: 'fas fa-truck',
+    title: 'LaundryCart',
+    subtitle: 'AI bag scan · Stripe checkout · live order status (user · admin · driver)',
+    pill: { text: 'Flutter · Riverpod · Firebase · Stripe', color: 'white' },
+    accent: 'white',
+    description: 'End-to-end laundry app — AI camera bag scan + weight estimation, Stripe checkout, and a 3-role flow (user · admin · driver) with realtime status updates from pickup → wash → ready → delivery → delivered, powered by FCM push notifications.',
+    tech: ['Flutter', 'Riverpod', 'Firebase', 'Stripe', 'FCM'],
+    category: 'flutter',
+    screenshots: 'laundryCartScreenshots'
+  },
+  {
+    id: 'pdfEditorGallery',
+    app: 'pdfeditor',
+    icon: 'fas fa-file-pdf',
+    iconRight: 'fas fa-pen-nib',
+    title: 'PDF Editor',
+    subtitle: 'Word ⇄ PDF / PPT · PNG ⇄ JPG · watermark · signature · canvas',
+    pill: { text: 'Flutter · Provider · Riverpod · APIs', color: 'orange' },
+    accent: 'orange',
+    description: 'All-in-one document toolkit — convert Word ⇄ PDF / PowerPoint, PNG ⇄ JPG, add watermarks & digital signatures, and a freehand canvas to draw on PDFs. API-driven conversions.',
+    tech: ['Flutter', 'Provider', 'Riverpod', 'REST APIs'],
+    category: 'flutter',
+    screenshots: 'pdfEditorScreenshots'
+  },
+  {
+    id: 'smartPrinterGallery',
+    app: 'smartprinter',
+    icon: 'fas fa-print',
+    iconRight: 'fas fa-image',
+    title: 'Smart Printer',
+    subtitle: 'Print images with filters · PDF docs · scan · drawing canvas · web content',
+    pill: { text: 'Kotlin · Compose', color: 'white' },
+    accent: 'white',
+    description: 'Print images with filters, crop and brightness, PDF documents, document scan, drawing canvas and web content directly from the device.',
+    tech: ['Kotlin', 'XML', 'Android'],
+    category: 'native',
+    screenshots: 'smartPrinterScreenshots'
+  },
+  {
+    id: 'subscriptionGallery',
+    app: 'subscription',
+    icon: 'fas fa-calendar-check',
+    iconRight: 'fas fa-bell',
+    title: 'Subscription Manager',
+    subtitle: 'Manage Netflix / Prime · API integration · renewal push notifications',
+    pill: { text: 'Kotlin · Retrofit', color: 'orange' },
+    accent: 'orange',
+    description: 'Manage Netflix, Prime and other subscriptions in one place — Retrofit-powered API integration and push notifications before renewal.',
+    tech: ['Kotlin', 'XML', 'Retrofit'],
+    category: 'native',
+    screenshots: 'subscriptionScreenshots'
+  }
+];
+
+/* Category metadata used to group showcases on the page */
+export const showcaseCategories = [
+  {
+    id: 'flutter',
+    label: 'Flutter Cross-Platform',
+    eyebrow: 'iOS · Android · single codebase',
+    icon: 'fas fa-mobile-screen-button',
+    phoneStyle: 'ios'
+  },
+  {
+    id: 'compose',
+    label: 'Jetpack Compose · Kotlin',
+    eyebrow: 'Modern declarative Android UI',
+    icon: 'fab fa-android',
+    phoneStyle: 'android'
+  },
+  {
+    id: 'native',
+    label: 'Native Android · Kotlin + XML',
+    eyebrow: 'Classic Android with Kotlin & XML layouts',
+    icon: 'fab fa-android',
+    phoneStyle: 'android'
   }
 ];
 
@@ -119,12 +360,6 @@ export const projects = [
     live: true
   },
   {
-    icon: 'fas fa-bell',
-    title: 'Office Boy',
-    description: 'Login/signup with office boy/employee roles, realtime chat + push notification with unique bell ringtone. Firebase storage.',
-    tech: ['Kotlin', 'XML', 'FCM']
-  },
-  {
     icon: 'fas fa-gamepad',
     title: 'War Card Game',
     description: 'Computer vs User card battle. Points system (10 start) + spring wheel to regain points.',
@@ -149,22 +384,16 @@ export const projects = [
     tech: ['Kotlin', 'Retrofit']
   },
   {
-    icon: 'fas fa-layer-group',
-    title: 'KMP Subscription',
-    description: 'Cross-platform rewrite using Kotlin Multiplatform + Compose Multiplatform (iOS & Android).',
-    tech: ['KMP', 'Compose MP']
-  },
-  {
     icon: 'fas fa-globe',
-    title: 'Nitro Browser',
+    title: 'Video Downloader',
     description: 'YouTube video downloader, tab manager, cookies, desktop mode, full Chrome features.',
     tech: ['Compose', 'WebView']
   },
   {
     icon: 'fas fa-users',
-    title: 'Arvoa (Campus Social)',
-    description: 'University social: posts, friend requests, chat, map location of posts, Firebase notifications.',
-    tech: ['Flutter', 'Firebase', 'Maps']
+    title: 'ARVOA',
+    description: 'Full-featured social media app — create & upload posts, like & share, comments, friend requests, realtime chat and Firebase push notifications.',
+    tech: ['Flutter', 'GetX', 'Firebase', 'FCM']
   },
   {
     icon: 'fas fa-puzzle-piece',
@@ -174,15 +403,27 @@ export const projects = [
   },
   {
     icon: 'fas fa-tshirt',
-    title: 'Laundry AI',
-    description: 'Capture bag image → AI predicts cloth weight, schedule wash & delivery tracking.',
-    tech: ['Flutter', 'Vision AI']
+    title: 'LaundryCart',
+    description: 'End-to-end laundry app — AI camera bag scan + weight estimation, Stripe checkout, and a 3-role flow (user · admin · driver) with realtime status updates from pickup → wash → ready → delivery → delivered, powered by FCM push notifications.',
+    tech: ['Flutter', 'Riverpod', 'Firebase', 'Stripe', 'FCM']
   },
   {
     icon: 'fas fa-cloud-arrow-down',
     title: 'Dual Space',
     description: 'Universal video downloader. Built-in sandbox browser to grab videos from YouTube, Instagram, Google Drive, TikTok, Facebook & more — with download manager and offline playback.',
     tech: ['Kotlin', 'Sandbox WebView', 'Media3']
+  },
+  {
+    icon: 'fas fa-qrcode',
+    title: 'Nacelle',
+    description: 'QR-based event management app — scan attendee QR codes for check-in/out, track live attendance, view event history, and generate analytics reports.',
+    tech: ['Flutter', 'GetX', 'QR Scanner']
+  },
+  {
+    icon: 'fas fa-file-pdf',
+    title: 'PDF Editor',
+    description: 'All-in-one document toolkit — convert Word ⇄ PDF / PowerPoint, PNG ⇄ JPG, add watermarks & digital signatures, and a freehand canvas to draw on PDFs. API-driven conversions.',
+    tech: ['Flutter', 'Provider', 'Riverpod', 'REST APIs']
   }
 ];
 
