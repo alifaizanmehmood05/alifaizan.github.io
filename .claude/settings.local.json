@@ -1,7 +1,9 @@
 {
   "permissions": {
     "allow": [
-      "WebFetch(domain:ozeito.com)"
+      "WebFetch(domain:ozeito.com)",
+      "Bash(findstr *)",
+      "Bash(powershell *)"
     ]
   }
 }

@@ -25,7 +25,8 @@ import {
   process,
   services,
   whyMe,
-  brands
+  brands,
+  education
 } from './data.js';
 
 const screenshotMap = {
@@ -69,17 +70,38 @@ export function buildShowcases() {
         <i class="${s.iconRight}"></i>
       </div>
       <div class="showcase-subtitle">
-        ${s.pill.url
-          ? `<a href="${s.pill.url}" target="_blank" rel="noopener noreferrer" class="live-pill pill-${s.pill.color} live-pill--link">
-              <span class="dot"></span>${s.pill.text}
-              <i class="fas fa-arrow-up-right-from-square"></i>
-            </a>`
-          : `<span class="live-pill pill-${s.pill.color}">
-              <span class="dot"></span>${s.pill.text}
-            </span>`}
+        ${s.appStore || s.playStore
+          ? ''
+          : s.pill.url
+            ? `<a href="${s.pill.url}" target="_blank" rel="noopener noreferrer" class="live-pill pill-${s.pill.color} live-pill--link">
+                <span class="dot"></span>${s.pill.text}
+                <i class="fas fa-arrow-up-right-from-square"></i>
+              </a>`
+            : `<span class="live-pill pill-${s.pill.color}">
+                <span class="dot"></span>${s.pill.text}
+              </span>`}
         ${s.subtitle}
       </div>
       ${s.description ? `<p class="showcase-description">${s.description}</p>` : ''}
+      ${(s.appStore || s.playStore) ? `
+        <div class="store-badges">
+          ${s.appStore ? `
+            <a href="${s.appStore}" target="_blank" rel="noopener noreferrer" class="store-badge store-badge--apple" aria-label="Download on the App Store">
+              <i class="fab fa-apple"></i>
+              <span class="store-badge-text">
+                <span class="store-badge-small">Download on the</span>
+                <span class="store-badge-big">App Store</span>
+              </span>
+            </a>` : ''}
+          ${s.playStore ? `
+            <a href="${s.playStore}" target="_blank" rel="noopener noreferrer" class="store-badge store-badge--google" aria-label="Get it on Google Play">
+              <i class="fab fa-google-play"></i>
+              <span class="store-badge-text">
+                <span class="store-badge-small">Get it on</span>
+                <span class="store-badge-big">Google Play</span>
+              </span>
+            </a>` : ''}
+        </div>` : ''}
       ${s.tech && s.tech.length ? `
         <div class="showcase-tech">
           ${s.tech.map((t) => `<span class="tech">${t}</span>`).join('')}
@@ -368,6 +390,26 @@ export function buildExperience() {
     .join('');
 }
 
+/* ----- Education timeline (newest first) ----- */
+export function buildEducation() {
+  const timeline = document.getElementById('eduTimeline');
+  if (!timeline) return;
+
+  timeline.innerHTML = education
+    .map(
+      (e, i) => `
+    <div class="exp-card stagger-child" style="--i:${i}">
+      <div class="exp-header">
+        <h3><i class="${e.icon}"></i> ${e.degree}</h3>
+        <span class="exp-tag">${e.period}</span>
+      </div>
+      <p class="edu-school">${e.school}</p>
+      ${e.note ? `<p class="edu-note">${e.note}</p>` : ''}
+    </div>`
+    )
+    .join('');
+}
+
 /* ----- Brands marquee — auto-scrolling logo row, each card jumps to its showcase ----- */
 export function buildBrands() {
   const track = document.getElementById('brandsTrack');
@@ -436,7 +478,7 @@ export function buildServices() {
       (s, i) => `
     <div class="service-card stagger-child" style="--i:${i}">
       <span class="spotlight"></span>
-      <div class="service-icon"><i class="${s.icon}"></i></div>
+      <div class="service-icon">${renderSkillIcon(s.icon)}</div>
       <h3 class="service-title">${s.title}</h3>
       <p class="service-desc">${s.description}</p>
     </div>`

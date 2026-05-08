@@ -148,6 +148,7 @@ export const showcases = [
     description: 'AI-powered baby face prediction. Parents upload photos, the AI generates a future child face, plus an aging feature and similarity score. Live on the App Store.',
     tech: ['Flutter', 'AI', 'RevenueCat', 'iOS'],
     live: true,
+    appStore: 'https://apps.apple.com/us/app/future-baby-ai-baby-generator/id6756097644',
     category: 'flutter',
     origin: 'company',
     screenshots: 'screenshotData'
@@ -159,13 +160,40 @@ export const showcases = [
     iconRight: 'fas fa-trophy',
     title: 'Sudoku & Killer',
     subtitle: 'Daily challenges · leaderboard · trophies · statistics',
-    pill: { text: 'Flutter · Riverpod', color: 'white' },
-    accent: 'white',
+    pill: {
+      text: 'Live on App Store',
+      color: 'orange',
+      url: 'https://apps.apple.com/us/app/sudoku-number-games-for-brain/id6758653781'
+    },
+    accent: 'orange',
     description: 'Sudoku suite with daily challenges, killer sudoku mode, live leaderboard, trophies and player statistics.',
     tech: ['Flutter', 'Riverpod'],
+    live: true,
+    appStore: 'https://apps.apple.com/us/app/sudoku-number-games-for-brain/id6758653781',
     category: 'flutter',
     origin: 'company',
     screenshots: 'sudokuScreenshots'
+  },
+  {
+    id: 'pdfEditorGallery',
+    app: 'pdfeditor',
+    icon: 'fas fa-file-pdf',
+    iconRight: 'fas fa-pen-nib',
+    title: 'PDF Editor',
+    subtitle: 'Word ⇄ PDF / PPT · PNG ⇄ JPG · watermark · signature · canvas',
+    pill: {
+      text: 'Live on App Store',
+      color: 'orange',
+      url: 'https://apps.apple.com/us/app/pdf-photo-pdf-to-word-maker/id6761983074'
+    },
+    accent: 'orange',
+    description: 'All-in-one document toolkit — convert Word ⇄ PDF / PowerPoint, PNG ⇄ JPG, add watermarks & digital signatures, and a freehand canvas to draw on PDFs. API-driven conversions.',
+    tech: ['Flutter', 'Provider', 'Riverpod', 'REST APIs'],
+    live: true,
+    appStore: 'https://apps.apple.com/us/app/pdf-photo-pdf-to-word-maker/id6761983074',
+    category: 'flutter',
+    origin: 'company',
+    screenshots: 'pdfEditorScreenshots'
   },
   {
     id: 'aiGallery',
@@ -271,21 +299,6 @@ export const showcases = [
     category: 'flutter',
     origin: 'client',
     screenshots: 'laundryCartScreenshots'
-  },
-  {
-    id: 'pdfEditorGallery',
-    app: 'pdfeditor',
-    icon: 'fas fa-file-pdf',
-    iconRight: 'fas fa-pen-nib',
-    title: 'PDF Editor',
-    subtitle: 'Word ⇄ PDF / PPT · PNG ⇄ JPG · watermark · signature · canvas',
-    pill: { text: 'Flutter · Provider · Riverpod · APIs', color: 'orange' },
-    accent: 'orange',
-    description: 'All-in-one document toolkit — convert Word ⇄ PDF / PowerPoint, PNG ⇄ JPG, add watermarks & digital signatures, and a freehand canvas to draw on PDFs. API-driven conversions.',
-    tech: ['Flutter', 'Provider', 'Riverpod', 'REST APIs'],
-    category: 'flutter',
-    origin: 'company',
-    screenshots: 'pdfEditorScreenshots'
   },
   {
     id: 'smartPrinterGallery',
@@ -490,7 +503,7 @@ export const experience = [
   {
     icon: 'fas fa-briefcase',
     title: 'Mobile Developer · Ozeito',
-    tag: 'Current · 4+ years',
+    tag: 'Current · 3+ years',
     description: 'July 2022 – Present: I started my development career at Ozeito and have been a full-time mobile developer here ever since. I lead the build of company products like FutureBaby AI (live on App Store), Sudoku & Killer, Dual Space, PDF Editor, Smart Printer and Subscribify, and ship client apps including Nacelle, ARVOA, LaundryCart, Tutor AI and Video Downloader.'
   },
   {
@@ -515,15 +528,14 @@ export const experience = [
     icon: 'fas fa-trophy',
     title: 'Achievements & Credentials',
     tag: 'Live & shipping',
-    description: 'Google Play & Apple Developer accounts • FutureBaby AI live on the App Store • BS Computer Science.'
+    description: 'Google Play & Apple Developer accounts • FutureBaby AI, Sudoku & Killer and PDF Editor — all live on the App Store • 70+ WPM raw typing speed (numbers, symbols & words).'
   }
 ];
 
 export const stats = [
-  { num: 4, suffix: '+', label: 'Years Experience' },
+  { num: 3, suffix: '+', label: 'Years Experience' },
   { num: 12, suffix: '+', label: 'Apps Built' },
-  { num: 1, suffix: '', label: 'Live on App Store' },
-  { num: 3, suffix: '', label: 'Tech Stacks' }
+  { num: 3, suffix: '', label: 'Live on App Store' }
 ];
 
 /* "Why Me" — value props that justify hiring */
@@ -531,7 +543,7 @@ export const whyMe = [
   {
     icon: 'fab fa-apple',
     title: 'App Store Track Record',
-    description: 'FutureBaby AI is live on the Apple App Store — I\'ve done the full submission, review and post-launch loop, not just the build.'
+    description: 'FutureBaby AI, Sudoku & Killer and PDF Editor are all live on the Apple App Store — I\'ve done the full submission, review and post-launch loop, not just the build.'
   },
   {
     icon: 'fas fa-layer-group',
@@ -572,9 +584,9 @@ export const brands = [
 /* Services I offer to clients */
 export const services = [
   {
-    icon: 'fab fa-flutter',
+    icon: 'svg:flutter',
     title: 'Flutter App Development',
-    description: 'Cross-platform iOS + Android apps from a single codebase — GetX, Riverpod or Provider, with Material 3 / Cupertino UI.'
+    description: 'Cross-platform iOS + Android apps from a single codebase — GetX, Riverpod or Provider, with Material 3.'
   },
   {
     icon: 'fab fa-android',
@@ -634,5 +646,36 @@ export const process = [
     title: 'Deploy & Support',
     description:
       'Play Store and App Store release, FCM / analytics wiring, store-listing assets and screenshots — plus post-launch support to keep things running smoothly.'
+  }
+];
+
+
+/* Education timeline — newest first */
+export const education = [
+  {
+    icon: 'fas fa-graduation-cap',
+    degree: 'BS Computer Science',
+    school: 'Government College University, Faisalabad',
+    period: '2022 – 2026',
+    note: "Bachelor's degree — graduation completed."
+  },
+  {
+    icon: 'fas fa-university',
+    degree: 'BS Software Engineering (1 year)',
+    school: 'University of Agriculture, Faisalabad (UAF)',
+    period: '2021 – 2022',
+    note: 'Spent one year before transferring.'
+  },
+  {
+    icon: 'fas fa-school',
+    degree: 'FSc Pre-Engineering',
+    school: 'Tips College, Faisalabad',
+    period: '2019 – 2021'
+  },
+  {
+    icon: 'fas fa-school',
+    degree: 'Matriculation',
+    school: 'Royal Grammar School',
+    period: '2017 – 2019'
   }
 ];

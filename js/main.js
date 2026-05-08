@@ -11,7 +11,8 @@ import {
   buildProcess,
   buildServices,
   buildWhyMe,
-  buildBrands
+  buildBrands,
+  buildEducation
 } from './projects.js';
 
 import {
@@ -44,6 +45,7 @@ ready(() => {
   buildSkills();
   buildProjects();
   buildExperience();
+  buildEducation();
   buildStats();
   buildProcess();
   buildServices();

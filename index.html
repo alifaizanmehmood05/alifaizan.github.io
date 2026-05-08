@@ -55,12 +55,9 @@
     </a>
     <ul class="nav-links">
       <li><a href="#home">Home</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#services">Services</a></li>
+      <li><a href="#projects">Work</a></li>
       <li><a href="#experience">Experience</a></li>
-      <li><a href="#process">Process</a></li>
+      <li><a href="#services">Services</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
     <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
@@ -133,39 +130,83 @@
 
   <!-- About -->
   <section class="section reveal" id="about">
-    <span class="section-eyebrow">Who I Am</span>
-    <h2 class="section-title">The <span class="gradient-text">Journey</span></h2>
+        <h2 class="section-title">The <span class="gradient-text">Journey</span></h2>
+
     <div class="about-card">
+      <a
+        href="https://ozeito.com/services#"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="employer-badge"
+        aria-label="Currently at Ozeito"
+      >
+        <span class="employer-badge-text">
+          <span class="employer-badge-label">Currently at</span>
+          <span class="employer-badge-name">Ozeito <i class="fas fa-arrow-up-right-from-square"></i></span>
+        </span>
+      </a>
+
       <h2>Scratch to Mobile Engineer</h2>
       <p>
         I started my development career on <strong>July 20, 2022</strong> at
-        <a href="https://ozeito.com/" target="_blank" rel="noopener noreferrer" class="about-company">Ozeito</a> —
+        <a href="https://ozeito.com/services#" target="_blank" rel="noopener noreferrer" class="about-company">Ozeito</a> —
         the company I'm still proudly part of today. I began with native Android (Kotlin + XML), shipping
         Tutor AI, War Card Game, Smart Printer and Subscribify, then moved to Jetpack Compose with
-        Video Downloader. In 2025 I mastered Flutter and shipped
-        <strong>FutureBaby AI — live on the App Store</strong>, plus ARVOA social, Sudoku &amp; Killer,
-        LaundryCart, PDF Editor and the Nacelle event-management scanner. BS Computer Science.
+        Video Downloader. In 2025 I mastered Flutter and shipped three apps that are
+        <strong>live on the App Store</strong> —
+        <a
+          href="https://apps.apple.com/us/app/future-baby-ai-baby-generator/id6756097644"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="live-app-link"
+        ><i class="fab fa-apple"></i> FutureBaby AI</a>,
+        <a
+          href="https://apps.apple.com/us/app/sudoku-number-games-for-brain/id6758653781"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="live-app-link"
+        ><i class="fab fa-apple"></i> Sudoku &amp; Killer</a>
+        and
+        <a
+          href="https://apps.apple.com/us/app/pdf-photo-pdf-to-word-maker/id6761983074"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="live-app-link"
+        ><i class="fab fa-apple"></i> PDF Editor</a> —
+        plus ARVOA social, LaundryCart and the Nacelle event-management scanner.
       </p>
-      <div class="about-meta">
-        <span><i class="fab fa-google-play"></i> Google Play Console</span>
-        <span><i class="fab fa-apple"></i> Apple Developer</span>
-        <span><i class="fab fa-linkedin"></i> Ali Faizan Mehmood</span>
-      </div>
     </div>
   </section>
 
   <!-- Skills -->
   <section class="section reveal" id="skills">
-    <span class="section-eyebrow">What I Work With</span>
-    <h2 class="section-title">Tech <span class="gradient-text">Stack</span></h2>
-    <p class="section-lede">The tools I reach for, grouped by where they fit in the build.</p>
+        <h2 class="section-title">Tech <span class="gradient-text">Stack</span></h2>
+
+    <!-- Quick scannable badge row of headline tech -->
+    <div class="skill-badges">
+      <span class="skill-badge">
+        <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true">
+          <path fill="currentColor" d="M14.314 0L2.3 12 6 15.7 21.684.013h-7.357zm.014 11.072L7.857 17.53l6.47 6.47H21.7l-6.46-6.468 6.46-6.46h-7.37z"/>
+        </svg>
+        Flutter
+      </span>
+      <span class="skill-badge"><i class="fas fa-code"></i> Dart</span>
+      <span class="skill-badge"><i class="fab fa-android"></i> Kotlin</span>
+      <span class="skill-badge"><i class="fas fa-cubes"></i> Jetpack Compose</span>
+      <span class="skill-badge"><i class="fas fa-fire"></i> Firebase</span>
+      <span class="skill-badge"><i class="fas fa-cloud"></i> REST APIs</span>
+      <span class="skill-badge"><i class="fas fa-water"></i> Riverpod</span>
+      <span class="skill-badge"><i class="fas fa-bolt"></i> GetX</span>
+      <span class="skill-badge"><i class="fas fa-credit-card"></i> Stripe</span>
+      <span class="skill-badge"><i class="fas fa-brain"></i> AI Integrations</span>
+    </div>
+
     <div class="skills-groups" id="skillsGroups"></div>
   </section>
 
   <!-- Brands -->
   <section class="section reveal" id="brands">
-    <span class="section-eyebrow">Built by Me</span>
-    <h2 class="section-title">Apps I've <span class="gradient-text">shipped</span></h2>
+        <h2 class="section-title">Apps I've <span class="gradient-text">shipped</span></h2>
     <div class="brands-marquee">
       <div class="brands-track" id="brandsTrack" aria-label="Apps I've built"></div>
     </div>
@@ -173,8 +214,7 @@
 
   <!-- Projects -->
   <section class="section reveal" id="projects">
-    <span class="section-eyebrow">Selected Work</span>
-    <h2 class="section-title">Featured <span class="gradient-text">Projects</span></h2>
+        <h2 class="section-title">Featured <span class="gradient-text">Projects</span></h2>
 
     <!-- App showcases (FutureBaby, Sudoku, AI Tutor) -->
     <div id="showcasesWrap"></div>
@@ -185,40 +225,38 @@
 
   <!-- Services -->
   <section class="section reveal" id="services">
-    <span class="section-eyebrow">What I Offer</span>
-    <h2 class="section-title">My <span class="gradient-text">Services</span></h2>
-    <p class="section-lede">From a single-screen MVP to a full multi-role product — here's what I can build for you.</p>
+        <h2 class="section-title">My <span class="gradient-text">Services</span></h2>
     <div class="services-grid stagger" id="servicesGrid"></div>
   </section>
 
   <!-- Experience -->
   <section class="section reveal" id="experience">
-    <span class="section-eyebrow">My Path</span>
-    <h2 class="section-title">Work <span class="gradient-text">Experience</span></h2>
+        <h2 class="section-title">Work <span class="gradient-text">Experience</span></h2>
     <div class="timeline stagger" id="expTimeline"></div>
+  </section>
+
+  <!-- Education -->
+  <section class="section reveal" id="education">
+        <h2 class="section-title"><span class="gradient-text">Education</span></h2>
+    <div class="timeline stagger" id="eduTimeline"></div>
   </section>
 
   <!-- Work process -->
   <section class="section reveal" id="process">
-    <span class="section-eyebrow">How I Work</span>
-    <h2 class="section-title">My <span class="gradient-text">Process</span></h2>
-    <p class="section-lede">From the first call to App Store launch — here's how every project moves forward.</p>
+        <h2 class="section-title">My <span class="gradient-text">Process</span></h2>
     <div class="process-list stagger" id="processList"></div>
   </section>
 
   <!-- Why Me -->
   <section class="section reveal" id="why-me">
-    <span class="section-eyebrow">Why Hire Me</span>
-    <h2 class="section-title">Why <span class="gradient-text">Me</span></h2>
-    <p class="section-lede">A few reasons clients pick me over an agency or a generalist freelancer.</p>
+        <h2 class="section-title">Why <span class="gradient-text">Me</span></h2>
     <div class="why-grid stagger" id="whyMeGrid"></div>
   </section>
 
   <!-- Contact -->
   <section class="section reveal" id="contact">
     <div class="contact-card">
-      <span class="section-eyebrow">Let's Build Something</span>
-      <h2>Let's <span class="gradient-text">Connect</span></h2>
+          <h2>Let's <span class="gradient-text">Connect</span></h2>
       <p>Open for freelance, remote contracts, or full-time opportunities.</p>
 
       <div class="contact-flex">
