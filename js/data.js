@@ -503,13 +503,13 @@ export const experience = [
   {
     icon: 'fas fa-briefcase',
     title: 'Mobile Developer · Ozeito',
-    tag: 'Current · 3+ years',
+    tag: 'Current · 4+ years',
     description: 'July 2022 – Present: I started my development career at Ozeito and have been a full-time mobile developer here ever since. I lead the build of company products like FutureBaby AI (live on App Store), Sudoku & Killer, Dual Space, PDF Editor, Smart Printer and Subscribify, and ship client apps including Nacelle, ARVOA, LaundryCart, Tutor AI and Video Downloader.'
   },
   {
     icon: 'fab fa-android',
     title: 'Native Android · Kotlin + XML',
-    tag: '3+ years',
+    tag: '4+ years',
     description: 'July 2022 - Present: Native Android development with Kotlin and XML layouts. Built Tutor AI, War Card Game, Smart Printer and Subscribify — Firebase integrations, AI/ML Kit features, in-app purchases and Retrofit-driven backends.'
   },
   {

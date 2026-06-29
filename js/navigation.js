@@ -84,7 +84,6 @@ function showToast(message) {
 export function initHireMe() {
   const buttons = document.querySelectorAll('a[data-email], a[href^="mailto:"]');
   if (!buttons.length) return;
-
   buttons.forEach((btn) => {
     btn.addEventListener('click', async (e) => {
       const email =
