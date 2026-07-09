@@ -27,7 +27,9 @@
       "Bash(curl -s -o /dev/null -w \"index %{http_code} style %{http_code} app %{http_code}\\\\n\" http://127.0.0.1:8080/index.html http://127.0.0.1:8080/css/style.css http://127.0.0.1:8080/js/app.js)",
       "Bash(curl -s -o /dev/null -w \"index %{http_code} style %{http_code}\\\\n\" http://127.0.0.1:8080/index.html http://127.0.0.1:8080/css/style.css)",
       "Bash('/c/Program Files/Google/Chrome/Application/chrome.exe' --headless=new --disable-gpu --hide-scrollbars --window-size=1400,7000 --virtual-time-budget=6000 --screenshot=C:/Users/ozeit/AppData/Local/Temp/claude/C--Users-ozeit-Desktop-portfolio/30e5f347-e579-4c78-beb4-13befd979bcd/scratchpad/full3.png http://127.0.0.1:8080/index.html)",
-      "Bash('/c/Program Files/Google/Chrome/Application/chrome.exe' --headless=new --disable-gpu --hide-scrollbars --window-size=1440,900 --virtual-time-budget=3500 --screenshot=C:/Users/ozeit/AppData/Local/Temp/claude/C--Users-ozeit-Desktop-portfolio/30e5f347-e579-4c78-beb4-13befd979bcd/scratchpad/hero_hang.png http://127.0.0.1:8080/index.html)"
+      "Bash('/c/Program Files/Google/Chrome/Application/chrome.exe' --headless=new --disable-gpu --hide-scrollbars --window-size=1440,900 --virtual-time-budget=3500 --screenshot=C:/Users/ozeit/AppData/Local/Temp/claude/C--Users-ozeit-Desktop-portfolio/30e5f347-e579-4c78-beb4-13befd979bcd/scratchpad/hero_hang.png http://127.0.0.1:8080/index.html)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://127.0.0.1:8080/index.html)",
+      "Bash(python -c ' *)"
     ]
   }
 }
