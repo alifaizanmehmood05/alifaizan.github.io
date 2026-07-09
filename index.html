@@ -3,305 +3,162 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <meta name="description" content="Ali Faizan Mehmood — Mobile App Engineer. Flutter, Kotlin, Jetpack Compose. FutureBaby AI live on the App Store." />
-  <meta name="theme-color" content="#fafaf9" />
-  <title>Ali Faizan Mehmood | Mobile App Engineer</title>
+  <meta name="description" content="Ali Faizan Mehmood — mobile developer who builds apps you won't rage-quit. Flutter, Kotlin, Jetpack Compose. 3 apps live on the App Store." />
+  <meta name="theme-color" content="#ffffff" />
+  <title>Ali Faizan Mehmood — I build apps you won't rage-quit</title>
 
-  <!-- Open Graph (Facebook, LinkedIn, WhatsApp) -->
+  <!-- Open Graph -->
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Ali Faizan Mehmood — Mobile App Engineer" />
-  <meta property="og:description" content="Flutter · Kotlin · Jetpack Compose. 12+ apps shipped, FutureBaby AI live on the App Store." />
+  <meta property="og:title" content="Ali Faizan Mehmood — Mobile Developer" />
+  <meta property="og:description" content="I make apps less annoying. Flutter · Kotlin · Compose. 12+ shipped, 3 live on the App Store." />
   <meta property="og:image" content="assets/images/profile.png" />
-  <meta property="og:image:alt" content="Ali Faizan Mehmood — Mobile App Engineer" />
-
-  <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Ali Faizan Mehmood — Mobile App Engineer" />
-  <meta name="twitter:description" content="Flutter · Kotlin · Jetpack Compose. 12+ apps shipped, FutureBaby AI live on the App Store." />
-  <meta name="twitter:image" content="assets/images/profile.png" />
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Roboto+Slab:wght@600;700;800&family=Space+Mono:wght@400;700&family=Patrick+Hand&display=swap" rel="stylesheet" />
 
   <!-- Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 
   <!-- Styles -->
-  <link rel="stylesheet" href="css/main.css" />
-  <link rel="stylesheet" href="css/animations.css" />
-  <link rel="stylesheet" href="css/navbar.css" />
-  <link rel="stylesheet" href="css/hero.css" />
-  <link rel="stylesheet" href="css/sections.css" />
-  <link rel="stylesheet" href="css/projects.css" />
-  <link rel="stylesheet" href="css/contact.css" />
-  <link rel="stylesheet" href="css/responsive.css" />
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
 
   <!-- Scroll progress -->
-  <div class="scroll-progress" aria-hidden="true"></div>
+  <div class="progress" id="progress" aria-hidden="true"></div>
 
-  <!-- Animated background grid layer (sweeps + node sparkles) -->
-  <div class="grid-fx" id="gridFx" aria-hidden="true"></div>
-
-
-  <!-- Navbar -->
-  <nav class="navbar">
-    <a href="#home" class="logo">
-      <span class="logo-icon"><i class="fas fa-code"></i></span>
-      <span class="logo-text">AliFaizan.dev</span>
-    </a>
-    <ul class="nav-links">
-      <li><a href="#home">Home</a></li>
-      <li><a href="#projects">Work</a></li>
-      <li><a href="#experience">Experience</a></li>
-      <li><a href="#services">Services</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
-      <i class="fas fa-bars"></i>
-    </button>
-  </nav>
-
-  <!-- Hero -->
-  <section class="hero" id="home">
-    <div class="orbs" aria-hidden="true">
-      <span class="orb orb--1"></span>
-      <span class="orb orb--2"></span>
-      <span class="orb orb--3"></span>
+  <!-- ===== HERO ===== -->
+  <header class="hero" id="top">
+    <div class="blobs" aria-hidden="true">
+      <span class="blob blob--1"></span>
+      <span class="blob blob--2"></span>
+      <span class="blob blob--3"></span>
     </div>
 
-    <div class="hero-inner">
-      <div class="hero-profile">
-        <div class="profile-wrap">
-          <img
-            src="assets/images/profile.png"
-            alt="Ali Faizan Mehmood"
-            class="profile-img"
-            onerror="this.src='https://ui-avatars.com/api/?background=fafaf9&color=059669&bold=true&name=Ali+Faizan&size=150&rounded=true&fontsize=0.6';"
-          />
+    <div class="hero-center">
+      <h1 class="hero-name"><span class="caret" aria-hidden="true"></span>Hi, I'm Ali</h1>
+      <p class="hero-tag">I build apps you won't rage-quit.</p>
+      <p class="hero-line">22 <b>|</b> MOBILE DEVELOPER <b>|</b> FLUTTER ENGINEER <b>|</b> ANDROID DEV</p>
+    </div>
+
+    <div class="sticky-layer" id="stickyLayer" aria-hidden="true">
+      <div class="sticky sticky--g" style="top:19%;left:15%;--rot:-3deg">Mobile dev @ Ozeito 📱</div>
+      <div class="sticky sticky--b" style="top:52%;left:12%;--rot:4deg">Shipping apps since July 2022 🚀</div>
+      <div class="sticky sticky--p" style="top:11%;right:11%;--rot:2deg;width:190px">Drag these sticky notes around — just like I drag widgets in Flutter 😆</div>
+      <div class="sticky sticky--b" style="top:47%;right:8%;--rot:-4deg">GCU CS grad btw 🎓 (good at maths too)</div>
+      <div class="sticky sticky--y" style="top:70%;right:19%;--rot:3deg">3 apps LIVE on the App Store 🍎 · 70 WPM ⌨️</div>
+    </div>
+
+    <!-- Floating dock -->
+    <nav class="dock" aria-label="Quick navigation">
+      <a href="#top" class="dock-btn" data-tip="Home" style="--c:var(--blue)"><i class="fas fa-house"></i></a>
+      <a href="#work" class="dock-btn" data-tip="Work" style="--c:var(--coral)"><i class="fas fa-mobile-screen-button"></i></a>
+      <a href="#about" class="dock-btn" data-tip="About" style="--c:var(--pink)"><i class="fas fa-user"></i></a>
+      <a href="#about" class="dock-btn" data-tip="Experience" style="--c:var(--green)"><i class="fas fa-briefcase"></i></a>
+      <a href="#contact" class="dock-btn" data-tip="Contact" style="--c:var(--blue)"><i class="fas fa-envelope"></i></a>
+      <a href="assets/images/faizancv.pdf" download="Ali-Faizan-Mehmood-CV.pdf" class="dock-btn" data-tip="Résumé" style="--c:var(--green)"><i class="fas fa-download"></i></a>
+      <span class="dock-sep"></span>
+      <a href="#work" class="dock-btn" data-tip="Browse work" style="--c:var(--ink)"><i class="fas fa-magnifying-glass"></i></a>
+    </nav>
+  </header>
+
+  <!-- ===== ABOUT (Yours Truly + Stalk Me + Tool Kit) ===== -->
+  <section class="section about" id="about">
+    <div class="wrap">
+      <h2 class="about-heading reveal"><span class="dash"></span>About<span class="dash"></span></h2>
+
+      <div class="about-grid">
+        <!-- Left: avatar + yours truly + notes -->
+        <div class="about-left">
+          <div class="avatar-wrap reveal">
+            <span class="avatar-spark">✦</span>
+            <img
+              src="https://api.dicebear.com/9.x/avataaars/svg?seed=AliFaizan&backgroundColor=b6e3f4&radius=50"
+              alt="Ali Faizan Mehmood"
+              class="avatar"
+              onerror="this.src='https://ui-avatars.com/api/?background=3b5bff&color=fff&bold=true&name=Ali+Faizan&size=200&rounded=true';"
+            />
+            <svg class="avatar-arrow" viewBox="0 0 80 80" aria-hidden="true">
+              <path d="M16 72 C4 44 20 14 62 14" fill="none" stroke="#1b1a17" stroke-width="3" stroke-linecap="round"/>
+              <path d="M62 14 L50 10 M62 14 L57 25" fill="none" stroke="#1b1a17" stroke-width="3" stroke-linecap="round"/>
+            </svg>
+            <span class="yours-truly">Yours Truly</span>
+          </div>
+
+          <div class="about-notes" id="aboutNotes">
+            <div class="sticky sticky--g" style="top:6px;left:18px;--rot:-5deg">4+ Years of industry experience 📆</div>
+            <div class="sticky sticky--p" style="top:74px;left:200px;--rot:5deg">Building so you don't rage-quit 😤</div>
+            <div class="sticky sticky--y" style="top:224px;left:44px;--rot:-3deg">CS grad — Googled my way here 😅</div>
+            <div class="sticky sticky--b" style="top:266px;left:220px;--rot:6deg">PAK 🌙 · Remote-ready 🌍</div>
+            <div class="sticky sticky--l" style="top:414px;left:14px;--rot:-4deg">Less "ugh," more "ooh!" 🎈</div>
+            <div class="sticky sticky--g" style="top:454px;left:206px;--rot:4deg">3 apps LIVE on the App Store 🍎</div>
+            <div class="sticky sticky--p" style="top:602px;left:56px;--rot:-6deg">70+ WPM ⌨️ (symbols too)</div>
+            <div class="sticky sticky--y" style="top:632px;left:222px;--rot:3deg">Coffee → Code → Repeat ☕</div>
+          </div>
         </div>
-      </div>
 
-      <div class="hero-content">
-        <span class="hero-greeting">
-          <span class="dot"></span>
-          Available for new opportunities
-        </span>
+        <!-- Right: stalk me + tool kit + experience -->
+        <div class="about-right">
+          <h3 class="col-title stalk reveal">Stalk Me Here</h3>
+          <div class="socials reveal" id="socials"></div>
 
-        <h1>Ali Faizan Mehmood</h1>
+          <h3 class="col-title toolkit-h reveal">Tool Kit</h3>
+          <div class="toolgrid reveal" id="toolGrid"></div>
 
-        <p class="hero-role">
-          <i class="fas fa-mobile-alt"></i>
-          Flutter Developer <span class="role-sep">|</span> Android App Engineer
-        </p>
-
-        <p class="hero-typewriter">
-          I build&nbsp;<span class="typewriter-text">production-grade Flutter apps</span>
-        </p>
-
-        <div class="hero-badges">
-          <span class="badge"><i class="fab fa-android"></i> Android Expert</span>
-          <span class="badge"><i class="fas fa-mobile-screen"></i> Flutter Developer</span>
-          <span class="badge"><i class="fas fa-brain"></i> AI Integrations</span>
-          <span class="badge"><i class="fas fa-fire"></i> Firebase</span>
-        </div>
-
-        <div class="hero-cta">
-          <a href="#projects" class="btn btn-primary">
-            View My Work <i class="fas fa-arrow-right"></i>
+          <h3 class="col-title impact-h reveal">My Impact 💼</h3>
+          <a href="assets/images/faizancv.pdf" download="Ali-Faizan-Mehmood-CV.pdf" class="resume-link reveal">
+            <i class="fas fa-download"></i> Download Résumé
           </a>
-          <a href="#contact" class="btn btn-secondary">
-            <i class="fas fa-paper-plane"></i> Get in Touch
-          </a>
+          <div class="jobs" id="jobs"></div>
         </div>
-
-        <div class="hero-stats" id="heroStats" aria-label="Career stats"></div>
       </div>
     </div>
-
-    <a href="#about" class="scroll-down" aria-label="Scroll down">
-      <span class="mouse"></span>
-      <span>Scroll</span>
-    </a>
   </section>
 
-  <!-- About -->
-  <section class="section reveal" id="about">
-        <h2 class="section-title">The <span class="gradient-text">Journey</span></h2>
-
-    <div class="about-card">
-      <a
-        href="https://ozeito.com/services#"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="employer-badge"
-        aria-label="Currently at Ozeito"
-      >
-        <span class="employer-badge-text">
-          <span class="employer-badge-label">Currently at</span>
-          <span class="employer-badge-name">Ozeito <i class="fas fa-arrow-up-right-from-square"></i></span>
-        </span>
-      </a>
-
-      <h2>Scratch to Mobile Engineer</h2>
-      <p>
-        I started my development career on <strong>July 20, 2022</strong> at
-        <a href="https://ozeito.com/services#" target="_blank" rel="noopener noreferrer" class="about-company">Ozeito</a> —
-        the company I'm still proudly part of today. I began with native Android (Kotlin + XML), shipping
-        Tutor AI, War Card Game, Smart Printer and Subscribify, then moved to Jetpack Compose with
-        Video Downloader. In 2025 I mastered Flutter and shipped three apps that are
-        <strong>live on the App Store</strong> —
-        <a
-          href="https://apps.apple.com/us/app/future-baby-ai-baby-generator/id6756097644"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="live-app-link"
-        ><i class="fab fa-apple"></i> FutureBaby AI</a>,
-        <a
-          href="https://apps.apple.com/us/app/sudoku-number-games-for-brain/id6758653781"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="live-app-link"
-        ><i class="fab fa-apple"></i> Sudoku &amp; Killer</a>
-        and
-        <a
-          href="https://apps.apple.com/us/app/pdf-photo-pdf-to-word-maker/id6761983074"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="live-app-link"
-        ><i class="fab fa-apple"></i> PDF Editor</a> —
-        plus ARVOA social, LaundryCart and the Nacelle event-management scanner.
-      </p>
-    </div>
-  </section>
-
-  <!-- Skills -->
-  <section class="section reveal" id="skills">
-        <h2 class="section-title">Tech <span class="gradient-text">Stack</span></h2>
-
-    <!-- Quick scannable badge row of headline tech -->
-    <div class="skill-badges">
-      <span class="skill-badge">
-        <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true">
-          <path fill="currentColor" d="M14.314 0L2.3 12 6 15.7 21.684.013h-7.357zm.014 11.072L7.857 17.53l6.47 6.47H21.7l-6.46-6.468 6.46-6.46h-7.37z"/>
-        </svg>
-        Flutter
-      </span>
-      <span class="skill-badge"><i class="fas fa-code"></i> Dart</span>
-      <span class="skill-badge"><i class="fab fa-android"></i> Kotlin</span>
-      <span class="skill-badge"><i class="fas fa-cubes"></i> Jetpack Compose</span>
-      <span class="skill-badge"><i class="fas fa-fire"></i> Firebase</span>
-      <span class="skill-badge"><i class="fas fa-cloud"></i> REST APIs</span>
-      <span class="skill-badge"><i class="fas fa-water"></i> Riverpod</span>
-      <span class="skill-badge"><i class="fas fa-bolt"></i> GetX</span>
-      <span class="skill-badge"><i class="fas fa-credit-card"></i> Stripe</span>
-      <span class="skill-badge"><i class="fas fa-brain"></i> AI Integrations</span>
-    </div>
-
-    <div class="skills-groups" id="skillsGroups"></div>
-  </section>
-
-  <!-- Brands -->
-  <section class="section reveal" id="brands">
-        <h2 class="section-title">Apps I've <span class="gradient-text">shipped</span></h2>
-    <div class="brands-marquee">
-      <div class="brands-track" id="brandsTrack" aria-label="Apps I've built"></div>
-    </div>
-  </section>
-
-  <!-- Projects -->
-  <section class="section reveal" id="projects">
-        <h2 class="section-title">Featured <span class="gradient-text">Projects</span></h2>
-
-    <!-- App showcases (FutureBaby, Sudoku, AI Tutor) -->
-    <div id="showcasesWrap"></div>
-
-    <!-- Project grid -->
-    <div class="projects-grid stagger" id="projectsGrid"></div>
-  </section>
-
-  <!-- Services -->
-  <section class="section reveal" id="services">
-        <h2 class="section-title">My <span class="gradient-text">Services</span></h2>
-    <div class="services-grid stagger" id="servicesGrid"></div>
-  </section>
-
-  <!-- Experience -->
-  <section class="section reveal" id="experience">
-        <h2 class="section-title">Work <span class="gradient-text">Experience</span></h2>
-    <div class="timeline stagger" id="expTimeline"></div>
-  </section>
-
-  <!-- Education -->
-  <section class="section reveal" id="education">
-        <h2 class="section-title"><span class="gradient-text">Education</span></h2>
-    <div class="timeline stagger" id="eduTimeline"></div>
-  </section>
-
-  <!-- Work process -->
-  <section class="section reveal" id="process">
-        <h2 class="section-title">My <span class="gradient-text">Process</span></h2>
-    <div class="process-list stagger" id="processList"></div>
-  </section>
-
-  <!-- Why Me -->
-  <section class="section reveal" id="why-me">
-        <h2 class="section-title">Why <span class="gradient-text">Me</span></h2>
-    <div class="why-grid stagger" id="whyMeGrid"></div>
-  </section>
-
-  <!-- Contact -->
-  <section class="section reveal" id="contact">
-    <div class="contact-card">
-          <h2>Let's <span class="gradient-text">Connect</span></h2>
-      <p>Open for freelance, remote contracts, or full-time opportunities.</p>
-
-      <div class="contact-flex">
-        <a href="mailto:alifaizanmehmood05@gmail.com" class="contact-item">
-          <i class="fas fa-envelope"></i>
-          alifaizanmehmood05@gmail.com
-        </a>
-        <a href="tel:+923280930424" class="contact-item">
-          <i class="fas fa-phone-alt"></i>
-          +92 328 0930424
-        </a>
-        <a href="https://wa.me/923280930424" target="_blank" rel="noopener noreferrer" class="contact-item">
-          <i class="fab fa-whatsapp"></i>
-          WhatsApp
-        </a>
-        <a href="https://www.linkedin.com/in/ali-faizan-mehmood-132671282" target="_blank" rel="noopener noreferrer" class="contact-item">
-          <i class="fab fa-linkedin"></i>
-          Ali Faizan Mehmood
-        </a>
-        <a href="https://github.com/alifaizanmehmood05" target="_blank" rel="noopener noreferrer" class="contact-item">
-          <i class="fab fa-github"></i>
-          github.com/alifaizanmehmood05
-        </a>
+  <!-- ===== PROJECTS ===== -->
+  <section class="section work" id="work">
+    <div class="wrap">
+      <h2 class="about-heading reveal"><span class="dash"></span>Projects<span class="dash"></span></h2>
+      <div class="pcards" id="projGrid" data-featured></div>
+      <div class="viewall reveal">
+        <a href="projects.html" class="viewall-link">→ View all projects</a>
       </div>
-
-      <a
-        href="assets/images/faizancv.pdf"
-        download="Ali-Faizan-Mehmood-CV.pdf"
-        class="contact-cv"
-      >
-        <i class="fas fa-file-arrow-down"></i>
-        Download CV
-      </a>
-
     </div>
   </section>
 
-  <!-- Toast notification -->
-  <div class="toast" id="toast" role="status" aria-live="polite">
-    <i class="fas fa-check-circle"></i>
-    <span class="toast-msg">Email copied to clipboard</span>
-  </div>
+  <!-- ===== TAGLINE BREAK ===== -->
+  <section class="brk" id="break">
+    <div class="wrap brk-inner">
+      <span class="brk-loc">PAK 🌙 · Remote-ready 🌍</span>
+      <h2 class="brk-title reveal">Building so you don't <span class="rage">RAGE QUIT</span>.</h2>
+      <p class="brk-sub reveal">Less "ugh," more "ooh." 🎈</p>
+      <div class="brk-note sticky sticky--y" style="--rot:-4deg">These notes move too ;)</div>
+    </div>
+  </section>
 
+  <!-- ===== CONTACT ===== -->
+  <section class="section contact" id="contact">
+    <div class="wrap">
+      <div class="contact-card reveal">
+        <span class="eyebrow">Got an idea? 🎈</span>
+        <h2>Let's <span class="hl">talk</span>.</h2>
+        <p>Open for freelance, remote contracts or full-time. Fastest reply is on WhatsApp or email.</p>
+        <div class="contact-links" id="contactLinks"></div>
+        <div class="contact-cta">
+          <a href="mailto:alifaizanmehmood05@gmail.com" class="btn btn--primary"><i class="fas fa-envelope"></i> Email me</a>
+          <a href="assets/images/faizancv.pdf" download="Ali-Faizan-Mehmood-CV.pdf" class="btn"><i class="fas fa-file-arrow-down"></i> Download CV</a>
+        </div>
+      </div>
+    </div>
+    <p class="footer">Currently: Mobile dev @ Ozeito · Built with a lot of <span class="heart">❤️</span> by Ali Faizan Mehmood · 2026</p>
+  </section>
 
-  <!-- Scripts (ES modules) -->
-  <script type="module" src="js/main.js"></script>
+  <!-- Toast -->
+  <div class="toast" id="toast"><i class="fas fa-check-circle"></i> <span id="toastMsg">Copied!</span></div>
+
+  <script type="module" src="js/app.js"></script>
 </body>
 </html>

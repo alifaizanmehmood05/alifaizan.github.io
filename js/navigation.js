@@ -133,3 +133,4 @@ export function initMobileMenu() {
     toggle.setAttribute('aria-expanded', 'false');
   });
 }
+

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="description" content="Projects by Ali Faizan Mehmood — a selection of mobile apps built with Flutter, Kotlin & Jetpack Compose." />
+  <meta name="theme-color" content="#ffffff" />
+  <title>Projects — Ali Faizan Mehmood</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Roboto+Slab:wght@600;700;800&family=Space+Mono:wght@400;700&family=Patrick+Hand&display=swap" rel="stylesheet" />
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- Scroll progress -->
+  <div class="progress" id="progress" aria-hidden="true"></div>
+
+  <main class="proj-page" id="top">
+    <div class="wrap">
+      <nav class="crumbs reveal in" aria-label="Breadcrumb">
+        <a href="index.html">Home</a> <span>/</span> <span class="here">Projects</span>
+      </nav>
+      <h1 class="proj-title reveal in">Projects</h1>
+      <p class="proj-lead reveal in">A selection of my work.</p>
+
+      <div class="pcards" id="projGrid"></div>
+    </div>
+  </main>
+
+  <!-- Floating dock -->
+  <nav class="dock" aria-label="Quick navigation">
+    <a href="index.html#top" class="dock-btn" data-tip="Home" style="--c:var(--blue)"><i class="fas fa-house"></i></a>
+    <a href="index.html#work" class="dock-btn" data-tip="Work" style="--c:var(--coral)"><i class="fas fa-mobile-screen-button"></i></a>
+    <a href="index.html#about" class="dock-btn" data-tip="About" style="--c:var(--pink)"><i class="fas fa-user"></i></a>
+    <a href="index.html#about" class="dock-btn" data-tip="Experience" style="--c:var(--green)"><i class="fas fa-briefcase"></i></a>
+    <a href="index.html#contact" class="dock-btn" data-tip="Contact" style="--c:var(--blue)"><i class="fas fa-envelope"></i></a>
+    <a href="assets/images/faizancv.pdf" download="Ali-Faizan-Mehmood-CV.pdf" class="dock-btn" data-tip="Résumé" style="--c:var(--green)"><i class="fas fa-download"></i></a>
+    <span class="dock-sep"></span>
+    <a href="#top" class="dock-btn" data-tip="Top" style="--c:var(--ink)"><i class="fas fa-magnifying-glass"></i></a>
+  </nav>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
