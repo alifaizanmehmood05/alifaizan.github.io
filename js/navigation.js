@@ -125,6 +125,8 @@ export function initMobileMenu() {
   });
 
   // Close on outside click
+
+  
   document.addEventListener('click', (e) => {
     if (!links.classList.contains('open')) return;
     if (links.contains(e.target) || toggle.contains(e.target)) return;
