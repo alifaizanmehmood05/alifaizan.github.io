@@ -4,7 +4,7 @@
    ===================================================== */
 
 import {
-  showcases,
+  showcases, showcaseCategories,
   screenshotData, sudokuScreenshots, pdfEditorScreenshots, aiTutorScreenshots,
   dualSpaceScreenshots, warCardScreenshots, nacelleScreenshots, arvoaScreenshots,
   videoDownloaderScreenshots, laundryCartScreenshots, smartPrinterScreenshots,
@@ -259,9 +259,9 @@ function projectCard(s, i = 0) {
   card.style.transitionDelay = `${Math.min(i, 6) * 0.05}s`;
   card.dataset.cat = s.category;
 
-  const shot = shotMap[s.screenshots] && shotMap[s.screenshots][0]?.file;
-  const media = shot
-    ? `<img src="assets/images/${shot}" alt="${s.title} screenshot" loading="lazy" />`
+  const shots = shotMap[s.screenshots] || [];
+  const media = shots[0]
+    ? `<img src="assets/images/${shots[0].file}" alt="${s.title} screenshot" loading="lazy" />`
     : iconMarkup(s.icon);
 
   const badgeText = s.appStore ? 'LIVE ON APP' : (s.pill?.text || s.category).toUpperCase();
@@ -277,8 +277,24 @@ function projectCard(s, i = 0) {
       <h3>${s.title}</h3>
       <p>${s.description}</p>
       <div class="card-tech">${chips}</div>
-      ${link}
+      <div class="pcard-foot">
+        <span class="pcard-open">See all ${shots.length} screens <i class="fas fa-arrow-right"></i></span>
+        ${link}
+      </div>
     </div>`;
+
+  /* whole card opens the detail sheet — except the App Store link */
+  card.tabIndex = 0;
+  card.setAttribute('role', 'button');
+  card.setAttribute('aria-label', `${s.title} — view details and all ${shots.length} screenshots`);
+  card.querySelector('.card-link')?.addEventListener('click', (ev) => ev.stopPropagation());
+  card.addEventListener('click', () => openProject(s.app, card));
+  card.addEventListener('keydown', (ev) => {
+    if (ev.key === 'Enter' || ev.key === ' ') {
+      ev.preventDefault();
+      openProject(s.app, card);
+    }
+  });
   return card;
 }
 
@@ -294,6 +310,294 @@ function renderProjects() {
     grid.appendChild(card);
     observeReveal(card); // animate in when it scrolls into view
   });
+}
+
+/* ---------- Project detail sheet (all screenshots + full details) ---------- */
+const originMeta = {
+  company: 'Company product',
+  client: 'Client project',
+  personal: 'Personal project'
+};
+
+let sheetEl = null;        // the overlay
+let sheetOpener = null;    // element to restore focus to on close
+
+/* <html> is the scrolling element here, so lock both it and <body>.
+   Pad by the scrollbar width so the page doesn't jump sideways. */
+function lockScroll(on) {
+  if (on) {
+    const sbw = window.innerWidth - document.documentElement.clientWidth;
+    document.documentElement.style.setProperty('--sbw', `${sbw}px`);
+  }
+  document.documentElement.classList.toggle('sheet-lock', on);
+  document.body.classList.toggle('sheet-lock', on);
+}
+
+/* reveal a screenshot only once it can paint — no half-drawn pop-in */
+function fadeInWhenLoaded(img) {
+  const done = () => {
+    img.classList.add('ready');
+    img.closest('.shot-frame')?.classList.add('loaded');
+  };
+  if (img.complete && img.naturalWidth) done();
+  else { img.addEventListener('load', done, { once: true }); img.addEventListener('error', done, { once: true }); }
+}
+
+/* keep Tab inside whichever layer is on top */
+function trapFocus(ev) {
+  const box = lbEl?.classList.contains('open') ? lbEl : $('.sheet-panel', sheetEl);
+  if (!box) return;
+  const items = [...box.querySelectorAll('a[href], button:not([disabled])')]
+    .filter((n) => n.offsetParent !== null);
+  if (!items.length) return;
+  const first = items[0];
+  const last = items[items.length - 1];
+  if (ev.shiftKey && document.activeElement === first) { ev.preventDefault(); last.focus(); }
+  else if (!ev.shiftKey && document.activeElement === last) { ev.preventDefault(); first.focus(); }
+  else if (!box.contains(document.activeElement)) { ev.preventDefault(); first.focus(); }
+}
+
+function buildSheet() {
+  sheetEl = el('div', 'sheet');
+  sheetEl.id = 'projSheet';
+  sheetEl.setAttribute('role', 'dialog');
+  sheetEl.setAttribute('aria-modal', 'true');
+  sheetEl.setAttribute('aria-label', 'Project details');
+  sheetEl.innerHTML = `
+    <div class="sheet-back" data-close></div>
+    <div class="sheet-panel">
+      <button class="sheet-close" type="button" data-close aria-label="Close project details">
+        <i class="fas fa-xmark"></i>
+      </button>
+      <div class="sheet-body"></div>
+    </div>`;
+  document.body.appendChild(sheetEl);
+
+  sheetEl.addEventListener('click', (ev) => {
+    if (ev.target.closest('[data-close]')) closeProject();
+  });
+}
+
+function sheetMarkup(s) {
+  const cat = showcaseCategories.find((c) => c.id === s.category);
+  const shots = shotMap[s.screenshots] || [];
+  const android = cat?.phoneStyle === 'android';
+
+  const eyebrow = [
+    s.appStore ? '<span class="live">Live on the App Store</span>' : '',
+    cat ? cat.label : '',
+    originMeta[s.origin] || ''
+  ].filter(Boolean).join('<span class="sep">/</span>');
+
+  const chips = (s.tech || []).map((t) => `<span class="chip">${t}</span>`).join('');
+
+  const cta = [
+    s.appStore
+      ? `<a href="${s.appStore}" target="_blank" rel="noopener" class="btn btn--primary">
+           <i class="fab fa-apple"></i> View on the App Store</a>`
+      : '',
+    s.pill?.url && s.pill.url !== s.appStore
+      ? `<a href="${s.pill.url}" target="_blank" rel="noopener" class="btn">
+           <i class="fas fa-arrow-up-right-from-square"></i> ${s.pill.text}</a>`
+      : ''
+  ].filter(Boolean).join('');
+
+  const grid = shots.map((sh, i) => `
+    <button class="shot" type="button" data-i="${i}" style="--i:${i}" aria-label="Enlarge screenshot: ${sh.caption}">
+      <span class="shot-frame${android ? ' shot-frame--android' : ''}">
+        <img src="assets/images/${sh.file}" alt="${s.title} — ${sh.caption}"
+             loading="${i < 4 ? 'eager' : 'lazy'}" decoding="async" />
+      </span>
+      <span class="shot-cap">${sh.caption}</span>
+    </button>`).join('');
+
+  return `
+    <div class="sheet-head">
+      <p class="sheet-eyebrow">${eyebrow}</p>
+      <h2>${s.title}</h2>
+      <p class="sheet-sub">${s.subtitle}</p>
+      <p class="sheet-desc">${s.description}</p>
+      <div class="sheet-tech">${chips}</div>
+      ${cta ? `<div class="sheet-cta">${cta}</div>` : ''}
+    </div>
+    <hr class="sheet-rule" />
+    <div class="sheet-shots-head">
+      <h3>Screens</h3>
+      <span class="count">${shots.length} screenshot${shots.length === 1 ? '' : 's'}</span>
+      <span class="hint">tap one to zoom 🔍</span>
+    </div>
+    <div class="shots">${grid}</div>`;
+}
+
+function openProject(appId, opener) {
+  const s = showcases.find((x) => x.app === appId);
+  if (!s) return;
+  if (!sheetEl) buildSheet();
+
+  sheetOpener = opener || null;
+  const body = $('.sheet-body', sheetEl);
+  body.innerHTML = sheetMarkup(s);
+
+  const shots = shotMap[s.screenshots] || [];
+  body.querySelectorAll('.shot').forEach((b) => {
+    b.addEventListener('click', () => openLightbox(shots, Number(b.dataset.i), s.title));
+  });
+  body.querySelectorAll('.shot img').forEach(fadeInWhenLoaded);
+
+  lockScroll(true);
+  sheetEl.classList.add('open');
+  $('.sheet-panel', sheetEl).scrollTop = 0;
+  sheetEl.scrollTop = 0;
+  $('.sheet-close', sheetEl).focus();
+
+  // deep link, so the sheet is shareable and Back closes it
+  if (decodeURIComponent(location.hash) !== `#p=${appId}`) {
+    history.pushState({ project: appId }, '', `#p=${appId}`);
+  }
+}
+
+function closeProject({ fromHistory = false } = {}) {
+  if (!sheetEl || !sheetEl.classList.contains('open')) return;
+  closeLightbox();
+  sheetEl.classList.remove('open');
+  lockScroll(false);
+  if (!fromHistory && location.hash.startsWith('#p=')) history.back();
+  sheetOpener?.focus();
+  sheetOpener = null;
+}
+
+/* ---------- Fullscreen screenshot viewer ---------- */
+let lbEl = null;
+let lbShots = [];
+let lbIndex = 0;
+
+function buildLightbox() {
+  lbEl = el('div', 'lb');
+  lbEl.setAttribute('role', 'dialog');
+  lbEl.setAttribute('aria-modal', 'true');
+  lbEl.setAttribute('aria-label', 'Screenshot viewer');
+  lbEl.innerHTML = `
+    <button class="lb-btn lb-close" type="button" data-lb-close aria-label="Close viewer">
+      <i class="fas fa-xmark"></i>
+    </button>
+    <img class="lb-img" alt="" />
+    <div class="lb-bar">
+      <button class="lb-btn" type="button" data-lb-prev aria-label="Previous screenshot">
+        <i class="fas fa-chevron-left"></i>
+      </button>
+      <div>
+        <p class="lb-cap"></p>
+        <p class="lb-num"></p>
+      </div>
+      <button class="lb-btn" type="button" data-lb-next aria-label="Next screenshot">
+        <i class="fas fa-chevron-right"></i>
+      </button>
+    </div>`;
+  document.body.appendChild(lbEl);
+
+  // swipe left/right on touch
+  let tx = 0, ty = 0;
+  lbEl.addEventListener('touchstart', (ev) => {
+    tx = ev.changedTouches[0].clientX;
+    ty = ev.changedTouches[0].clientY;
+  }, { passive: true });
+  lbEl.addEventListener('touchend', (ev) => {
+    const dx = ev.changedTouches[0].clientX - tx;
+    const dy = ev.changedTouches[0].clientY - ty;
+    if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy)) stepLightbox(dx < 0 ? 1 : -1);
+  }, { passive: true });
+
+  lbEl.addEventListener('click', (ev) => {
+    if (ev.target.closest('[data-lb-prev]')) return stepLightbox(-1);
+    if (ev.target.closest('[data-lb-next]')) return stepLightbox(1);
+    // close on the backdrop or the X, but not on the image itself
+    if (ev.target.closest('[data-lb-close]') || !ev.target.closest('.lb-img, .lb-bar')) closeLightbox();
+  });
+}
+
+const shotSrc = (sh) => `assets/images/${sh.file}`;
+
+/* warm the next/previous shot so arrowing through never shows a blank frame */
+function preloadNeighbours() {
+  if (lbShots.length < 2) return;
+  [1, -1].forEach((d) => {
+    const n = lbShots[(lbIndex + d + lbShots.length) % lbShots.length];
+    if (n) new Image().src = shotSrc(n);
+  });
+}
+
+let paintToken = 0;
+function paintLightbox(title) {
+  const sh = lbShots[lbIndex];
+  const img = $('.lb-img', lbEl);
+  const src = shotSrc(sh);
+  const token = ++paintToken;          // ignore a slow load the user already arrowed past
+
+  $('.lb-cap', lbEl).textContent = sh.caption;
+  $('.lb-num', lbEl).textContent = `${lbIndex + 1} / ${lbShots.length}`;
+
+  const swap = () => {
+    if (token !== paintToken) return;
+    img.src = src;
+    img.alt = `${title} — ${sh.caption}`;
+    requestAnimationFrame(() => token === paintToken && img.classList.add('ready'));
+    preloadNeighbours();
+  };
+
+  img.classList.remove('ready');       // fade the old one out
+  const pre = new Image();
+  pre.src = src;
+  if (pre.complete && pre.naturalWidth) swap();
+  else { pre.onload = swap; pre.onerror = swap; }
+}
+
+function openLightbox(shots, i, title) {
+  if (!shots.length) return;
+  if (!lbEl) buildLightbox();
+  lbShots = shots;
+  lbIndex = i;
+  lbEl.dataset.title = title;
+  paintLightbox(title);
+  lbEl.classList.add('open');
+  $('[data-lb-next]', lbEl).focus();
+}
+
+function stepLightbox(dir) {
+  if (!lbShots.length) return;
+  lbIndex = (lbIndex + dir + lbShots.length) % lbShots.length;
+  paintLightbox(lbEl.dataset.title || '');
+}
+
+function closeLightbox() {
+  if (!lbEl || !lbEl.classList.contains('open')) return;
+  lbEl.classList.remove('open');
+  $('.sheet-close', sheetEl)?.focus();
+}
+
+function initProjectSheet() {
+  document.addEventListener('keydown', (ev) => {
+    const lbOpen = lbEl?.classList.contains('open');
+    const sheetOpen = sheetEl?.classList.contains('open');
+    if (!sheetOpen && !lbOpen) return;
+    if (ev.key === 'Escape') return lbOpen ? closeLightbox() : closeProject();
+    if (ev.key === 'Tab') return trapFocus(ev);
+    if (!lbOpen) return;
+    if (ev.key === 'ArrowLeft') stepLightbox(-1);
+    if (ev.key === 'ArrowRight') stepLightbox(1);
+  });
+
+  // Back / Forward buttons drive the sheet
+  window.addEventListener('popstate', () => {
+    const appId = decodeURIComponent(location.hash).startsWith('#p=')
+      ? decodeURIComponent(location.hash).slice(3)
+      : null;
+    if (appId) openProject(appId);
+    else closeProject({ fromHistory: true });
+  });
+
+  // open straight from a shared link (#p=futurebaby)
+  const hash = decodeURIComponent(location.hash);
+  if (hash.startsWith('#p=')) openProject(hash.slice(3));
 }
 
 /* ---------- Contact links ---------- */
@@ -465,6 +769,7 @@ document.addEventListener('DOMContentLoaded', () => {
   buildToolGrid();
   buildJobs();
   renderProjects();      // cards register with the observer as they render
+  initProjectSheet();    // click a card -> full details + every screenshot
   buildContact();
   initNav();
   initStickies();

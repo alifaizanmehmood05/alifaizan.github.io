@@ -977,3 +977,257 @@ img { max-width: 100%; display: block; }
   95%  { transform: rotate(1.4deg); }
   100% { transform: rotate(0deg); }
 }
+
+/* =====================================================
+   PROJECT DETAIL SHEET — click a card to see everything
+   ===================================================== */
+
+/* ---- card is now clickable ---- */
+.pcard { cursor: pointer; }
+.pcard:focus-visible { outline: 3px solid var(--blue); outline-offset: 5px; }
+.pcard-foot {
+  display: flex; align-items: center; gap: 1.1rem 1.4rem; flex-wrap: wrap;
+  margin-top: .85rem;
+}
+.pcard-open {
+  display: inline-flex; align-items: center; gap: .45rem;
+  font-family: var(--font-hand); font-size: 1.35rem; color: var(--ink);
+  transition: color .2s, transform .18s;
+}
+.pcard-open i { font-size: .8rem; }
+.pcard:hover .pcard-open { color: var(--coral); transform: translateX(4px); }
+
+/* ---- overlay ---- */
+.sheet {
+  position: fixed; inset: 0; z-index: 200;   /* must clear the floating dock (120) */
+  overflow-y: auto; overscroll-behavior: contain;
+  padding: 3vh 0 6vh;
+  visibility: hidden; opacity: 0;
+  transition: opacity .22s ease, visibility .22s ease;
+}
+.sheet.open { visibility: visible; opacity: 1; }
+.sheet-back {
+  position: fixed; inset: 0;
+  background: rgba(27, 26, 23, .58);
+  -webkit-backdrop-filter: blur(3px); backdrop-filter: blur(3px);
+}
+/* <html> is the scrolling element, so it has to be locked too */
+html.sheet-lock, body.sheet-lock { overflow: hidden; }
+/* the dock would float over the sheet — tuck it away while one is open */
+body.sheet-lock .dock {
+  animation: none;                        /* dockIn would otherwise win the cascade */
+  opacity: 0; pointer-events: none;
+  transform: translate(-50%, 130%);
+  transition: opacity .2s ease, transform .28s cubic-bezier(.2,.8,.2,1);
+}
+
+.sheet-panel {
+  position: relative;
+  width: min(1060px, calc(100% - 2.4rem)); margin-inline: auto;
+  background: var(--paper); color: var(--ink);
+  border: 3px solid var(--ink); border-radius: 26px;
+  box-shadow: 10px 10px 0 var(--ink);
+  padding: clamp(1.5rem, 3.4vw, 2.8rem);
+  transform: translateY(26px) scale(.985);
+  transition: transform .3s cubic-bezier(.2,.85,.3,1);
+}
+.sheet.open .sheet-panel { transform: none; }
+
+.sheet-close {
+  position: absolute; top: 1rem; right: 1rem; z-index: 3;
+  width: 46px; height: 46px; border-radius: 50%;
+  display: grid; place-items: center; font-size: 1.05rem;
+  border: 2.5px solid var(--ink); background: var(--paper); color: var(--ink);
+  box-shadow: var(--shadow-sm); cursor: pointer;
+  transition: transform .14s ease, box-shadow .14s ease, background .2s, color .2s;
+}
+.sheet-close:hover { background: var(--coral); color: #fff; transform: translate(-2px,-2px); box-shadow: 6px 6px 0 var(--ink); }
+.sheet-close:active { transform: translate(2px,2px); box-shadow: 1px 1px 0 var(--ink); }
+
+/* ---- header ---- */
+.sheet-head { padding-right: 3.6rem; }
+.sheet-eyebrow {
+  display: inline-flex; align-items: center; gap: .5rem; flex-wrap: wrap;
+  font-family: var(--font-mono); font-weight: 700; font-size: .72rem;
+  letter-spacing: .07em; text-transform: uppercase; color: var(--ink-soft);
+  margin-bottom: .8rem;
+}
+.sheet-eyebrow .sep { opacity: .4; margin: 0 .15rem; }
+.sheet-eyebrow .live {
+  color: var(--coral); border: 2px solid var(--coral);
+  padding: .25rem .6rem; border-radius: 7px;
+}
+.sheet-panel h2 {
+  font-family: var(--font-serif); font-weight: 800; line-height: 1.02;
+  font-size: clamp(1.9rem, 5vw, 3rem); letter-spacing: -.015em;
+}
+.sheet-sub {
+  font-family: var(--font-hand); font-size: clamp(1.25rem, 2.6vw, 1.7rem);
+  color: var(--ink-soft); margin-top: .5rem;
+}
+.sheet-desc {
+  font-size: 1.03rem; line-height: 1.68; color: var(--ink-soft);
+  margin-top: 1.1rem; max-width: 70ch;
+}
+.sheet-tech { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1.2rem; }
+.sheet-cta { display: flex; flex-wrap: wrap; gap: .8rem; margin-top: 1.5rem; }
+
+.sheet-rule {
+  height: 3px; border: 0; border-radius: 2px;
+  background: var(--line); margin: 2.2rem 0 1.6rem;
+}
+.sheet-shots-head {
+  display: flex; align-items: baseline; gap: .8rem; flex-wrap: wrap;
+  margin-bottom: 1.4rem;
+}
+.sheet-shots-head h3 { font-family: var(--font-serif); font-weight: 800; font-size: 1.5rem; }
+.sheet-shots-head .count {
+  font-family: var(--font-mono); font-weight: 700; font-size: .78rem;
+  letter-spacing: .05em; text-transform: uppercase; color: var(--ink-soft);
+}
+.sheet-shots-head .hint { font-family: var(--font-hand); font-size: 1.2rem; color: var(--ink-soft); margin-left: auto; }
+
+/* ---- phone-framed screenshot grid ---- */
+.shots {
+  display: grid; gap: 1.8rem 1.4rem;
+  grid-template-columns: repeat(auto-fill, minmax(176px, 1fr));
+}
+.shot {
+  border: 0; padding: 0; background: none; cursor: zoom-in;
+  display: flex; flex-direction: column; align-items: center; gap: .7rem;
+  font: inherit; color: inherit;
+}
+.shot-frame {
+  position: relative; width: 100%; aspect-ratio: 9 / 19;
+  background: var(--ink); border: 3px solid var(--ink); border-radius: 24px;
+  padding: 7px; box-shadow: var(--shadow-sm); overflow: hidden;
+  transition: transform .2s cubic-bezier(.34,1.3,.64,1), box-shadow .2s ease;
+}
+.shot:hover .shot-frame, .shot:focus-visible .shot-frame {
+  transform: translate(-3px,-3px); box-shadow: 7px 7px 0 var(--ink);
+}
+.shot:focus-visible { outline: none; }
+.shot:focus-visible .shot-frame { outline: 3px solid var(--blue); outline-offset: 4px; }
+.shot-frame img {
+  width: 100%; height: 100%; object-fit: cover;
+  border-radius: 17px; display: block; background: #f4f1ea;
+}
+.shot-frame::after {            /* notch / pill */
+  content: ''; position: absolute; top: 12px; left: 50%; translate: -50% 0;
+  width: 34%; height: 7px; border-radius: 99px; background: var(--ink);
+}
+.shot-frame--android::after { width: 8px; height: 8px; }
+.shot-cap {
+  font-size: .84rem; font-weight: 700; text-align: center; line-height: 1.35;
+  color: var(--ink-soft);
+}
+
+/* ---- fullscreen one-screenshot viewer ---- */
+.lb {
+  position: fixed; inset: 0; z-index: 210;
+  display: grid; grid-template-rows: 1fr auto; place-items: center;
+  padding: 2.2rem 1rem 1.4rem;
+  background: rgba(27, 26, 23, .93);
+  visibility: hidden; opacity: 0;
+  transition: opacity .2s ease, visibility .2s ease;
+}
+.lb.open { visibility: visible; opacity: 1; }
+.lb-img {
+  max-width: min(460px, 92vw); max-height: 76vh;
+  width: auto; object-fit: contain;
+  border: 3px solid #fff; border-radius: 20px; background: #000;
+}
+.lb-bar {
+  display: flex; align-items: center; gap: 1.1rem;
+  margin-top: 1.2rem; color: #fff; text-align: center;
+}
+.lb-cap { font-family: var(--font-hand); font-size: 1.4rem; min-width: 0; }
+.lb-num { font-family: var(--font-mono); font-size: .8rem; opacity: .7; letter-spacing: .06em; }
+.lb-btn {
+  width: 48px; height: 48px; flex: 0 0 auto; border-radius: 50%;
+  display: grid; place-items: center; font-size: 1rem; cursor: pointer;
+  border: 2.5px solid #fff; background: transparent; color: #fff;
+  transition: background .18s, color .18s, transform .14s;
+}
+.lb-btn:hover { background: #fff; color: var(--ink); transform: scale(1.07); }
+.lb-close { position: absolute; top: 1.1rem; right: 1.1rem; }
+
+@media (max-width: 620px) {
+  .sheet { padding: 0; }
+  .sheet-panel {
+    width: 100%; min-height: 100vh; margin: 0;
+    border-width: 0; border-radius: 0; box-shadow: none;
+    padding: 1.4rem 1.15rem 3rem;
+  }
+  .shots { grid-template-columns: repeat(2, 1fr); gap: 1.4rem .9rem; }
+  .sheet-shots-head .hint { display: none; }
+  .lb-cap { font-size: 1.12rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sheet, .sheet-panel, .lb { transition: none; }
+  .sheet-panel { transform: none; }
+  .shot-frame { transition: none; }
+}
+
+/* =====================================================
+   DETAIL SHEET — smoothing & small entrance animations
+   ===================================================== */
+
+/* keep the page from jumping sideways when the scrollbar is locked away */
+html.sheet-lock body { padding-right: var(--sbw, 0px); }
+
+/* a gentle rise used by the head, the rule and each screenshot tile */
+@keyframes sheetRise {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: none; }
+}
+.sheet.open .sheet-head {
+  animation: sheetRise .42s cubic-bezier(.2,.8,.2,1) both;
+}
+.sheet.open .sheet-rule,
+.sheet.open .sheet-shots-head {
+  animation: sheetRise .42s .05s cubic-bezier(.2,.8,.2,1) both;
+}
+.sheet.open .shot {
+  animation: sheetRise .45s cubic-bezier(.2,.8,.2,1) both;
+  animation-delay: calc(.09s + var(--i, 0) * .035s);
+}
+
+/* stack inside a phone frame: placeholder < screenshot < notch */
+.shot-frame::before {
+  content: ''; position: absolute; inset: 7px; z-index: 0;
+  border-radius: 17px; background: #e7e4dd;
+  animation: shotPulse 1.5s ease-in-out infinite;
+}
+.shot-frame.loaded::before { content: none; }
+.shot-frame::after { z-index: 2; }
+.shot-frame img {
+  position: relative; z-index: 1;
+  opacity: 0; transition: opacity .4s ease;
+}
+.shot-frame img.ready { opacity: 1; }
+@keyframes shotPulse { 0%, 100% { opacity: 1; } 50% { opacity: .55; } }
+
+/* lightbox: crossfade between shots instead of a hard swap */
+.lb-img { opacity: 0; transition: opacity .2s ease; }
+.lb-img.ready { opacity: 1; }
+.lb.open .lb-bar { animation: sheetRise .34s .04s cubic-bezier(.2,.8,.2,1) both; }
+.lb-img { touch-action: pan-y; -webkit-user-select: none; user-select: none; }
+
+/* card thumbnail breathes a little on hover */
+.pcard-media { overflow: hidden; }
+.pcard-media img { transition: transform .45s cubic-bezier(.2,.8,.2,1); }
+.pcard:hover .pcard-media img { transform: scale(1.045); }
+
+@media (prefers-reduced-motion: reduce) {
+  .sheet.open .sheet-head,
+  .sheet.open .sheet-rule,
+  .sheet.open .sheet-shots-head,
+  .sheet.open .shot,
+  .lb.open .lb-bar { animation: none; }
+  .shot-frame::before { animation: none; }
+  .shot-frame img, .lb-img { transition: none; opacity: 1; }
+  .pcard-media img { transition: none; }
+  .pcard:hover .pcard-media img { transform: none; }
+}
