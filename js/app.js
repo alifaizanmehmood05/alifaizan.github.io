@@ -485,7 +485,7 @@ function buildLightbox() {
       <button class="lb-btn" type="button" data-lb-prev aria-label="Previous screenshot">
         <i class="fas fa-chevron-left"></i>
       </button>
-      <div>
+      <div class="lb-meta">
         <p class="lb-cap"></p>
         <p class="lb-num"></p>
       </div>

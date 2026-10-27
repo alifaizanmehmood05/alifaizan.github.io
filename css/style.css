@@ -1231,3 +1231,59 @@ html.sheet-lock body { padding-right: var(--sbw, 0px); }
   .pcard-media img { transition: none; }
   .pcard:hover .pcard-media img { transform: none; }
 }
+
+/* =====================================================
+   PHONE FIXES — dock fit, reachable close, roomier captions
+   ===================================================== */
+
+/* the dock was ~404px wide on a 390px screen and hung off both edges */
+@media (max-width: 440px) {
+  .dock { gap: .22rem; padding: .5rem; border-radius: 18px; }
+  .dock-btn { width: 44px; height: 44px; font-size: 1.05rem; border-radius: 14px; }
+  .dock-sep { margin: 0 .05rem; height: 26px; }
+}
+
+@media (max-width: 620px) {
+  /* The panel goes full-screen on phones, so there is no backdrop to tap and
+     no Esc key — the close button has to stay on screen the whole way down.
+     position:fixed only behaves if no ancestor is transformed, hence the
+     panel's entrance transform is dropped here. */
+  .sheet-panel {
+    transform: none;
+    transition: none;
+    min-height: 100vh;
+    min-height: 100dvh;
+    padding-top: 1.1rem;
+  }
+  .sheet.open .sheet-panel { transform: none; }
+
+  .sheet-close {
+    position: fixed;
+    top: calc(.7rem + env(safe-area-inset-top, 0px));
+    right: calc(.8rem + env(safe-area-inset-right, 0px));
+    background: var(--paper);
+    box-shadow: 0 4px 16px rgba(27, 26, 23, .32);
+  }
+  .sheet-head { padding-right: 3.2rem; }
+
+  /* give the caption the full bar width instead of 83px between the arrows */
+  .lb-bar { width: 100%; justify-content: space-between; gap: .5rem; }
+  .lb-meta { flex: 1; min-width: 0; }
+  .lb { padding-bottom: calc(1.4rem + env(safe-area-inset-bottom, 0px)); }
+}
+
+/* Tablets have no Esc key and only a sliver of backdrop beside the panel,
+   so pin the close button there too. position:fixed needs an untransformed
+   ancestor, hence the panel's entrance transform is dropped below 900px. */
+@media (max-width: 900px) {
+  .sheet-panel { transform: none; transition: none; }
+  .sheet.open .sheet-panel { transform: none; }
+  .sheet-close { position: fixed; }
+}
+@media (min-width: 621px) and (max-width: 900px) {
+  .sheet-close {
+    top: calc(3vh + 1rem);
+    right: 2.2rem;
+    box-shadow: 0 4px 16px rgba(27, 26, 23, .28);
+  }
+}
