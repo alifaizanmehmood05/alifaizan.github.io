@@ -4,7 +4,7 @@
    ===================================================== */
 
 import {
-  showcases, showcaseCategories,
+  showcases, showcaseCategories, services, process, education,
   screenshotData, sudokuScreenshots, pdfEditorScreenshots, aiTutorScreenshots,
   dualSpaceScreenshots, warCardScreenshots, nacelleScreenshots, arvoaScreenshots,
   videoDownloaderScreenshots, laundryCartScreenshots, smartPrinterScreenshots,
@@ -44,6 +44,7 @@ const heroStats = [
 ];
 function buildHeroStats() {
   const wrap = $('#heroStats');
+  if (!wrap) return;                     // projects.html has no stats band
   heroStats.forEach((s, i) => {
     const box = el('div', 'hero-stat',
       `<div class="si"><i class="${s.icon}"></i></div>
@@ -600,6 +601,60 @@ function initProjectSheet() {
   if (hash.startsWith('#p=')) openProject(hash.slice(3));
 }
 
+/* ---------- Services: what I can build ---------- */
+const svcAccents = ['coral', 'blue', 'green', 'yellow', 'pink', 'lilac'];
+function buildServices() {
+  const wrap = $('#svcGrid');
+  if (!wrap) return;
+  services.forEach((sv, i) => {
+    const card = el('article', `svc reveal svc--${svcAccents[i % svcAccents.length]}`);
+    card.style.transitionDelay = `${Math.min(i, 6) * 0.06}s`;
+    card.innerHTML = `
+      <div class="svc-ico">${iconMarkup(sv.icon)}</div>
+      <h3>${sv.title}</h3>
+      <p>${sv.description}</p>`;
+    wrap.appendChild(card);
+    observeReveal(card);
+  });
+}
+
+/* ---------- Process: how I work ---------- */
+function buildProcess() {
+  const wrap = $('#stepList');
+  if (!wrap) return;
+  process.forEach((st, i) => {
+    const li = el('li', 'step reveal');
+    li.style.transitionDelay = `${Math.min(i, 6) * 0.07}s`;
+    li.innerHTML = `
+      <span class="step-n">${String(i + 1).padStart(2, '0')}</span>
+      <div class="step-body">
+        <h3><span class="step-ico">${iconMarkup(st.icon)}</span>${st.title}</h3>
+        <p>${st.description}</p>
+      </div>`;
+    wrap.appendChild(li);
+    observeReveal(li);
+  });
+}
+
+/* ---------- Education ---------- */
+function buildEducation() {
+  const wrap = $('#eduList');
+  if (!wrap) return;
+  education.forEach((e, i) => {
+    const row = el('div', 'edu-row reveal');
+    row.style.transitionDelay = `${Math.min(i, 6) * 0.06}s`;
+    row.innerHTML = `
+      <span class="edu-ico">${iconMarkup(e.icon)}</span>
+      <div>
+        <h4>${e.degree}</h4>
+        <p class="edu-school">${e.school}</p>
+        <p class="edu-period">${e.period}${e.note ? ` · ${e.note}` : ''}</p>
+      </div>`;
+    wrap.appendChild(row);
+    observeReveal(row);
+  });
+}
+
 /* ---------- Contact links ---------- */
 const contactLinks = [
   { icon: 'fas fa-envelope', text: 'alifaizanmehmood05@gmail.com', href: 'mailto:alifaizanmehmood05@gmail.com', copy: true },
@@ -765,9 +820,13 @@ function setupStickyLayer(layer, opts = {}) {
 /* ---------- Boot ---------- */
 document.addEventListener('DOMContentLoaded', () => {
   initReveal();          // create the observer first
+  buildHeroStats();
   buildSocials();
   buildToolGrid();
+  buildEducation();
   buildJobs();
+  buildServices();
+  buildProcess();
   renderProjects();      // cards register with the observer as they render
   initProjectSheet();    // click a card -> full details + every screenshot
   buildContact();

@@ -825,7 +825,7 @@ img { max-width: 100%; display: block; }
 /* About notes: scattered, overlapping, draggable cluster (square notes) */
 .about-notes {
   display: block; position: relative;
-  width: 100%; max-width: 420px; height: 800px; margin: 1.5rem auto 0;
+  width: 100%; max-width: 420px; height: 845px; margin: 1.5rem auto 0;
 }
 .about-notes .sticky {
   position: absolute; width: 172px; min-height: 150px;
@@ -1286,4 +1286,136 @@ html.sheet-lock body { padding-right: var(--sbw, 0px); }
     right: 2.2rem;
     box-shadow: 0 4px 16px rgba(27, 26, 23, .28);
   }
+}
+
+/* =====================================================
+   HERO CTA · STATS BAND · SERVICES · PROCESS · EDUCATION
+   ===================================================== */
+
+/* ---- hero: give the visitor somewhere to go ---- */
+.hero-cta {
+  display: flex; gap: .9rem; justify-content: center; flex-wrap: wrap;
+  margin-top: 2.1rem;
+}
+.hero-avail {
+  display: inline-flex; align-items: center; gap: .5rem;
+  font-family: var(--font-mono); font-size: .84rem; font-weight: 700;
+  letter-spacing: .04em; color: var(--ink-soft); margin-top: 1.4rem;
+}
+.pulse-dot {
+  width: 9px; height: 9px; border-radius: 50%; background: var(--green);
+  box-shadow: 0 0 0 0 rgba(18, 184, 134, .6);
+  animation: availPulse 2s ease-out infinite;
+}
+@keyframes availPulse {
+  70%  { box-shadow: 0 0 0 10px rgba(18, 184, 134, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(18, 184, 134, 0); }
+}
+
+/* ---- stats band ---- */
+.statsband { padding: 2.6rem 0; }
+.statsband .stats-row { padding: 0; }
+
+/* ---- shared lead line under a section heading ---- */
+.sec-lead {
+  text-align: center; font-family: var(--font-hand);
+  font-size: clamp(1.25rem, 2.6vw, 1.7rem); color: var(--ink-soft);
+  margin: .9rem auto 0; max-width: 46ch;
+}
+
+/* ---- services ---- */
+.svc-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem; margin-top: 3rem;
+}
+.svc {
+  background: var(--paper); border: 2.5px solid var(--ink);
+  border-radius: 20px; padding: 1.7rem 1.5rem 1.6rem;
+  box-shadow: var(--shadow-sm);
+  transition: transform .2s cubic-bezier(.22,.61,.36,1), box-shadow .2s ease, opacity .8s, translate .8s;
+}
+.svc:hover { transform: translate(-3px, -5px); box-shadow: var(--shadow); }
+.svc-ico {
+  width: 54px; height: 54px; border-radius: 15px;
+  display: grid; place-items: center; font-size: 1.45rem;
+  border: 2.5px solid var(--ink); margin-bottom: 1.1rem;
+  background: var(--yellow); color: var(--ink);
+}
+.svc:hover .svc-ico { animation: wobble .5s ease; }
+.svc h3 {
+  font-family: var(--font-serif); font-weight: 800;
+  font-size: 1.22rem; line-height: 1.2; margin-bottom: .55rem;
+}
+.svc p { font-size: .95rem; line-height: 1.6; color: var(--ink-soft); }
+.svc--coral  .svc-ico { background: #ffd3c8; }
+.svc--blue   .svc-ico { background: #cfd8ff; }
+.svc--green  .svc-ico { background: #b6f0c9; }
+.svc--yellow .svc-ico { background: #ffe9a8; }
+.svc--pink   .svc-ico { background: #ffc4d6; }
+.svc--lilac  .svc-ico { background: #d9ccff; }
+
+/* ---- process: numbered timeline ---- */
+.steps { list-style: none; margin-top: 3rem; position: relative; }
+.steps::before {
+  content: ''; position: absolute; left: 27px; top: 14px; bottom: 14px;
+  border-left: 3px dashed var(--line);
+}
+.step {
+  position: relative; display: grid; grid-template-columns: 56px 1fr;
+  gap: 1.4rem; align-items: start; padding-bottom: 2.1rem;
+  transition: opacity .8s, translate .8s;
+}
+.step:last-child { padding-bottom: 0; }
+.step-n {
+  position: relative; z-index: 1;
+  width: 56px; height: 56px; border-radius: 50%;
+  display: grid; place-items: center;
+  font-family: var(--font-mono); font-weight: 700; font-size: 1.05rem;
+  background: var(--paper); color: var(--ink);
+  border: 2.5px solid var(--ink); box-shadow: var(--shadow-sm);
+}
+.step:hover .step-n { background: var(--yellow); }
+.step-body { padding-top: .35rem; }
+.step-body h3 {
+  display: flex; align-items: center; gap: .6rem; flex-wrap: wrap;
+  font-family: var(--font-serif); font-weight: 800;
+  font-size: 1.25rem; margin-bottom: .45rem;
+}
+.step-ico { color: var(--coral); font-size: 1rem; }
+.step-body p { color: var(--ink-soft); line-height: 1.65; max-width: 62ch; font-size: .98rem; }
+
+/* ---- education (left column of About) ---- */
+.col-title.edu-h { color: var(--green); margin: 2.6rem 0 1.1rem; text-align: center; }
+.edu { display: flex; flex-direction: column; gap: .9rem; width: 100%; max-width: 420px; }
+.edu-row {
+  display: grid; grid-template-columns: 42px 1fr; gap: .9rem; align-items: start;
+  background: var(--paper); border: 2.5px solid var(--ink); border-radius: 15px;
+  padding: .9rem 1rem; box-shadow: var(--shadow-sm);
+  transition: transform .18s cubic-bezier(.22,.61,.36,1), box-shadow .18s ease, opacity .8s, translate .8s;
+}
+.edu-row:hover { transform: translate(-2px,-3px); box-shadow: var(--shadow); }
+.edu-ico {
+  width: 42px; height: 42px; border-radius: 12px; display: grid; place-items: center;
+  border: 2px solid var(--ink); background: #e6f7ef; color: var(--ink); font-size: .95rem;
+}
+.edu-row h4 { font-family: var(--font-serif); font-weight: 800; font-size: 1rem; line-height: 1.25; }
+.edu-school { font-size: .86rem; color: var(--ink-soft); margin-top: .18rem; }
+.edu-period { font-family: var(--font-mono); font-size: .72rem; color: var(--ink-soft); margin-top: .3rem; opacity: .85; }
+
+@media (max-width: 960px) { .svc-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 640px) {
+  .svc-grid { grid-template-columns: 1fr; gap: 1.2rem; }
+  .steps::before { left: 21px; }
+  .step { grid-template-columns: 44px 1fr; gap: 1rem; }
+  .step-n { width: 44px; height: 44px; font-size: .92rem; }
+  .hero-cta .btn { flex: 1 1 auto; justify-content: center; }
+  .edu { max-width: 100%; }
+}
+
+/* Longer headings wrap on narrow screens and the flanking dashes end up
+   floating beside the middle line — drop them and let the text have the width. */
+@media (max-width: 560px) {
+  .about-heading { gap: .6rem; }
+  .about-heading .dash { display: none; }
+  .sec-lead { font-size: 1.2rem; }
 }

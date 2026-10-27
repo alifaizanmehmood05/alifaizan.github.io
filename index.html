@@ -42,6 +42,12 @@
       <h1 class="hero-name"><span class="caret" aria-hidden="true"></span>Hi, I'm Ali</h1>
       <p class="hero-tag">I build apps you won't rage-quit.</p>
       <p class="hero-line">22 <b>|</b> MOBILE DEVELOPER <b>|</b> FLUTTER ENGINEER <b>|</b> ANDROID DEV</p>
+
+      <div class="hero-cta">
+        <a href="#work" class="btn btn--primary"><i class="fas fa-mobile-screen-button"></i> See my work</a>
+        <a href="#contact" class="btn"><i class="fas fa-paper-plane"></i> Hire me</a>
+      </div>
+      <p class="hero-avail"><span class="pulse-dot"></span> Available for freelance &amp; remote work</p>
     </div>
 
     <div class="sticky-layer" id="stickyLayer" aria-hidden="true">
@@ -54,16 +60,21 @@
 
     <!-- Floating dock -->
     <nav class="dock" aria-label="Quick navigation">
-      <a href="#top" class="dock-btn" data-tip="Home" style="--c:var(--blue)"><i class="fas fa-house"></i></a>
-      <a href="#work" class="dock-btn" data-tip="Work" style="--c:var(--coral)"><i class="fas fa-mobile-screen-button"></i></a>
-      <a href="#about" class="dock-btn" data-tip="About" style="--c:var(--pink)"><i class="fas fa-user"></i></a>
-      <a href="#about" class="dock-btn" data-tip="Experience" style="--c:var(--green)"><i class="fas fa-briefcase"></i></a>
-      <a href="#contact" class="dock-btn" data-tip="Contact" style="--c:var(--blue)"><i class="fas fa-envelope"></i></a>
-      <a href="assets/images/faizancv.pdf" download="Ali-Faizan-Mehmood-CV.pdf" class="dock-btn" data-tip="Résumé" style="--c:var(--green)"><i class="fas fa-download"></i></a>
-      <span class="dock-sep"></span>
-      <a href="#work" class="dock-btn" data-tip="Browse work" style="--c:var(--ink)"><i class="fas fa-magnifying-glass"></i></a>
-    </nav>
+    <a href="#top" class="dock-btn" data-tip="Home" style="--c:var(--blue)"><i class="fas fa-house"></i></a>
+    <a href="#about" class="dock-btn" data-tip="About" style="--c:var(--pink)"><i class="fas fa-user"></i></a>
+    <a href="#services" class="dock-btn" data-tip="Services" style="--c:var(--green)"><i class="fas fa-briefcase"></i></a>
+    <a href="#work" class="dock-btn" data-tip="Work" style="--c:var(--coral)"><i class="fas fa-mobile-screen-button"></i></a>
+    <a href="#process" class="dock-btn" data-tip="How I work" style="--c:var(--ink)"><i class="fas fa-diagram-project"></i></a>
+    <a href="#contact" class="dock-btn" data-tip="Contact" style="--c:var(--blue)"><i class="fas fa-envelope"></i></a>
+    <span class="dock-sep"></span>
+    <a href="assets/images/faizancv.pdf" download="Ali-Faizan-Mehmood-CV.pdf" class="dock-btn" data-tip="Résumé" style="--c:var(--green)"><i class="fas fa-download"></i></a>
+  </nav>
   </header>
+
+  <!-- ===== STATS BAND ===== -->
+  <section class="statsband">
+    <div class="wrap"><div class="stats-row" id="heroStats"></div></div>
+  </section>
 
   <!-- ===== ABOUT (Yours Truly + Stalk Me + Tool Kit) ===== -->
   <section class="section about" id="about">
@@ -76,9 +87,10 @@
           <div class="avatar-wrap reveal">
             <span class="avatar-spark">✦</span>
             <img
-              src="https://api.dicebear.com/9.x/avataaars/svg?seed=AliFaizan&backgroundColor=b6e3f4&radius=50"
+              src="assets/images/profile.png"
               alt="Ali Faizan Mehmood"
               class="avatar"
+              width="200" height="200"
               onerror="this.src='https://ui-avatars.com/api/?background=3b5bff&color=fff&bold=true&name=Ali+Faizan&size=200&rounded=true';"
             />
             <svg class="avatar-arrow" viewBox="0 0 80 80" aria-hidden="true">
@@ -88,15 +100,19 @@
             <span class="yours-truly">Yours Truly</span>
           </div>
 
+          <h3 class="col-title edu-h">Education</h3>
+          <div class="edu" id="eduList"></div>
+
           <div class="about-notes" id="aboutNotes">
-            <div class="sticky sticky--g" style="top:6px;left:18px;--rot:-5deg">4+ Years of industry experience 📆</div>
-            <div class="sticky sticky--p" style="top:74px;left:200px;--rot:5deg">Building so you don't rage-quit 😤</div>
-            <div class="sticky sticky--y" style="top:224px;left:44px;--rot:-3deg">CS grad — Googled my way here 😅</div>
-            <div class="sticky sticky--b" style="top:266px;left:220px;--rot:6deg">PAK 🌙 · Remote-ready 🌍</div>
-            <div class="sticky sticky--l" style="top:414px;left:14px;--rot:-4deg">Less "ugh," more "ooh!" 🎈</div>
-            <div class="sticky sticky--g" style="top:454px;left:206px;--rot:4deg">3 apps LIVE on the App Store 🍎</div>
-            <div class="sticky sticky--p" style="top:602px;left:56px;--rot:-6deg">70+ WPM ⌨️ (symbols too)</div>
-            <div class="sticky sticky--y" style="top:632px;left:222px;--rot:3deg">Coffee → Code → Repeat ☕</div>
+            <div class="sticky sticky--g" style="top:0px;left:10px;--rot:-5deg">4+ Years of industry experience 📆</div>
+            <div class="sticky sticky--p" style="top:95px;left:228px;--rot:5deg">Building so you don't rage-quit 😤</div>
+            <div class="sticky sticky--y" style="top:195px;left:14px;--rot:-3deg">CS grad — Googled my way here 😅</div>
+            <div class="sticky sticky--b" style="top:290px;left:230px;--rot:6deg">PAK 🌙 · Remote-ready 🌍</div>
+            <div class="sticky sticky--l" style="top:390px;left:8px;--rot:-4deg">Less "ugh," more "ooh!" 🎈</div>
+            <div class="sticky sticky--g" style="top:485px;left:232px;--rot:4deg">3 apps LIVE on the App Store 🍎</div>
+            <div class="sticky sticky--p" style="top:585px;left:16px;--rot:-6deg">70+ WPM ⌨️ (symbols too)</div>
+            <div class="sticky sticky--y" style="top:680px;left:226px;--rot:3deg">Coffee → Code → Repeat ☕</div>
+          
           </div>
         </div>
 
@@ -130,6 +146,15 @@
     </div>
   </section>
 
+  <!-- ===== SERVICES ===== -->
+  <section class="section services" id="services">
+    <div class="wrap">
+      <h2 class="about-heading reveal"><span class="dash"></span>What I can build<span class="dash"></span></h2>
+      <p class="sec-lead reveal">Pick the stack that fits your timeline — not the only one I know.</p>
+      <div class="svc-grid" id="svcGrid"></div>
+    </div>
+  </section>
+
   <!-- ===== PROJECTS ===== -->
   <section class="section work" id="work">
     <div class="wrap">
@@ -138,6 +163,15 @@
       <div class="viewall reveal">
         <a href="projects.html" class="viewall-link">→ View all projects</a>
       </div>
+    </div>
+  </section>
+
+  <!-- ===== PROCESS ===== -->
+  <section class="section process" id="process">
+    <div class="wrap">
+      <h2 class="about-heading reveal"><span class="dash"></span>How I work<span class="dash"></span></h2>
+      <p class="sec-lead reveal">From first call to store launch — you always know where things stand.</p>
+      <ol class="steps" id="stepList"></ol>
     </div>
   </section>
 
